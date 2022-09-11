@@ -1,0 +1,7 @@
+{% extends "disposicion.html" %}
+{% block content %}
+    <h1>Transporte público - Coruña - Buses</h1>
+    <a href="{{ url_for('mapa') }}">Mapa con las paradas</a>
+    <a href="{{ url_for('paradas') }}">Tabla con las paradas</a>
+    <a href="{{ url_for('lineas') }}">Tabla con las líneas</a>
+{% endblock content %}

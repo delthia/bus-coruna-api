@@ -1,0 +1,19 @@
+{% extends "disposicion.html" %}
+{% block content %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Líneas</th>
+    </tr>
+    {% for parada in paradas['paradas'] %}
+        <tr>
+            <td><a href="{{ url_for('parada', id_parada=parada.id) }}">{{ parada.id }}</a><td>
+            <td><a href="{{ url_for('parada', id_parada=parada.id) }}">{{ parada.nombre }}</a></td>
+            {% for linea in parada.lineas %}
+                <td><a href="{{ url_for('linea', id_linea=linea.id) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{linea.nombre}}</a></td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
