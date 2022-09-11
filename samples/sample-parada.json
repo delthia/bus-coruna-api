@@ -1,0 +1,150 @@
+{
+  "Origen": "Web_Beta",
+  "buses": {
+    "lineas": [
+      {
+        "buses": [
+          {
+            "bus": 426,
+            "distancia": "621",
+            "estado": 0,
+            "tiempo": "5",
+            "ult_parada": 523
+          },
+          {
+            "bus": 372,
+            "distancia": "5395",
+            "estado": 1,
+            "tiempo": "27",
+            "ult_parada": 379
+          },
+          {
+            "bus": 388,
+            "distancia": "12873",
+            "estado": 0,
+            "tiempo": "45",
+            "ult_parada": 363
+          }
+        ],
+        "linea": 1900
+      },
+      {
+        "buses": [
+          {
+            "bus": 381,
+            "distancia": "1709",
+            "estado": 1,
+            "tiempo": "6",
+            "ult_parada": 28
+          },
+          {
+            "bus": 380,
+            "distancia": "8373",
+            "estado": 0,
+            "tiempo": "36",
+            "ult_parada": 29
+          }
+        ],
+        "linea": 800
+      },
+      {
+        "buses": [
+          {
+            "bus": 420,
+            "distancia": "2529",
+            "estado": 1,
+            "tiempo": "14",
+            "ult_parada": 25
+          },
+          {
+            "bus": 421,
+            "distancia": "8704",
+            "estado": 0,
+            "tiempo": "36",
+            "ult_parada": 4
+          }
+        ],
+        "linea": 100
+      },
+      {
+        "buses": [
+          {
+            "bus": 427,
+            "distancia": "--",
+            "estado": 1,
+            "tiempo": "17",
+            "ult_parada": 424
+          },
+          {
+            "bus": 390,
+            "distancia": "13350",
+            "estado": 0,
+            "tiempo": "48",
+            "ult_parada": 55
+          }
+        ],
+        "linea": 1700
+      },
+      {
+        "buses": [
+          {
+            "bus": 423,
+            "distancia": "3790",
+            "estado": 0,
+            "tiempo": "17",
+            "ult_parada": 151
+          },
+          {
+            "bus": 397,
+            "distancia": "10221",
+            "estado": 0,
+            "tiempo": "39",
+            "ult_parada": 42
+          }
+        ],
+        "linea": 301
+      },
+      {
+        "buses": [
+          {
+            "bus": 422,
+            "distancia": "4558",
+            "estado": 1,
+            "tiempo": "20",
+            "ult_parada": 37
+          }
+        ],
+        "linea": 200
+      },
+      {
+        "buses": [
+          {
+            "bus": 407,
+            "distancia": "7257",
+            "estado": 1,
+            "tiempo": "29",
+            "ult_parada": 337
+          }
+        ],
+        "linea": 2301
+      },
+      {
+        "buses": [
+          {
+            "bus": 415,
+            "distancia": "20647",
+            "estado": 0,
+            "tiempo": "64",
+            "ult_parada": 5
+          }
+        ],
+        "linea": 2300
+      }
+    ],
+    "parada": 1
+  },
+  "fecha_peticion": "20220911161759",
+  "peticion": "jbuses?parada=1&version=2",
+  "resultado": "OK",
+  "tama\u00f1o": 1344
+}
