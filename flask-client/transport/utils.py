@@ -1,4 +1,17 @@
-import json, requests
+import json, requests, os.path
+
+def datos_iniciales(url, dir):
+    done = False
+    while not done:
+        if not os.path.exists(dir+'lineas.json'):
+            json_lineas(url, dir+'lineas.json')
+        elif not os.path.exists(dir+'paradas.geojson.js'):
+            crear_geojson(url, dir+'paradas.geojson.js')
+        elif not os.path.exists(dir+'paradas.json'):
+            json_paradas(url, dir+'paradas.json')
+        else:
+            done = True
+
 
 def encontrar_linea(id, datos):
     for linea in datos['lineas']:

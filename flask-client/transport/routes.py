@@ -1,7 +1,7 @@
 from flask import render_template, url_for
 from transport import app
-from transport.utils import crear_geojson, json_paradas, json_lineas, buses_parada, buses_linea, encontrar_linea, encontrar_parada
-import os.path, json
+from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada
+import json
 
 @app.route("/")
 @app.route("/inicio")
@@ -11,17 +11,11 @@ def inicio():
 @app.route("/mapa")
 def mapa():
     ruta = 'transport/static/paradas.geojson.js'
-    if not os.path.exists(ruta):
-        print("No existía el geojson de las paradas")
-        crear_geojson('https://itranvias.com/queryitr_v3.php?dato=20160101T000000_gl_0_20160101T000000&func=7', ruta)
     return render_template('mapa.html', title='Coruña; Buses')
 
 @app.route("/paradas")
 def paradas():
     ruta = 'transport/static/paradas.json'
-    if not os.path.exists(ruta):
-        print("No existía el json de las paradas")
-        json_paradas('https://itranvias.com/queryitr_v3.php?dato=20160101T000000_gl_0_20160101T000000&func=7', ruta)
     with open(ruta) as archivo:
         lista = json.load(archivo)
     return render_template('paradas.html', title='Paradas', paradas=lista)
@@ -29,9 +23,6 @@ def paradas():
 @app.route("/lineas")
 def lineas():
     ruta = 'transport/static/lineas.json'
-    if not os.path.exists(ruta):
-        print("No existía el json de las líneas")
-        json_lineas('https://itranvias.com/queryitr_v3.php?dato=20160101T000000_gl_0_20160101T000000&func=7', ruta)
     with open(ruta) as archivo:
         lista = json.load(archivo)
     return render_template('lineas.html', title='Líneas', lineas=lista)
