@@ -1,0 +1,11 @@
+{% extends "disposicion.html" %}
+{% block content %}
+<div class="linea-parada">
+    {% for linea in buses %}
+    <h1>Línea <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
+    {% for bus in linea.buses %}
+        <p>Bus {{ bus.bus }}, a {{ bus.distancia }}m, {{ bus.tiempo }}'.</p>
+    {% endfor %}
+{% endfor %}
+</div>
+{% endblock content %}

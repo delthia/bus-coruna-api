@@ -1,0 +1,57 @@
+html {
+    background-color: #F5F5F6;
+    margin: 0px;
+}
+body {
+    margin: 0 auto;
+    max-width: 1250px;
+    box-shadow: 0 0 10px #d4d4d4;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.leaflet-container {
+    height: 400px;
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
+}
+.simbolo_linea {
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: white;
+}
+.simbolo_lina, a {
+    text-decoration: none;
+}
+.simbolo_linea {
+    color: white!important;
+}
+td > a {
+    color: black;
+}
+td > a:hover {
+    text-decoration: underline;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+table {
+    min-width: 50%;
+    max-width: 75%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px 0px;
+}
+
+tr:nth-child(even) { background-color: #F5F5F5; }

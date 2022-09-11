@@ -18,40 +18,17 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+    <!-- Material icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        .leaflet-container {
-            height: 400px;
-            width: 600px;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        .simbolo_linea {
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: white;
-        }
-        .simbolo_linea, a {
-            text-decoration: none;
-        }
-        .simbolo_linea {
-            color: white!important;
-        }
-        td > a {
-            color: black;
-        }
-
-        td > a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"> 
 </head>
 <body>
-    <a href="{{ url_for('inicio') }}">Volver a la página principal</a>
+    <a href="{{ url_for('inicio') }}" style="color: #5e35b1;"><span class="material-symbols-outlined" style="font-size: 750%;">commute</span></a>
     {% block content %}{% endblock content %}
 </body>
 </html>
