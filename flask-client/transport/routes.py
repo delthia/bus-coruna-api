@@ -40,10 +40,11 @@ def lineas():
 def parada(id_parada):
     with open('transport/static/paradas.json') as archivo:
         lista = json.load(archivo)
-    try:
-        return buses_parada(encontrar_parada(id_parada,lista)['id'])
-    except:
-        return 'parada no encontrada'
+    # try:
+    buses = buses_parada(encontrar_parada(id_parada,lista)['id'])
+    return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'])
+    #except:
+    #return 'parada no encontrada'
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):

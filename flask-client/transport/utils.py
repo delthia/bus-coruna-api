@@ -66,6 +66,10 @@ def json_lineas(url, directorio):
 
 def buses_parada(parada):
     dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=0&dato='+str(parada)).json()
+    with open('transport/static/lineas.json') as archivo:
+        lista = json.load(archivo)
+    for linea in range(0, len(dato['buses']['lineas'])):
+        dato['buses']['lineas'][linea]['linea'] = encontrar_linea(dato['buses']['lineas'][linea]['linea'], lista)
     return dato
 
 def buses_linea(linea):
