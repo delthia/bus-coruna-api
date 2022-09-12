@@ -55,3 +55,65 @@ th, td {
 }
 
 tr:nth-child(even) { background-color: #F5F5F5; }
+
+/* Lista de lineas */
+ul, li {
+    list-style: none;
+    padding: 0;
+}
+
+.contenedor-lineas {
+    background: #eaf6ff;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 1.1rem;
+    font-family: sans-serif;
+}
+
+.lineas {
+    margin-top: 2rem;
+    border-radius: 12px;
+    position: relative;
+}
+
+li {
+    padding-bottom: 1.5rem;
+    border-left: 1px solid #abaaed;
+    position: relative;
+    padding-left: 20px;
+    margin-left: 10px;
+    &:last-child {
+        border: 0px;
+        padding-bottom: 0;
+    }
+    &:before{
+        content: '';
+        width: 15px;
+        height: 15px;
+        background: white;
+        border: 1px solid #4e5ed3;
+        box-shadow: 3px 3px 0px #bab5f8;
+        box-shadow: 3px 3px 0px #bab5f8;
+        border-radius: 50%;
+        position: absolute;
+        left: -10px;
+        top: 0px;
+      }
+}
+
+.linea {
+    color: #2a2839;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+p {
+    color: #4f4f4f;
+    font-family: sans-serif;
+    line-height: 1.5;
+    margin-top: 0.4rem;
+}
