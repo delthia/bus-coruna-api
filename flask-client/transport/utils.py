@@ -12,6 +12,9 @@ def datos_iniciales(url, dir):
         else:
             done = True
 
+def variables_iniciales(a, b):
+    return a, b
+
 
 def encontrar_linea(id, datos):
     for linea in datos['lineas']:

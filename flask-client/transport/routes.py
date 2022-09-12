@@ -1,7 +1,11 @@
 from flask import render_template, url_for
 from transport import app
-from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada
+from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, variables_iniciales
 import json
+
+dir = 'transport/static/'
+arc = {'lineas': 'lineas.json', 'paradas': 'paradas.json'}
+lineas, paradas = variables_iniciales(dir, arc)
 
 @app.route("/")
 @app.route("/inicio")
@@ -39,9 +43,12 @@ def parada(id_parada):
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
+    """
     with open('transport/static/lineas.json') as archivo:
         lista = json.load(archivo)
     try:
         return buses_linea(encontrar_linea(id_linea,lista)['id'])
     except:
         return 'línea no encontrada'
+    """
+    return render_template('linea.html', title='Línea')
