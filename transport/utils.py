@@ -11,10 +11,11 @@ def datos_iniciales(url, dir):
             json_paradas(url, dir+'paradas.json')
         else:
             done = True
-
-def variables_iniciales(a, b):
-    return a, b
-
+    with open(dir+'lineas.json') as archivo:
+        lineas = json.load(archivo)
+    with open(dir+'paradas.json') as archivo:
+        paradas = json.load(archivo)
+    return lineas, paradas
 
 def encontrar_linea(id, datos):
     for linea in datos['lineas']:
@@ -96,3 +97,4 @@ def encontrar_parada(id, datos):
     for parada in datos['paradas']:
         if parada['id'] == id:
             return parada
+            
