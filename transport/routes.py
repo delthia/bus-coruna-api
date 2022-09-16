@@ -5,7 +5,10 @@ import json
 
 dir = 'transport/static/'
 arc = {'lineas': 'lineas.json', 'paradas': 'paradas.json'}
+origen = 'https://itranvias.com/queryitr_v3.php'
+inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
 lineas, paradas = variables_iniciales(dir, arc)
+datos_iniciales(origen+inicio, dir)
 
 @app.route("/")
 @app.route("/inicio")
