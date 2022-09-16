@@ -8,7 +8,7 @@
     </tr>
     {% for linea in lineas['lineas'] %}
         <tr>
-            <td><span class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</span></td>
+            <td><a href="{{ url_for('linea', id_linea=linea.id) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
             <td>{{ linea.origen }}</td>
             <td>{{ linea.destino }}</td>
         <tr>

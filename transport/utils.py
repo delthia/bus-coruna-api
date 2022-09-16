@@ -97,4 +97,3 @@ def encontrar_parada(id, datos):
     for parada in datos['paradas']:
         if parada['id'] == id:
             return parada
-            
