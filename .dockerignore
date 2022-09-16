@@ -1,0 +1,8 @@
+Dockerfile
+.git
+.gitignore
+tests
+venv
+api
+LICENSE
+README.md
