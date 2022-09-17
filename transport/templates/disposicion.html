@@ -25,10 +25,20 @@
     <!-- Material icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+    <link rel="icon" href="/static/commute-w.svg">
+
     <link rel="stylesheet" type="text/css" href="/static/style.css"> 
 </head>
 <body>
     <a href="{{ url_for('inicio') }}" style="color: #5e35b1;"><span class="material-symbols-outlined" style="font-size: 750%;">commute</span></a>
     {% block content %}{% endblock content %}
+
+    <footer style="width: 85%; margin: auto">
+        <hr style="border: 0.5px solid grey;">
+        <div style="display: flex">
+            <div>Versión: 0.0.1 · &copy; 2022 Iago</div>
+            <div style="justify-content: flex-end;"></div>
+        </div>
+    </footer>
 </body>
 </html>
