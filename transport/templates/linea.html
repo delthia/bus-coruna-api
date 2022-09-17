@@ -1,6 +1,6 @@
 {% extends "disposicion.html" %}
 {% block content %}
-<div class="contenedor-lineas">
+<!--<div class="contenedor-lineas">
     <h1>Línea 5</h1>
     <ul class="lineas">
         <li>
@@ -20,5 +20,14 @@
             <p>Av. do ferrocarril, 81</p>
         </li>
     </ul>
-</div>
+</div>-->
+{{ buses }}
+<h1>Ida</h1>
+{% for parada in buses[0]['paradas'] %}
+    {{ parada }}
+{% endfor %}
+<h1>Vuelta</h1>
+{% for parada in buses[1]['paradas'] %}
+    {{ parada }}
+{% endfor %}
 {% endblock content %}

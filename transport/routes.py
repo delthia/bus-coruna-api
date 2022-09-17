@@ -49,4 +49,5 @@ def linea(id_linea):
     except:
         return 'línea no encontrada'
     """
-    return render_template('linea.html', title='Línea')
+    buses = buses_linea(encontrar_linea(id_linea,lins)['id'])
+    return render_template('linea.html', title='Línea', buses=buses['paradas'])
