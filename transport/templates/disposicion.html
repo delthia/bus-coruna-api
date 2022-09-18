@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,13 +11,6 @@
         <title>Transporte público</title>
     {% endif %}
 
-    <!-- leafletjs -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
-    <!-- leaflet markercluster -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
     <!-- Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,17 +25,15 @@
 </head>
 <body>
     <header>
-        <!--<a href="{{ url_for('inicio') }}"><span class="material-symbols-outlined">commute</span> Inicio</a>-->
-        <!--<a href="{{ url_for('inicio') }}"><img src="/static/commute.svg" width="22px" height="22px"> Inicio</div></a>-->
-        <a href="{{ url_for('inicio') }}"><span class="material-symbols-outlined">commute</span> Inicio</a>
-        <a href="{{ url_for('mapa') }}"><span class="material-symbols-outlined">map</span> Mapa</a>
-        <a href="{{ url_for('paradas') }}"><span class="material-symbols-outlined">pergola</span> Paradas</a>
-        <a href="{{ url_for('lineas') }}"><span class="material-symbols-outlined">route</span> Líneas</a>
+        <a href="{{ url_for('inicio') }}"><span class="material-symbols-outlined">commute</span>Inicio</a>
+        <a href="{{ url_for('mapa') }}"><span class="material-symbols-outlined">map</span>Mapa</a>
+        <a href="{{ url_for('paradas') }}"><span class="material-symbols-outlined">pergola</span>Paradas</a>
+        <a href="{{ url_for('lineas') }}"><span class="material-symbols-outlined">route</span>Líneas</a>
     </header>
     <div class="contenido">{% block content %}{% endblock content %}</div>
 
     <footer>
-        <p>Versión: 0.0.1 · &copy; 2022 Iago · <a href="https://github.com/delthia/bus-coruna-api" target="_blank">Código fuente</a></p>
+        <p>Versión: 0.0.1 · &copy; 2022 Iago · <a href="{{ url_for('fuente') }}">Código fuente</a></p>
     </footer>
 </body>
 </html>

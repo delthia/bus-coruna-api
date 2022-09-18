@@ -51,3 +51,8 @@ def linea(id_linea):
     """
     buses = buses_linea(encontrar_linea(id_linea,lins)['id'])
     return render_template('linea.html', title='Línea', buses=buses['paradas'])
+
+# Temporal
+@app.route("/codigo-fuente")
+def fuente():
+    return render_template('fuente.html', title='Fuente del proyecto')

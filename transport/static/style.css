@@ -1,15 +1,14 @@
 html {
     background-color: #F5F5F6;
-    margin: 0px;
+    /* margin: 0px; */
 }
 body {
     margin: 0 auto;
     max-width: 1250px;
     box-shadow: 0 0 10px #d4d4d4;
     background-color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
     min-height: 100vh;
-    bottom: 0;
 }
 .leaflet-container {
     height: 400px;
@@ -25,7 +24,7 @@ body {
     border-radius: 4px;
     color: white;
 }
-.simbolo_lina, a {
+.simbolo_linea, a {
     text-decoration: none;
 }
 .simbolo_linea {
@@ -123,6 +122,14 @@ p {
     margin-top: 0.4rem;
 }
 
+a {
+    color: #4f4f4f;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 /* Barra de navegación */
 header {
     background-color: #5e35b1;
@@ -149,11 +156,12 @@ a > img {
 }
 
 .contenido {
-    padding: 1em;
+    margin: 0em 1em;
 }
 
 h1 {
     font-weight: 300;
+    font-size: 200%;
 }
 
 header span {
@@ -166,5 +174,4 @@ footer {
     text-align: center;
     border-top: 1px solid #d4d4d4;
     display: block;
-    bottom: 0px;
 }

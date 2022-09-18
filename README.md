@@ -1,4 +1,21 @@
-# Cliente para la API de Tranvías Coruña
+# Bus Coruña - Cliente alternativo
 ![licencia](https://img.shields.io/github/license/delthia/bus-coruna-api)
 
-Este proyecto consiste en una página web que servirá de cliente para consultar información sobre las paradas, tiempos y líneas del bus urbano de coruña. El objetivo es hacer un cliente simple para esta aplicación, utilizando python como backend en el servidor, y sirviéndome para aprender a leer datos de una api json con python, transformar esos datos a diferentes formatos (geojson, json, diccionarios, listas), y relacionarlos para obtener toda la información necesaria para hacer funcionar la aplicación. La primera parte consiste en descargar los datos sobre las líneas y paradas, y adaptarlos para crear un mapa con todas las pardas y sus líneas, y un par de tablas con las paradas y sus líneas. En el segundo paso se añadirá una página en la que se mostrarán en forma de línea de tiempo todas las paradas de una línea. En el tercer paso, una vez que ya se haya trabajado con los datos "estáticos", se implementará un sistema por el cual actualizar los datos del frontend sin recargar la página, y por último se optimizará el servidor para que sirva de intermediario de los datos en tiempo real, que el servidor obtendrá y almacenará, para relevarlos a los clientes.
+![Captura de pantalla del mapa](screenshot.png)
+
+Este es mi primer proyecto "funcional". Consiste en un cliente alternativo para consultar información sobre el bus urbano de coruña. Además de contener la información en tiempo real que contiene el cliente "oficial", contiene otras funcionalidades, como un mapa con todas las paradas. Por ahora es un trabajo en progreso, por lo que no están implementadas todas las funciones mínimas completamente.
+
+El objetivo del proyecto es aprender a obtener datos en formato json de una api, y manipularlos con python, y a hacer una aplicación que contenga datos dinámicos.
+
+## Planes de futuro
+Esta sección contiene las ideas que tengo para seguir con el proyecto, organizadas según su plausibilidad.
+### Factibles/Relativamente sencillas de implementar
+- Actualizar los datos sin recargar la página
+- API con los datos
+### Factibles a largo plazo
+- Mostrar información de las paradas (accesibilidad, características) a través de la API de [OpenStreetmap](https://osm.org) ([Overpass](https://overpass-api.de)).
+- Mostrar información meteorológica desde la [API de AEMET](https://opendata.aemet.es)
+### Ideas poco factibles
+- Corregir la información de los tiempos provista por iTranvías a partir de la distancia
+### A lo mejor...
+- Incluir datos del bus interurbano a partir de [bus.gal](https://bus.gal)
