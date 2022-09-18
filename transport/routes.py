@@ -21,7 +21,7 @@ def inicio():
 
 @app.route("/mapa")
 def mapa():
-    ruta = 'transport/static/paradas.geojson.js'
+    # ruta = 'transport/static/paradas.geojson.js'
     return render_template('mapa.html', title='Coruña; Buses')
 
 @app.route("/paradas")
