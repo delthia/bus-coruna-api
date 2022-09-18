@@ -8,6 +8,8 @@ body {
     box-shadow: 0 0 10px #d4d4d4;
     background-color: white;
     font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    bottom: 0;
 }
 .leaflet-container {
     height: 400px;
@@ -135,8 +137,6 @@ header > a {
     margin: auto;
     text-align: center;
     flex-grow: 1;
-    align-content: center;
-    display: inline-block;
 }
 
 header > a:hover {
@@ -154,4 +154,17 @@ a > img {
 
 h1 {
     font-weight: 300;
+}
+
+header span {
+    vertical-align: middle;
+}
+
+footer {
+    width: 85%;
+    margin: auto;
+    text-align: center;
+    border-top: 1px solid #d4d4d4;
+    display: block;
+    bottom: 0px;
 }
