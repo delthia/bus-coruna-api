@@ -21,13 +21,22 @@
         </li>
     </ul>
 </div>-->
-{{ buses }}
 <h1>Ida</h1>
 {% for parada in buses[0]['paradas'] %}
-    {{ parada }}
+    <p>Parada {{ parada.parada }}
+    {% for bus in parada.buses %}
+        <p>Bus nº: {{ bus.bus }}; Estado: {{ bus.estado }}; Distancia: {{ bus.distancia*100 }}%</p>
+        <p>0 Significa que el bus está en la parada, 1 significa que el bus está en movimiento, el porcentaje representa el porcentaje del bus en el recorrido total</p>
+    {% endfor %}
+    <hr>
 {% endfor %}
 <h1>Vuelta</h1>
 {% for parada in buses[1]['paradas'] %}
-    {{ parada }}
+    <p>Parada {{ parada.parada }}
+    {% for bus in parada.buses %}
+        <p>Bus nº: {{ bus.bus }}; Estado: {{ bus.estado }}; Distancia: {{ bus.distancia*100 }}%</p>
+        <p>0 Significa que el bus está en la parada, 1 significa que el bus está en movimiento, el porcentaje representa el porcentaje del bus en el recorrido total</p>
+    {% endfor %}
+    <hr>
 {% endfor %}
 {% endblock content %}
