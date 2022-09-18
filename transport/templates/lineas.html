@@ -1,5 +1,6 @@
 {% extends "disposicion.html" %}
 {% block content %}
+<h1 style="font-size: 200%; margin-top: 0">Líneas</h1>
 <table>
     <tr>
         <th>Línea</th>
@@ -11,6 +12,7 @@
             <td><a href="{{ url_for('linea', id_linea=linea.id) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
             <td>{{ linea.origen }}</td>
             <td>{{ linea.destino }}</td>
-        <tr>
+        </tr>
     {% endfor %}
+</table>
 {% endblock content %}
