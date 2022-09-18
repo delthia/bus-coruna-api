@@ -31,8 +31,15 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css"> 
 </head>
 <body>
-    <a href="{{ url_for('inicio') }}" style="color: #5e35b1;"><span class="material-symbols-outlined" style="font-size: 750%;">commute</span></a>
-    {% block content %}{% endblock content %}
+    <header>
+        <!--<a href="{{ url_for('inicio') }}"><span class="material-symbols-outlined">commute</span> Inicio</a>-->
+        <!--<a href="{{ url_for('inicio') }}"><img src="/static/commute.svg" width="22px" height="22px"> Inicio</div></a>-->
+        <a href="{{ url_for('inicio') }}">Inicio</a>
+        <a href="{{ url_for('mapa') }}">Mapa</a>
+        <a href="{{ url_for('paradas') }}">Paradas</a>
+        <a href="{{ url_for('lineas') }}">Líneas</a>
+    </header>
+    <div class="contenido">{% block content %}{% endblock content %}</div>
 
     <footer style="width: 85%; margin: auto">
         <hr style="border: 0.5px solid grey;">
