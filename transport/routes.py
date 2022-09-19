@@ -26,17 +26,15 @@ def mapa():
 
 @app.route("/paradas")
 def paradas():
-    print(paradas)
     return render_template('paradas.html', title='Paradas', paradas=pards)
 
 @app.route("/lineas")
 def lineas():
-    print(lineas)
     return render_template('lineas.html', title='Líneas', lineas=lins)
 
 @app.route("/parada/<int:id_parada>")
 def parada(id_parada):
-    buses = buses_parada(encontrar_parada(id_parada,pards)['id'])
+    buses = buses_parada(encontrar_parada(id_parada,pards)['id'],static+'lineas.json')
     return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'])
 
 @app.route("/linea/<int:id_linea>")
