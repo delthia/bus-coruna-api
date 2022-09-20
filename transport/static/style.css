@@ -86,8 +86,9 @@ td > a:hover {
     text-decoration: underline;
 }
 table {
-    min-width: 50%;
-    max-width: 75%;
+    /*min-width: 75%;
+    max-width: 75%;*/
+    width: 75%;
     margin: 0 auto;
     border: 1px solid black;
     border-collapse: collapse;
@@ -98,6 +99,16 @@ th, td {
     padding: 8px 0px;
 }
 tr:nth-child(even) { background-color: #F5F5F5; }
+
+/* Búsqueda */
+#buscar {
+    max-width: 100%;
+    width: 65%;
+    /*width: 72.4%;*/
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 6px 10px 6px 20px;
+}
 
 /* Pie */
 footer {
