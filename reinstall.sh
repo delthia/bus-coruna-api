@@ -2,7 +2,7 @@
 # Actualizar los cambios
 git pull
 # Desinstalar el contendor anterior y borrar su imagen
-docker stop bus && docker rm bus && docker rm bus
+docker stop bus && docker rm bus && docker image rm delthia/buscoruna
 # Cambiar a modo producción
 sed -i 's/dev = True/dev = False/' transport/routes.py
 # Crear la imagen nueva
