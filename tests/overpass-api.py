@@ -2,6 +2,8 @@ import overpass
 api = overpass.API()
 response = api.get('node["name"="Autoridade Portuaria"]')
 response = api.get('node["name"="Avenida do Ferrocarril, 81"]')
+# Todas las paradas desde osm
+# data = api.get('area[name = "A Coruña"][place = "municipality"];node["public_transport"="platform"]["bus"="yes"](area);')
 print(response)
 print('................................')
 try:
