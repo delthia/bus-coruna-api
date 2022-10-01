@@ -38,7 +38,7 @@ def crear_geojson(url, directorio):
     archivo.write(cabeza)
     busstop = ''
     for parada in datos['paradas']:
-        busstop = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']+lineas_parada(parada, datos)}, 'geometry': {'type': 'Point', 'coordinates': [parada['posx'], parada['posy']]},}
+        busstop = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': '<a href="./parada/'+str(parada['id'])+'">'+parada['nombre']+'</a>'+lineas_parada(parada, datos)}, 'geometry': {'type': 'Point', 'coordinates': [parada['posx'], parada['posy']]},}
         stop = str(busstop)+','
         archivo.write(stop)
 
