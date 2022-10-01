@@ -34,8 +34,10 @@ def lineas():
 
 @app.route("/parada/<int:id_parada>")
 def parada(id_parada):
-    buses = buses_parada(encontrar_parada(id_parada,pards)['id'],static+'lineas.json')
-    return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'])
+    parada = encontrar_parada(id_parada, pards)
+    buses = buses_parada(parada['id'],static+'lineas.json')
+    # print(buses['buses']['lineas'])
+    return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):

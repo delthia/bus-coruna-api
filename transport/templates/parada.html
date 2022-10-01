@@ -1,16 +1,80 @@
 {% extends "disposicion.html" %}
 {% block content %}
+<!-- leafletjs -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 <h1>{{ parada.id }} - {{ parada.nombre }}</h1>
 <div class="linea-parada" id="lineas">
     {% for linea in buses %}
     <div class="linea">
         <h1 id="{{ linea.linea.id }}">Línea <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
         {% for bus in linea.buses %}
-            <p>Bus {{ bus.bus }}, a {{ bus.distancia }}m, <span class="timepo">{{ bus.tiempo }}</span>.</p>
+            {% if bus.distancia == '0' %}
+                <p>Bus {{ bus.bus }}, <b>en la parada</b>.</p>
+            {% else %}
+                <p>Bus {{ bus.bus }}, a {{ bus.distancia }}m, <span class="timepo">{{ bus.tiempo }}</span>.</p>
+            {% endif %}
         {% endfor %}
     </div>
 {% endfor %}
 </div>
+
+<p>{{ parada.propiedades }}</p>
+
+<table>
+    <tr>
+        <th>Detalles de la parada</th>
+    </tr>
+    <tr>
+        <td>Pavimento táctil</td>
+        <td>{% if parada.propiedades.tactile_paving == 'y' %}Sí{% elif parada.propiedades.tactile_paving == 'n' %}No{% else %}-{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Banco</td>
+        <td>{% if parada.propiedades.bench == 'y' %}Sí{% elif parada.propiedades.bench == 'n' %}No{% else %}-{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Cubierta</td>
+        <td>{% if parada.propiedades.shelter == 'y' %}Sí{% elif parada.propiedades.shelter == 'n' %}No{% else %}-{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Papelera</td>
+        <td>{% if parada.propiedades.bin == 'y' %}Sí{% elif parada.propiedades.bin == 'n' %}No{% else %}-{% endif %}</td>
+    </tr>
+    <tr>
+        <td>Iluminada</td>
+        <td>{% if parada.propiedades.lit == 'y' %}Sí{% elif parada.propiedades.lit == 'n' %}No{% else %}-{% endif %}</td>
+    </tr>
+</table>
+<small>{{ parada }}</small>
+<div id="map"></div>
+<script>
+    var map = L.map('map').setView([{{ parada.coords[1] }}, {{ parada.coords[0] }}], 17);
+
+    var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
+        minZoom: 13
+    }).addTo(map);
+</script>
+<!--<small>{{ parada }}</small>
+
+<p id="todo"></p>
+<p id="demo"></p>-->
+<!--<script>
+    let texto = '{"resultado":"OK","fecha_peticion":"20220920224215","peticion":"jbuses?parada=119&version=2","tama\u00f1o":671,"buses":{"parada":119,"lineas":[{"linea":2000,"buses":[{"bus":392,"tiempo":"1","distancia":"573","estado":1,"ult_parada":282}]},{"linea":500,"buses":[{"bus":425,"tiempo":"3","distancia":"1281","estado":1,"ult_parada":583}]},{"linea":1400,"buses":[{"bus":412,"tiempo":"8","distancia":"2178","estado":1,"ult_parada":21},{"bus":395,"tiempo":"19","distancia":"4723","estado":1,"ult_parada":506}]},{"linea":1500,"buses":[{"bus":402,"tiempo":"20","distancia":"6446","estado":0,"ult_parada":61},{"bus":409,"tiempo":"51","distancia":"16053","estado":0,"ult_parada":99}]}]},"Origen":"Web_Beta"}'
+    // const obj = JSON.parse(texto);
+    // document.getElementById("demo").innerHTML = obj;
+    const obj = JSON.parse(texto);
+    document.getElementById("todo").innerHTML = texto
+    //document.getElementById("demo").innerHTML = obj['lineas'][1].id;
+    for(i=0; i<obj['buses']['lineas'].length; i++) {
+        document.getElementById("demo").innerHTML += '<h1>Linea <span class="simbolo_linea" style="background-color: #'+'dddddd'+'">'+obj['buses']['lineas'][i].linea+'</span></h1>';
+        for(b=0; b<obj['buses']['lineas'][i].buses.length; b++){
+            document.getElementById("demo").innerHTML += '<p>'+obj['buses']['lineas'][i].buses[b].bus+'</p>';
+        }
+    }
+</script>-->
 <p id="hora"></p>
 <p id="t"></p>
 <script>

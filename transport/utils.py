@@ -8,7 +8,7 @@ def datos_iniciales(url, dir):
         elif not os.path.exists(dir+'paradas.geojson.js'):
             crear_geojson(url, dir+'paradas.geojson.js')
         elif not os.path.exists(dir+'paradas.json'):
-            json_paradas(url, dir+'paradas.json')
+            json_paradas(url, dir+'paradas.json', dir+'paradas-osm.json')
         else:
             done = True
     with open(dir+'lineas.json') as archivo:
@@ -45,7 +45,23 @@ def crear_geojson(url, directorio):
     archivo.write(pie)
     archivo.close()
 
-def json_paradas(url, directorio):
+def json_paradas(url, directorio, osmjson):
+    def find(referencia):
+        with open(osmjson) as arch:
+            data = json.load(arch)
+        for feature in data['features']:
+            if 'ref' in feature['properties'] and feature['properties']['ref'] == str(referencia):
+                break
+        detalles = {}
+        atencion = ['tactile_paving', 'bench', 'shelter', 'bin', 'lit']
+        for at in atencion:
+            if at in feature['properties'] and feature['properties'][at] == 'yes':
+                detalles[at] = 'y'
+            elif at in feature['properties'] and feature['properties'][at] == 'no':
+                detalles[at] = 'n'
+            else:
+                detalles[at] = 's'
+        return detalles
     datos = requests.get(url).json()['iTranvias']['actualizacion']
     archivo = open(directorio, "w")
     cabeza = '{ "paradas": '
@@ -61,7 +77,8 @@ def json_paradas(url, directorio):
         for enlace in parada['enlaces']:
             lin = encontrar_linea(enlace, datos)
             lins.append({"id": lin['id'], "nombre": lin['lin_comer'], "color": lin['color']})
-        single = {'id': parada['id'], 'nombre': parada['nombre'], 'lineas': lins}
+        coords = [parada['posx'], parada['posy']]
+        single = {'id': parada['id'], 'nombre': parada['nombre'], 'propiedades': find(parada['id']), 'lineas': lins, 'coords': coords}
         group.append(single)
     archivo.write(json.dumps(group))
     archivo.write(pie)
