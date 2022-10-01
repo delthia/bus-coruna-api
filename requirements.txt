@@ -1,5 +1,4 @@
 requests==2.28.1
 flask==2.2.2
 gunicorn==20.1.0
-osmpythontools==0.3.5
 overpass==0.7
