@@ -1,5 +1,5 @@
 /* Mapa */
-.leaflet-container {
+    .leaflet-container {
     height: 400px;
     width: 600px;
     max-width: 100%;
@@ -18,6 +18,38 @@
     'wght' 400,
     'GRAD' 0,
     'opsz' 48
+}
+
+/* Mapa de las paradas */
+#mapa-parada {
+    /* width: 50%; */
+    width: 75%;
+    margin: 0 auto;
+    height: 350px;
+    border-radius: 6px;
+}
+/* Información de las paradas */
+.flex-dentro {
+    flex-grow: 1;
+}
+.flex-parada {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.lineas-parada, .info-parada {
+    padding-left: 1em;
+}
+@media (max-width: 720px) {
+    .flex-parada {
+        flex-direction: column;
+    }
+    .lineas-parada {
+        text-align: center;
+    }
+    #mapa-parada {
+        width: 95%;
+    }
 }
 
 /* Base */
@@ -68,8 +100,10 @@ header .material-symbols-outlined {
 }
 
 h1 {
-    font-weight: 300;
     font-size: 200%;
+}
+h1,h2 {
+    font-weight: 300;
 }
 p, a, footer {
     color: #4f4f4f;

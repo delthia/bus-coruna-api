@@ -6,7 +6,7 @@ def datos_iniciales(url, dir):
         if not os.path.exists(dir+'lineas.json'):
             json_lineas(url, dir+'lineas.json')
         elif not os.path.exists(dir+'paradas.geojson.js'):
-            crear_geojson(url, dir+'paradas.geojson.js')
+            crear_geojson(url, dir+'paradas.geojson.js', dir+'paradas-osm.json')
         elif not os.path.exists(dir+'paradas.json'):
             json_paradas(url, dir+'paradas.json', dir+'paradas-osm.json')
         else:
@@ -29,7 +29,7 @@ def lineas_parada(parada, datos):
         lins = lins+'<a href="./linea/'+str(linea)+'" class="simbolo_linea" style="background-color: #'+lin['color']+'">'+lin['lin_comer']+'</a>'
     return lins
 
-def crear_geojson(url, directorio):
+def crear_geojson(url, directorio, osmjson):
     datos = requests.get(url).json()['iTranvias']['actualizacion']
     archivo = open(directorio, "w")
     cabeza = 'var paradas = {"type":"FeatureCollection","features":['
@@ -38,7 +38,17 @@ def crear_geojson(url, directorio):
     archivo.write(cabeza)
     busstop = ''
     for parada in datos['paradas']:
-        busstop = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': '<a href="./parada/'+str(parada['id'])+'">'+parada['nombre']+'</a>'+lineas_parada(parada, datos)}, 'geometry': {'type': 'Point', 'coordinates': [parada['posx'], parada['posy']]},}
+        def find(referencia):
+            with open(osmjson) as arch:
+                data = json.load(arch)
+            for feature in data['features']:
+                if 'ref' in feature['properties'] and feature['properties']['ref'] == str(referencia):
+                    return feature['geometry']['coordinates']
+        if lineas_parada(parada, datos) != None:
+            if find(parada['id']) == None:
+                busstop = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': '<a href="./parada/'+str(parada['id'])+'">'+parada['nombre']+'</a>'+lineas_parada(parada, datos)}, 'geometry': {'type': 'Point', 'coordinates': [parada['posx'], parada['posy']]},}
+            else:
+                busstop = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': '<a href="./parada/'+str(parada['id'])+'">'+parada['nombre']+'</a>'+lineas_parada(parada, datos)}, 'geometry': {'type': 'Point', 'coordinates': find(parada['id'])},}
         stop = str(busstop)+','
         archivo.write(stop)
 
@@ -54,6 +64,7 @@ def json_paradas(url, directorio, osmjson):
                 break
         detalles = {}
         atencion = ['tactile_paving', 'bench', 'shelter', 'bin', 'lit']
+        osmcoords = feature['geometry']['coordinates']
         for at in atencion:
             if at in feature['properties'] and feature['properties'][at] == 'yes':
                 detalles[at] = 'y'
@@ -61,7 +72,7 @@ def json_paradas(url, directorio, osmjson):
                 detalles[at] = 'n'
             else:
                 detalles[at] = 's'
-        return detalles
+        return detalles, osmcoords
     datos = requests.get(url).json()['iTranvias']['actualizacion']
     archivo = open(directorio, "w")
     cabeza = '{ "paradas": '
@@ -78,7 +89,8 @@ def json_paradas(url, directorio, osmjson):
             lin = encontrar_linea(enlace, datos)
             lins.append({"id": lin['id'], "nombre": lin['lin_comer'], "color": lin['color']})
         coords = [parada['posx'], parada['posy']]
-        single = {'id': parada['id'], 'nombre': parada['nombre'], 'propiedades': find(parada['id']), 'lineas': lins, 'coords': coords}
+        det, osmcoords = find(parada['id'])
+        single = {'id': parada['id'], 'nombre': parada['nombre'], 'propiedades': det, 'lineas': lins, 'coords': coords, 'osmcoords': osmcoords}
         group.append(single)
     archivo.write(json.dumps(group))
     archivo.write(pie)
