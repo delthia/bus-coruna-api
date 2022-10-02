@@ -66,27 +66,50 @@
         // fillcolor: '#5e35b1',
         color: 'red',
         fillcolor: '#f03',
-        fillOpacity: 0.5,
+        // fillOpacity: 0.5,
+        fillOpacity: 0.25,
         radius: 7
     }).addTo(map);
 </script>
 
-<!--<p id="todo"></p>
-<p id="demo"></p>
+<p id="todo"></p><!-- JSON -->
+<p id="demo"></p><!-- Información -->
 <script>
-    let texto = '{"resultado":"OK","fecha_peticion":"20220920224215","peticion":"jbuses?parada=119&version=2","tama\u00f1o":671,"buses":{"parada":119,"lineas":[{"linea":2000,"buses":[{"bus":392,"tiempo":"1","distancia":"573","estado":1,"ult_parada":282}]},{"linea":500,"buses":[{"bus":425,"tiempo":"3","distancia":"1281","estado":1,"ult_parada":583}]},{"linea":1400,"buses":[{"bus":412,"tiempo":"8","distancia":"2178","estado":1,"ult_parada":21},{"bus":395,"tiempo":"19","distancia":"4723","estado":1,"ult_parada":506}]},{"linea":1500,"buses":[{"bus":402,"tiempo":"20","distancia":"6446","estado":0,"ult_parada":61},{"bus":409,"tiempo":"51","distancia":"16053","estado":0,"ult_parada":99}]}]},"Origen":"Web_Beta"}'
-    // const obj = JSON.parse(texto);
-    // document.getElementById("demo").innerHTML = obj;
+    // https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
+    /* async function fetchAsync () {
+        let response = await fetch('https://itranvias.com/queryitr_v3.php?&func=0&dato=565');
+        let data = await response.json()
+        return data;
+    } */
+    let response = fetch('https://itranvias.com/queryitr_v3.php?&func=0&dato=565');
+    console.log(response)
+
+    /*var he = {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include'
+    };
+    fetch("https://itranvias.com/queryitr_v3.php?&func=0&dato=565", he).then(function(response) { return response.json(); }).then(function(json) { console.log(json) });*/
+
+    // fetchAsync().then(data=>console.log(data)).catch(reason=>console.log(reason.message))
+    let texto = '{"resultado":"OK","fecha_peticion":"20220920224215","peticion":"jbuses?parada=119&version=2","tama\u00f1o":671,"buses":{"parada":119,"lineas":[{"linea":2000,"buses":[{"bus":392,"tiempo":"1","distancia":"573","estado":1,"ult_parada":282}]},{"linea":500,"buses":[{"bus":425,"tiempo":"3","distancia":"1281","estado":1,"ult_parada":583}]},{"linea":1400,"buses":[{"bus":412,"tiempo":"8","distancia":"2178","estado":1,"ult_parada":21},{"bus":395,"tiempo":"19","distancia":"4723","estado":1,"ult_parada":506}]},{"linea":1500,"buses":[{"bus":402,"tiempo":"20","distancia":"6446","estado":0,"ult_parada":61},{"bus":409,"tiempo":"61","distancia":"16053","estado":0,"ult_parada":99}]}]},"Origen":"Web_Beta"}'
     const obj = JSON.parse(texto);
     document.getElementById("todo").innerHTML = texto
-    //document.getElementById("demo").innerHTML = obj['lineas'][1].id;
     for(i=0; i<obj['buses']['lineas'].length; i++) {
         document.getElementById("demo").innerHTML += '<h1>Linea <span class="simbolo_linea" style="background-color: #'+'dddddd'+'">'+obj['buses']['lineas'][i].linea+'</span></h1>';
         for(b=0; b<obj['buses']['lineas'][i].buses.length; b++){
-            document.getElementById("demo").innerHTML += '<p>'+obj['buses']['lineas'][i].buses[b].bus+'</p>';
+            if (obj['buses']['lineas'][i].buses[b].tiempo >= 60) {
+                ahora = new Date();
+                ahora.setMinutes(ahora.getMinutes()+parseInt(obj['buses']['lineas'][i].buses[b].tiempo, 10));
+                hora = ahora.getHours()+':'+ahora.getMinutes();
+            }
+            else {
+                hora = obj['buses']['lineas'][i].buses[b].tiempo;
+            }
+            document.getElementById("demo").innerHTML += '<p>Bus '+obj['buses']['lineas'][i].buses[b].bus+', a '+obj['buses']['lineas'][i].buses[b].distancia+'m, '+hora+'\'</p>';
         }
     }
-</script>-->
+</script>
 <script>
     const time = new Date();
     times = document.getElementsByClassName("timepo");
