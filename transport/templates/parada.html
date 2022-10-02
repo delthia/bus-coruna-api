@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
-<h1>{{ parada.id }} - {{ parada.nombre }}</h1>
+<h1>{{ parada.id }} - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t">Última actualización: 02/10/2022 a las 18:33:45</small></h1>
 <div class="flex-parada">
     <div class="lineas-parada flex-dentro">
         <div class="linea-parada" id="lineas">
@@ -52,13 +52,36 @@
         <div id="mapa-parada"></div>
     </div>
 </div>
+<script>document.getElementById('boton-recarga').addEventListener('click', function(event) { actualizar(last); });
+    last = new Date();
+    function actualizar(last) {
+        right = new Date();
+        if(right-last >= 15000) {
+            window.last = right;
+            console.log('pasó el tiempo necesario');
+            document.getElementById('t').innerHTML = 'Última actualización: '+last.toLocaleString('es-ES');
+        }
+        else {
+            console.log('aún no pasó el tiempo necesario');
+        }
+    }
+</script>
 <script>
-    var map = L.map('mapa-parada').setView([{{ parada.osmcoords[1] }}, {{ parada.osmcoords[0] }}], 19);
+    var map = L.map('mapa-parada', {
+        center: [{{ parada.osmcoords[1] }}, {{ parada.osmcoords[0] }}],
+        zoom: 18 ,
+        dragging: false,
+        boxZoom: false,
+        scrollWheelZoom: 'center',
+        zoomControl: false,
+        doubleClickZoom: 'center',
+        zoomDelta: 0.5,
+    });
 
     var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
-        minZoom: 13
+        minZoom: 17
     }).addTo(map);
 
     var circle = L.circle([{{ parada.osmcoords[1] }}, {{ parada.osmcoords[0] }}], {
@@ -72,8 +95,8 @@
     }).addTo(map);
 </script>
 
-<p id="todo"></p><!-- JSON -->
-<p id="demo"></p><!-- Información -->
+<!--<p id="todo">--></p><!-- JSON -->
+<!--<p id="demo"></p>--><!-- Información -->
 <script>
     // https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
     /* async function fetchAsync () {

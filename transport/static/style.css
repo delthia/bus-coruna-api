@@ -6,7 +6,11 @@
     max-height: 100%;
 } #map {
     width: 100%;
-    height: 800px;
+    height: 785px;
+} @media(max-width: 720px) {
+    #map {
+        height: 75vh;
+    }
 }
 .leaflet-popup-content > a {
     color: black!important;
@@ -115,6 +119,19 @@ a:hover {
     margin: 0em 1em;
 }
 
+/* Botón */
+.recargar {
+    background-color: #5e35b1;
+    padding: 4px 12px;
+    border-radius: 4px;
+    transition-duration: 250ms;
+    color: white;
+    cursor: pointer;
+}
+.recargar:hover {
+    background-color: #280680;
+}
+
 /* Tablas */
 td > a {
     color: black;
@@ -129,6 +146,10 @@ table {
     margin: 0 auto;
     border: 1px solid black;
     border-collapse: collapse;
+} @media(width: 720px) {
+    table {
+        width: 95%;
+    }
 }
 th, td {
     border: 1px solid black;
