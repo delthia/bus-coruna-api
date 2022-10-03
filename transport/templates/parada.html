@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
-<h1>{{ parada.id }} - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t">Última actualización: 02/10/2022 a las 18:33:45</small></h1>
+<h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
+<span id="alerta" style="background-color:red; padding: 8px 75px 8px 25px;">Mensaje</span>
 <div class="flex-parada">
     <div class="lineas-parada flex-dentro">
         <div class="linea-parada" id="lineas">
@@ -52,20 +53,7 @@
         <div id="mapa-parada"></div>
     </div>
 </div>
-<script>document.getElementById('boton-recarga').addEventListener('click', function(event) { actualizar(last); });
-    last = new Date();
-    function actualizar(last) {
-        right = new Date();
-        if(right-last >= 15000) {
-            window.last = right;
-            console.log('pasó el tiempo necesario');
-            document.getElementById('t').innerHTML = 'Última actualización: '+last.toLocaleString('es-ES');
-        }
-        else {
-            console.log('aún no pasó el tiempo necesario');
-        }
-    }
-</script>
+<script src="/static/scripts/parada.js"></script>
 <script>
     var map = L.map('mapa-parada', {
         center: [{{ parada.osmcoords[1] }}, {{ parada.osmcoords[0] }}],
@@ -93,57 +81,5 @@
         fillOpacity: 0.25,
         radius: 7
     }).addTo(map);
-</script>
-
-<p id="todo"></p><!-- JSON -->
-<p id="demo"></p><!-- Información -->
-<script>
-    // https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
-
-    fetch('/api/parada/119',  { 
-        method: 'GET'
-    })
-    .then(function(response) { return response.json(); })
-    .then(function(json) {
-        const obj = json;
-        document.getElementById("todo").innerHTML = obj
-        for(i=0; i<obj['buses']['lineas'].length; i++) {
-            document.getElementById("demo").innerHTML += '<h1>Linea <span class="simbolo_linea" style="background-color: #'+obj['buses']['lineas'][i].linea['color']+'">'+obj['buses']['lineas'][i].linea['nombre']+'</span></h1>';
-            for(b=0; b<obj['buses']['lineas'][i].buses.length; b++){
-                if (obj['buses']['lineas'][i].buses[b].tiempo >= 60) {
-                    ahora = new Date();
-                    ahora.setMinutes(ahora.getMinutes()+parseInt(obj['buses']['lineas'][i].buses[b].tiempo, 10));
-                    hora = ahora.getHours()+':'+ahora.getMinutes();
-                }
-                else {
-                    hora = obj['buses']['lineas'][i].buses[b].tiempo;
-                }
-                document.getElementById("demo").innerHTML += '<p>Bus '+obj['buses']['lineas'][i].buses[b].bus+', a '+obj['buses']['lineas'][i].buses[b].distancia+'m, '+hora+'\'</p>';
-            }
-        }
-    });
-
-    // fetchAsync().then(data=>console.log(data)).catch(reason=>console.log(reason.message))
-    let texto = '{"resultado":"OK","fecha_peticion":"20220920224215","peticion":"jbuses?parada=119&version=2","tama\u00f1o":671,"buses":{"parada":119,"lineas":[{"linea":2000,"buses":[{"bus":392,"tiempo":"1","distancia":"573","estado":1,"ult_parada":282}]},{"linea":500,"buses":[{"bus":425,"tiempo":"3","distancia":"1281","estado":1,"ult_parada":583}]},{"linea":1400,"buses":[{"bus":412,"tiempo":"8","distancia":"2178","estado":1,"ult_parada":21},{"bus":395,"tiempo":"19","distancia":"4723","estado":1,"ult_parada":506}]},{"linea":1500,"buses":[{"bus":402,"tiempo":"20","distancia":"6446","estado":0,"ult_parada":61},{"bus":409,"tiempo":"61","distancia":"16053","estado":0,"ult_parada":99}]}]},"Origen":"Web_Beta"}'
-</script>
-<script>
-    const time = new Date();
-    times = document.getElementsByClassName("timepo");
-    console.log(times);
-
-    for (i=0; i<times.length; i++) {
-        if (times[i].innerHTML >= 60) {
-            old = parseInt(times[i].innerHTML, 10);
-            console.log(old);
-            now = new Date();
-            console.log(now);
-            now.setMinutes(now.getMinutes()+old)
-            console.log(now.getHours()+':'+now.getMinutes());
-            times[i].innerHTML = now.getHours()+':'+(now.getMinutes()<10?'0':'')+now.getMinutes();
-        }
-        else {
-            times[i].innerHTML += '\''
-        }
-    }
 </script>
 {% endblock content %}
