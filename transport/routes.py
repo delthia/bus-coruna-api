@@ -56,3 +56,29 @@ def linea(id_linea):
 @app.route("/codigo-fuente")
 def fuente():
     return render_template('fuente.html', title='Fuente del proyecto')
+
+# API
+@app.route("/api/linea/<int:id_linea>")
+def api_linea(id_linea):
+    lin = encontrar_linea(id_linea,lins)
+    if lin == None:
+        return 'La línea no existe o no está disponible'
+    else:
+        return encontrar_linea(id_linea,lins)
+
+@app.route("/api/parada/<int:id_parada>")
+def api_parada(id_parada):
+    parada = encontrar_parada(id_parada, pards)
+    if parada == None:
+        return 'La parada no existe'
+    else:
+        buses = buses_parada(parada['id'],static+'lineas.json')
+        return buses
+
+@app.route("/api/parada/<int:id_parada>/detalles")
+def api_detalles_parada(id_parada):
+    parada = encontrar_parada(id_parada, pards)
+    if(parada == None):
+        return 'La parada no existe'
+    else:
+        return parada
