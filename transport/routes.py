@@ -1,6 +1,6 @@
 from flask import render_template, url_for
 from transport import app
-from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, datos_iniciales
+from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, datos_iniciales, geojson_buses
 import json, os
 
 # ¡IMPORTANTE!: Cambiar a falso para que funcione en el servidor de producción
@@ -43,6 +43,8 @@ def parada(id_parada):
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
     line = encontrar_linea(id_linea,lins)
+    # geo = geojson_buses(id_linea)
+    # print(geo)
     if line == None:
         return 'La línea no existe'
     else:

@@ -131,3 +131,15 @@ def encontrar_parada(id, datos):
     for parada in datos['paradas']:
         if parada['id'] == id:
             return parada
+
+def geojson_buses(linea):
+    dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=99&mostrar=B&dato='+str(linea)).json()['mapas'][0]['buses']
+    cabeza = '{"type":"FeatureCollection", "features":'
+    b = []
+    pie = '}'
+
+    for sentido in range(0, len(dato)):
+        for bus in range(0, len(dato[sentido]['buses'])):
+            b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus'], 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}}})
+
+    return cabeza+str(b)+pie
