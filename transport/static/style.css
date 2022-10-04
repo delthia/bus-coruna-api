@@ -68,6 +68,13 @@ body {
     font-family: 'Roboto';
     /* min-height: 100vh; */
 }
+.parrafo a {
+    color: #5e35b1;
+}
+.parrafo {
+    text-align: justify;
+    padding: 0em 1em;
+}
 
 /* Barra de navegación */
 header {
