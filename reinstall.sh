@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 # Actualizar los cambios
+git reset --hard
 git pull
 # Desinstalar el contendor anterior y borrar su imagen
 docker stop bus && docker rm bus && docker image rm delthia/buscoruna
