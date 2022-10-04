@@ -21,7 +21,6 @@ def inicio():
 
 @app.route("/mapa")
 def mapa():
-    # ruta = 'transport/static/paradas.geojson.js'
     return render_template('mapa.html', title='Coruña; Buses')
 
 @app.route("/paradas")
@@ -35,22 +34,23 @@ def lineas():
 @app.route("/parada/<int:id_parada>")
 def parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
-    buses = buses_parada(parada['id'],static+'lineas.json')
-    # print(buses['buses']['lineas'])
-    return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
+    if parada == None:
+        return 'La parada no existe o no hay información disponible'
+    else:
+        buses = buses_parada(parada['id'],static+'lineas.json')
+        return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
-    """
-    with open('transport/static/lineas.json') as archivo:
-        lista = json.load(archivo)
-    try:
-        return buses_linea(encontrar_linea(id_linea,lista)['id'])
-    except:
-        return 'línea no encontrada'
-    """
-    buses = buses_linea(encontrar_linea(id_linea,lins)['id'])
-    return render_template('linea.html', title='Línea', buses=buses['paradas'])
+    line = encontrar_linea(id_linea,lins)
+    if line == None:
+        return 'La línea no existe'
+    else:
+        buses = buses_linea(line['id'])
+        if buses['paradas'] == []:
+            return 'La línea no está activa en este momento'
+        else:
+            return render_template('linea.html', title='Línea', buses=buses['paradas'])
 
 # Temporal
 @app.route("/codigo-fuente")
@@ -62,7 +62,7 @@ def fuente():
 def api_linea(id_linea):
     lin = encontrar_linea(id_linea,lins)
     if lin == None:
-        return 'La línea no existe o no está disponible'
+        return 'La línea no existe'
     else:
         return encontrar_linea(id_linea,lins)
 
@@ -78,7 +78,7 @@ def api_parada(id_parada):
 @app.route("/api/parada/<int:id_parada>/detalles")
 def api_detalles_parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
-    if(parada == None):
+    if parada == None:
         return 'La parada no existe'
     else:
         return parada
