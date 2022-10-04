@@ -59,6 +59,10 @@ def linea(id_linea):
 def fuente():
     return render_template('fuente.html', title='Fuente del proyecto')
 
+@app.route("/cambios")
+def changelog():
+    return render_template('changelog.html', title='Cambios recientes')
+
 # API
 @app.route("/api/linea/<int:id_linea>")
 def api_linea(id_linea):
