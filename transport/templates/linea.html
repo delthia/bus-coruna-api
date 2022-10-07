@@ -25,8 +25,9 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 <div id="map"></div>
+<script src="/api/linea/{{ linea }}/buses"></script>
 <script>
-    var map = L.map('map').setView([43.3445, -8.425], 23);
+    var map = L.map('map').setView([43.3445, -8.425], 13);
 
     var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -34,9 +35,22 @@
         minZoom: 13
     }).addTo(map);
 
-    var buses = {{ posiciones }};
-    var capa = L.geoJSON().addTo(map);
-    capa.addData(buses);
+     function icono(feature, latlng) {
+        let iconoBus = L.icon({
+            iconUrl: '/static/icono-bus-32.png',
+
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [16, 28],
+        })
+        return L.marker(latlng, { icon: iconoBus })
+    }
+
+    let opts = {
+        pointToLayer: icono
+    }
+
+    L.geoJson(buses, opts).addTo(map);
 </script>
 <hr>
 <h1>Ida</h1>

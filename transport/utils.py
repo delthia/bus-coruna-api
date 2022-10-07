@@ -120,11 +120,6 @@ def buses_parada(parada, directorio):
 
 def buses_linea(linea):
     dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=2&dato='+str(linea)).json()
-    """
-    for sentido in dato['paradas']:
-        for parada in sentido['paradas']:
-            print(parada)
-    """
     return dato
 
 def encontrar_parada(id, datos):
@@ -134,12 +129,12 @@ def encontrar_parada(id, datos):
 
 def geojson_buses(linea):
     dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=99&mostrar=B&dato='+str(linea)).json()['mapas'][0]['buses']
-    cabeza = '{"type":"FeatureCollection", "features":'
+    cabeza = 'var buses = {"type":"FeatureCollection", "features":'
     b = []
-    pie = '}'
+    pie = '};'
 
     for sentido in range(0, len(dato)):
         for bus in range(0, len(dato[sentido]['buses'])):
-            b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus'], 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}}})
+            b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus']}, 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}})
 
     return cabeza+str(b)+pie
