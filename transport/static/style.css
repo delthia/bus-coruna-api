@@ -49,7 +49,7 @@
     .flex-parada, .diagrama-linea {
         flex-direction: column;
     }
-    .lineas-parada, .diagrama-dentro {
+    .lineas-parada {
         text-align: center;
     }
     #mapa-parada {
@@ -261,6 +261,11 @@ footer {
 .parada p {
     margin-top: 0.25rem;
     margin-bottom: 0.5rem;
+}
+@media (max-width: 720px) {
+    .paradas-linea {
+        margin-left: 2em;
+    }
 }
 
 

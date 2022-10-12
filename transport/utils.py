@@ -9,6 +9,8 @@ def datos_iniciales(url, dir):
             crear_geojson(url, dir+'paradas.geojson.js', dir+'paradas-osm.json')
         elif not os.path.exists(dir+'paradas.json'):
             json_paradas(url, dir+'paradas.json', dir+'paradas-osm.json')
+        elif not os.path.exists(dir+'paradas-linea.json'):
+            json_paradas_lineas(url, dir+'paradas-linea.json')
         else:
             done = True
     with open(dir+'lineas.json') as archivo:
@@ -105,6 +107,7 @@ def json_lineas(url, directorio):
     group = []
     for linea in datos['lineas']:
         single = {'id': linea['id'], 'nombre': linea['lin_comer'], 'origen': linea['nombre_orig'], 'destino': linea['nombre_dest'], 'color': linea['color']}
+        # single = {'id': linea['id'], 'nombre': linea['lin_comer'], 'origen': linea['nombre_orig'], 'destino': linea['nombre_dest'], 'color': linea['color'], 'paradas': {'ida': linea['rutas'][0]['paradas'], 'vuelta': linea['rutas'][1]['paradas']}}
         group.append(single)
     archivo.write(json.dumps(group))
     archivo.write(pie)
@@ -138,3 +141,28 @@ def geojson_buses(linea):
             b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus']}, 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}})
 
     return cabeza+str(b)+pie
+
+def json_paradas_lineas(url, directorio):
+    with open('transport/static/paradas.json') as archivo:
+        paradas = json.load(archivo)
+    datos = requests.get(url).json()['iTranvias']['actualizacion']
+    archivo = open(directorio, "w")
+    cabeza = '{ "lineas": '
+    pie = '}'
+    archivo.write(cabeza)
+    group = []
+    # {"lineas": {"id": 1000, "paradas": {"ida": [{}, {}, {}, {}], "vuelta": [{}, {}, {}, {}]}}}
+    for linea in datos['lineas']:
+        ida = []
+        for parada in linea['rutas'][0]['paradas']:
+            ida.append(encontrar_parada(parada, paradas))
+        vuelta = []
+        for parada in linea['rutas'][1]['paradas']:
+            vuelta.append(encontrar_parada(parada, paradas))
+        single = {'id': linea['id'], 'paradas': {'ida': ida, 'vuelta': vuelta}}
+        group.append(single)
+    archivo.write(json.dumps(group))
+    archivo.write(pie)
+    archivo.close()
+
+    

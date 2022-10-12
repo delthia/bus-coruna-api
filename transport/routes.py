@@ -41,13 +41,18 @@ def parada(id_parada):
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
+    with open('transport/static/paradas-linea.json') as archivo:
+        paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
         return 'La línea no existe', 404
     buses = buses_linea(line['id'])
     if buses['paradas'] == []:
         return 'La línea no está activa en este momento'
-    return render_template('linea.html', title='Línea', buses=buses['paradas'], linea=id_linea)
+    for l in paradas['lineas']:
+        if l['id'] == id_linea:
+            break
+    return render_template('linea.html', title='Línea', buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
 
 # Temporal
 @app.route("/codigo-fuente")
