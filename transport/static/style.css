@@ -105,6 +105,17 @@ header .material-symbols-outlined {
     padding: 2px 8px;
     border-radius: 4px;
     color: white!important;
+    /* https://codepen.io/waarissyb/pen/YadgKg */
+    /*display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    vertical-align: middle!important;
+    border: 0.1875rem solid grey;
+    line-height: 1.25;
+    font-size: 1.125em;
+    text-align: center!important;
+    border-radius: 5%;
+    color: white!important;*/
 }
 .simbolo_linea, a {
     text-decoration: none;
@@ -182,6 +193,73 @@ footer {
     text-align: center;
     border-top: 1px solid #d4d4d4;
     padding: 10px 0px;
+}
+
+/* Mapa de paradas */
+/*.linea {
+    margin: 2em;
+    list-style: none;
+    position: relative;
+}
+.parada {
+    padding: 0.25em 0 0.25em 0.5em;
+    position: relative;
+}
+.parada:first-child .nombre_parada,
+.parada:last-child .nombre_parada {
+    font-weight: 900;
+}
+.nombre_parada {
+    font-weight: 900;
+}
+.parada:last-child::before {
+    display: none;
+}
+.parada::before {
+    content: '';
+    height: 100%;
+    width: 0.5em;
+    left: -1.105em;
+    position: absolute;
+    margin-top: 0.5em;
+    background-color: #6792BC;
+}
+.parada::after {
+    content: '';
+    border: 0.125em solid #6792BC;
+    border-radius: 50%;
+    background-color: #6792BC;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    top: 0.375;
+    left: -1.5em;
+    z-index: 2;
+}
+.parada:first-child::after,
+.parada:last-child::after {
+    background-color: #000;
+    border-color: #000;
+}*/
+.paradas-linea {
+    list-style: none;
+    border-left: 2px solid;
+    border-color: var(--color-linea);
+    padding-left: 1em;
+    margin-left: 4em;
+}
+.parada::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    background-color: var(--color-linea);
+    position: absolute;
+    border-radius: 50%;
+    margin-left: -1.55em;    
+}
+.parada p {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
 }
 
 /* MEZCLA. REVISAR/ORDENAR EN ALGÚN MOMENTO */
