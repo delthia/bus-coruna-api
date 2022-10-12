@@ -33,22 +33,23 @@
     border-radius: 6px;
 }
 /* Información de las paradas */
-.flex-dentro {
+/* Diagrama de líneas (parte) */
+.flex-dentro, .diagrama-dentro {
     flex-grow: 1;
 }
-.flex-parada {
+.flex-parada, .diagrama-linea {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.lineas-parada, .info-parada {
+.lineas-parada, .info-parada, .diagrama-dentro {
     padding-left: 1em;
 }
 @media (max-width: 720px) {
-    .flex-parada {
+    .flex-parada, .diagrama-linea {
         flex-direction: column;
     }
-    .lineas-parada {
+    .lineas-parada, .diagrama-dentro {
         text-align: center;
     }
     #mapa-parada {
@@ -261,6 +262,7 @@ footer {
     margin-top: 0.25rem;
     margin-bottom: 0.5rem;
 }
+
 
 /* MEZCLA. REVISAR/ORDENAR EN ALGÚN MOMENTO */
 /* Lista de lineas */
