@@ -86,7 +86,7 @@ def api_detalles_parada(id_parada):
         return 'La parada no existe'
     return parada
 
-@app.route("/api/linea/<int:id_linea>/buses")
+@app.route("/api/linea/<int:id_linea>/buses/coords")
 def coords_buses(id_linea):
     line = encontrar_linea(id_linea,lins)
     if line == None:
@@ -95,3 +95,13 @@ def coords_buses(id_linea):
     if buses['paradas'] == []:
         return 'La línea no está activa en este momento'
     return geojson_buses(id_linea)
+
+@ app.route("/api/linea/<int:id_linea>/buses")
+def bus_linea(id_linea):
+    line = encontrar_linea(id_linea, lins)
+    if line == None:
+        return 'La línea no existe'
+    buses = buses_linea(line['id'])
+    if buses['paradas'] == []:
+        return 'La línea no está activa en este momento'
+    return buses
