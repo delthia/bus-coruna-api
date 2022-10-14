@@ -41,7 +41,7 @@ def parada(id_parada):
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
-    with open('transport/static/paradas-linea.json') as archivo:
+    with open(static+'paradas-linea.json') as archivo:
         paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
