@@ -10,7 +10,9 @@ def datos_iniciales(url, dir):
         elif not os.path.exists(dir+'paradas.json'):
             json_paradas(url, dir+'paradas.json', dir+'paradas-osm.json')
         elif not os.path.exists(dir+'paradas-linea.json'):
-            json_paradas_lineas(url, dir+'paradas-linea.json')
+            with open(dir+'paradas.json') as archivo:
+                paradas = json.load(archivo)
+            json_paradas_lineas(url, dir+'paradas-linea.json', paradas)
         else:
             done = True
     with open(dir+'lineas.json') as archivo:
@@ -142,9 +144,7 @@ def geojson_buses(linea):
 
     return cabeza+str(b)+pie
 
-def json_paradas_lineas(url, directorio):
-    with open('transport/static/paradas.json') as archivo:
-        paradas = json.load(archivo)
+def json_paradas_lineas(url, directorio, paradas):
     datos = requests.get(url).json()['iTranvias']['actualizacion']
     archivo = open(directorio, "w")
     cabeza = '{ "lineas": '
