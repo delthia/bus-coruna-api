@@ -39,6 +39,8 @@ def parada(id_parada):
     buses = buses_parada(parada['id'],static+'lineas.json')
     if buses == '1111':
         return 'Parece que en este momento no hay buses para esta parada'
+    elif buses == '429':
+        return 'Error al conseguir los datos'
     return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
 
 @app.route("/linea/<int:id_linea>")
@@ -51,6 +53,8 @@ def linea(id_linea):
     buses = buses_linea(line['id'])
     if buses['paradas'] == []:
         return 'La línea no está activa en este momento'
+    if buses == '429':
+        return 'Error al conseguir los datos'
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
@@ -98,7 +102,7 @@ def coords_buses(id_linea):
         return 'La línea no está activa en este momento'
     return geojson_buses(id_linea)
 
-@ app.route("/api/linea/<int:id_linea>/buses")
+@app.route("/api/linea/<int:id_linea>/buses")
 def bus_linea(id_linea):
     line = encontrar_linea(id_linea, lins)
     if line == None:
