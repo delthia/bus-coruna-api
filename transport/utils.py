@@ -119,6 +119,8 @@ def buses_parada(parada, directorio):
     dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=0&dato='+str(parada)).json()
     with open(directorio) as archivo:
         lista = json.load(archivo)
+    if not 'lineas' in dato['buses']:
+        return '1111'
     for linea in range(0, len(dato['buses']['lineas'])):
         dato['buses']['lineas'][linea]['linea'] = encontrar_linea(dato['buses']['lineas'][linea]['linea'], lista)
     return dato

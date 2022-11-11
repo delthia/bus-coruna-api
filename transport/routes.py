@@ -37,6 +37,8 @@ def parada(id_parada):
     if parada == None:
         return 'La parada no existe o no hay información disponible', 404
     buses = buses_parada(parada['id'],static+'lineas.json')
+    if buses == '1111':
+        return 'Parece que en este momento no hay buses para esta parada'
     return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
 
 @app.route("/linea/<int:id_linea>")
