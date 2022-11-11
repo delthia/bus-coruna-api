@@ -99,6 +99,7 @@
 </script>-->
 <hr>
 <h1>Ida</h1>
+{% if buses[0] %}
 {% for parada in buses[0]['paradas'] %}
     <p>Parada {{ parada.parada }}
     {% for bus in parada.buses %}
@@ -107,7 +108,9 @@
     {% endfor %}
     <hr>
 {% endfor %}
+{% endif %}
 <h1>Vuelta</h1>
+{% if buses[1] %}
 {% for parada in buses[1]['paradas'] %}
     <p>Parada {{ parada.parada }}
     {% for bus in parada.buses %}
@@ -116,4 +119,5 @@
     {% endfor %}
     <hr>
 {% endfor %}
+{% endif %}
 {% endblock content %}
