@@ -1,3 +1,37 @@
+/* Colores de la página */
+:root {
+    --bg: #f5f5f6;
+    --sh: #d4d4d4;
+    --bd: white;
+    --accent: #5e31b1; /* Material deep purple 600 */
+    --haccent: #280680; /* Material deep purple xxx */
+    --grey: #4f4f4f;
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #121212;
+        --sh: #121212;
+        --bd: #121212;
+        --accent: #673ab7;
+        --haccent: #b39ddb;
+        --grey: #eeeeee;
+        --table-even: #202020;
+    }
+    html {
+        color: white;
+    }
+    tr:nth-child(even) { background-color: var(--table-even)!important; }
+
+    td > a {
+        color: var(--grey)!important;
+    }
+    .leaflet-popup-content-wrapper {
+        background: var(--table-even)!important;
+    }
+}
+
 /* Mapa */
     .leaflet-container {
     height: 400px;
@@ -14,6 +48,11 @@
 }
 .leaflet-popup-content > a {
     color: black!important;
+}
+@media (prefers-color-scheme: dark) {
+    .leaflet-popup-content > a {
+        color: white!important;
+    }
 }
 /* Material icons */
 .material-symbols-outlined {
@@ -59,18 +98,18 @@
 
 /* Base */
 html {
-    background-color: #F5F5F6;
+    background-color: var(--bg);
 }
 body {
     margin: 0 auto;
     max-width: 1250px;
-    box-shadow: 0 0 10px #d4d4d4;
-    background-color: white;
+    box-shadow: 0 0 10px var(--sh);
+    background-color: var(--bd);
     font-family: 'Roboto';
     /* min-height: 100vh; */
 }
 .parrafo a {
-    color: #5e35b1;
+    color: var(--accent);
 }
 .parrafo {
     text-align: justify;
@@ -79,7 +118,7 @@ body {
 
 /* Barra de navegación */
 header {
-    background-color: #5e35b1;
+    background-color: var(--accent);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -93,7 +132,7 @@ header > a {
     flex-grow: 1;
 }
 header > a:hover {
-    background-color: #280680;
+    background-color: var(--haccent);
     text-decoration: none;
 }
 header .material-symbols-outlined {
@@ -129,7 +168,7 @@ h1,h2 {
     font-weight: 300;
 }
 p, a, footer {
-    color: #4f4f4f;
+    color: var(--grey);
 }
 a:hover {
     text-decoration: underline;
@@ -140,7 +179,7 @@ a:hover {
 
 /* Botón */
 .recargar {
-    background-color: #5e35b1;
+    background-color: var(--accent);
     padding: 4px 12px;
     border-radius: 4px;
     transition-duration: 250ms;
@@ -148,7 +187,7 @@ a:hover {
     cursor: pointer;
 }
 .recargar:hover {
-    background-color: #280680;
+    background-color: var(--haccent);
 }
 
 /* Tablas */
