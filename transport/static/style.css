@@ -27,7 +27,7 @@
     td > a {
         color: var(--grey)!important;
     }
-    .leaflet-popup-content-wrapper {
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
         background: var(--table-even)!important;
     }
     #buscar {
