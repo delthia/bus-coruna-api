@@ -30,6 +30,11 @@
     .leaflet-popup-content-wrapper {
         background: var(--table-even)!important;
     }
+    #buscar {
+        background-color: var(--table-even);
+        color: white;
+        border: none;
+    }
 }
 
 /* Mapa */
