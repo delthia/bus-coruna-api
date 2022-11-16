@@ -1,0 +1,52 @@
+{% extends "disposicion.html" %}
+{% block content %}
+<h1>Paradas</h1>
+<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca unha parada...">
+<script>
+    function buscar() {
+        var input, filter, table, tr, td, i, txtValue
+        input = document.getElementById("buscar");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("paradas");
+        tr = table.getElementsByTagName("tr");
+
+        for(i=0; i<tr.length; i++) {
+            id = tr[i].getElementsByTagName("td")[0];
+            nombre = tr[i].getElementsByTagName("td")[1];
+            if(id) {
+                idtxt = id.textContent || id.innerText;
+                nombretxt = nombre.textContent || nombre.innerText;
+                if(idtxt.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                }
+                else if(nombretxt.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                }
+                else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<table id="paradas">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Líneas</th>
+    </tr>
+    {% for parada in paradas['paradas'] %}
+        {% if parada.lineas %}
+            <tr>
+                <td><a href="{{ url_for('parada', id_parada=parada.id) }}" style="padding: 0px 4px;">{{ parada.id }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id) }}">{{ parada.nombre }}</a></td>
+                <td>
+                    {% for linea in parada.lineas %}
+                        <a href="{{ url_for('linea', id_linea=linea.id) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{linea.nombre}}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+{% endblock content %}

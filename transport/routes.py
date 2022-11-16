@@ -1,4 +1,4 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, request, redirect
 from transport import app
 from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, datos_iniciales, geojson_buses
 import json, os
@@ -17,7 +17,13 @@ lins, pards = datos_iniciales(origen+inicio, static)
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-    return render_template('inicio.html')
+    lang = request.args.get('lang', type=str)
+    if lang == 'es':
+        return render_template('inicio.html')
+    elif lang == 'gal':
+        return render_template('gl/inicio.html')
+    else:
+        return redirect(url_for('inicio', lang='gal'))
 
 @app.route("/mapa")
 def mapa():
@@ -25,7 +31,13 @@ def mapa():
 
 @app.route("/paradas")
 def paradas():
-    return render_template('paradas.html', title='Paradas', paradas=pards)
+    lang = request.args.get('lang', type=str)
+    if lang == 'es':
+        return render_template('paradas.html', title='Paradas', paradas=pards)
+    elif lang == 'gal':
+        return render_template('gl/paradas.html', title='Paradas', paradas=pards)
+    else:
+        return redirect(url_for('paradas', lang='gal'))
 
 @app.route("/lineas")
 def lineas():
@@ -41,7 +53,13 @@ def parada(id_parada):
         return 'Parece que en este momento no hay buses para esta parada'
     elif buses == '429':
         return 'Error al conseguir los datos'
-    return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
+    lang = request.args.get('lang', type=str)
+    if lang == 'es':
+        return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
+    elif lang == 'gal':
+        return render_template('gl/parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
+    else:
+        return redirect(url_for('parada', id_parada=id_parada, lang='gal'))
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):

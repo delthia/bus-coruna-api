@@ -26,13 +26,13 @@
 </head>
 <body>
     <header>
-        <a href="{{ url_for('inicio', lang='es') }}"><span class="material-symbols-outlined">commute</span>Inicio</a>
-        <a href="{{ url_for('mapa', lang='es') }}"><span class="material-symbols-outlined">map</span>Mapa</a>
-        <a href="{{ url_for('paradas', lang='es') }}"><span class="material-symbols-outlined">pergola</span>Paradas</a>
-        <a href="{{ url_for('lineas', lang='es') }}"><span class="material-symbols-outlined">route</span>Líneas</a>
+        <a href="{{ url_for('inicio', lang='gal') }}"><span class="material-symbols-outlined">commute</span>Inicio</a>
+        <a href="{{ url_for('mapa', lang='gal') }}"><span class="material-symbols-outlined">map</span>Mapa</a>
+        <a href="{{ url_for('paradas', lang='gal') }}"><span class="material-symbols-outlined">pergola</span>Paradas</a>
+        <a href="{{ url_for('lineas', lang='gal') }}"><span class="material-symbols-outlined">route</span>Liñas</a>
     </header>
     <div class="contenido">{% block content %}{% endblock content %}</div>
 
-    <footer><a href="{{ url_for('changelog', lang='es') }}"> Versión: 0.0.2</a> • &copy; 2022 Iago • <a href="{{ url_for('fuente', lang='es') }}">Código fuente</a> • Idioma: <b>es</b> <a href="{{ url_for('inicio', lang='gal') }}">gal</footer>
+    <footer><a href="{{ url_for('changelog', lang='gal') }}"> Versión: 0.0.2</a> • &copy; 2022 Iago • <a href="{{ url_for('fuente', lang='gal') }}">Código fonte</a> • Idioma: <a href="{{ url_for('inicio', lang='es') }}">es</a> <b>gal</b></footer>
 </body>
 </html>
