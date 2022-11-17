@@ -1,4 +1,4 @@
-{% extends "disposicion.html" %}
+{% extends "gl/disposicion.html" %}
 {% block content %}
 <h1>Paradas</h1>
 <input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca unha parada...">
@@ -38,11 +38,11 @@
     {% for parada in paradas['paradas'] %}
         {% if parada.lineas %}
             <tr>
-                <td><a href="{{ url_for('parada', id_parada=parada.id) }}" style="padding: 0px 4px;">{{ parada.id }}</a></td>
-                <td><a href="{{ url_for('parada', id_parada=parada.id) }}">{{ parada.nombre }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang='gal') }}" style="padding: 0px 4px;">{{ parada.id }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang='gal') }}">{{ parada.nombre }}</a></td>
                 <td>
                     {% for linea in parada.lineas %}
-                        <a href="{{ url_for('linea', id_linea=linea.id) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{linea.nombre}}</a>
+                        <a href="{{ url_for('linea', id_linea=linea.id, lang='gal') }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{linea.nombre}}</a>
                     {% endfor %}
                 </td>
             </tr>

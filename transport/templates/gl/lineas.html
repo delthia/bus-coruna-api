@@ -1,0 +1,19 @@
+{% extends "gl/disposicion.html" %}
+{% block content %}
+<h1>Líneas</h1>
+<p>Esta parte todavía non está completa e por tanto non é funcional. Por esta razón é máis útil utilizar a sección <a hfref="{{ url_for('paradas', lang='gal') }}" style="color: #5e35b1">"paradas"</a></p>
+<table>
+    <tr>
+        <th>Línea</th>
+        <th>Origen</th>
+        <th>Destino</th>
+    </tr>
+    {% for linea in lineas['lineas'] %}
+        <tr>
+            <td><a href="{{ url_for('linea', id_linea=linea.id, lang='gal') }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
+            <td>{{ linea.origen }}</td>
+            <td>{{ linea.destino }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

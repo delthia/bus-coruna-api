@@ -1,4 +1,4 @@
-{% extends "disposicion.html" %}
+{% extends "es/disposicion.html" %}
 {% block content %}
 <h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
 <span id="alerta" style="background-color: red; padding: 8px 75px 8px 25px; display: none">Mensaje</span>
@@ -32,7 +32,7 @@
             <!--<div style="margin-top: 39.4%"><span class="material-symbols-outlined simbolo_bus">directions_bus</span><br><small style="text-align: center; display: block">598</small></div>-->
             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}">
                 {% for parada in paradas.paradas.ida %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id) }}">Enlaces:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor%}</p></li>
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id) }}">Enlaces:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                 {% endfor %}
             </ol></div>
         </div>
@@ -46,7 +46,7 @@
             <!--<div style="margin-top: 100%; background-color: red; height: fit-content"><span class="material-symbols-outlined simbolo_bus">directions_bus</span></div>-->
             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}">
                 {% for parada in paradas.paradas.vuelta %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id) }}">Enlaces:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor%}</p></li>
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id) }}">Enlaces:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                 {% endfor %}
             </ol></div>
         </div>

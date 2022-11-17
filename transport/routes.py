@@ -14,16 +14,18 @@ origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
 lins, pards = datos_iniciales(origen+inicio, static)
 
+idioma = 'gal'
+
 @app.route("/")
 @app.route("/inicio")
 def inicio():
     lang = request.args.get('lang', type=str)
     if lang == 'es':
-        return render_template('inicio.html')
+        return render_template('es/inicio.html')
     elif lang == 'gal':
         return render_template('gl/inicio.html')
     else:
-        return redirect(url_for('inicio', lang='gal'))
+        return redirect(url_for('inicio', lang=idioma))
 
 @app.route("/mapa")
 def mapa():
@@ -33,15 +35,21 @@ def mapa():
 def paradas():
     lang = request.args.get('lang', type=str)
     if lang == 'es':
-        return render_template('paradas.html', title='Paradas', paradas=pards)
+        return render_template('es/paradas.html', title='Paradas', paradas=pards)
     elif lang == 'gal':
         return render_template('gl/paradas.html', title='Paradas', paradas=pards)
     else:
-        return redirect(url_for('paradas', lang='gal'))
+        return redirect(url_for('paradas', lang=idioma))
 
 @app.route("/lineas")
 def lineas():
-    return render_template('lineas.html', title='Líneas', lineas=lins)
+    lang = request.args.get('lang', type=str)
+    if lang == 'es':
+        return render_template('es/lineas.html', title='Líneas', lineas=lins)
+    elif lang == 'gal':
+        return render_template('gl/lineas.html', title='Líneas', lineas=lins)
+    else:
+        return redirect(url_for('lineas', lang=idioma))
 
 @app.route("/parada/<int:id_parada>")
 def parada(id_parada):
@@ -55,11 +63,11 @@ def parada(id_parada):
         return 'Error al conseguir los datos'
     lang = request.args.get('lang', type=str)
     if lang == 'es':
-        return render_template('parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
+        return render_template('es/parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
     elif lang == 'gal':
         return render_template('gl/parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
     else:
-        return redirect(url_for('parada', id_parada=id_parada, lang='gal'))
+        return redirect(url_for('parada', id_parada=id_parada, lang=idioma))
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
@@ -76,12 +84,24 @@ def linea(id_linea):
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
-    return render_template('linea.html', title='Línea', buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
+    lang = request.args.get('lang', type=str)
+    if lang == 'es':
+        return render_template('es/linea.html', title='Línea', buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
+    elif lang == 'gal':
+        return render_template('gl/linea.html', title='Línea', buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
+    else:
+        return redirect(url_for('linea', id_linea=id_linea, lang=idioma))
 
 # Temporal
 @app.route("/codigo-fuente")
 def fuente():
-    return render_template('fuente.html', title='Fuente del proyecto')
+    lang = request.args.get('lang', type=str)
+    if lang == 'es':
+        return render_template('es/fuente.html', title='Fuente del proyecto')
+    elif lang == 'gal':
+        return render_template('gl/fuente.html', title='Fonte do proxecto')
+    else:
+        return redirect(url_for('fuente', lang=idioma))
 
 @app.route("/cambios")
 def changelog():
