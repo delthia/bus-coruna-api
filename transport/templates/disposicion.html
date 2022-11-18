@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{% if request.args.get('lang') == 'gal' %}gl-ES{% endif %}{% if request.args.get('lang') == 'es' %}es-ES{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,17 +22,17 @@
     <link rel="icon" href="/static/commute-w.svg">
     <link rel="icon" href="/static/icons/icon-31.png">
 
-    <link rel="stylesheet" type="text/css" href="/static/style.css"> 
+    <!-- <link rel="stylesheet" type="text/css" href="/static/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    {% block head %}{% endblock head %}
 </head>
 <body>
     <header>
-        <a href="{{ url_for('inicio', lang='gal') }}"><span class="material-symbols-outlined">commute</span>Inicio</a>
-        <a href="{{ url_for('mapa', lang='gal') }}"><span class="material-symbols-outlined">map</span>Mapa</a>
-        <a href="{{ url_for('paradas', lang='gal') }}"><span class="material-symbols-outlined">pergola</span>Paradas</a>
-        <a href="{{ url_for('lineas', lang='gal') }}"><span class="material-symbols-outlined">route</span>Liñas</a>
+        {% if request.args.get('lang') == 'gal' %}{%  include 'gal/header.html' %}{% endif %}
+        {% if request.args.get('lang') == 'es' %}{%  include 'es/header.html' %}{% endif %}
     </header>
     <div class="contenido">{% block content %}{% endblock content %}</div>
-
-    <footer><a href="{{ url_for('changelog', lang='gal') }}"> Versión: 0.0.2</a> • &copy; 2022 Iago • <a href="{{ url_for('fuente', lang='gal') }}">Código fonte</a> • Idioma: <a href="{{ url_for('inicio', lang='es') }}">es</a> <b>gal</b></footer>
+    {% if request.args.get('lang') == 'gal' %}{%  include 'gal/footer.html' %}{% endif %}
+    {% if request.args.get('lang') == 'es' %}{%  include 'es/footer.html' %}{% endif %}
 </body>
 </html>

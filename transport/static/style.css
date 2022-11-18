@@ -190,6 +190,7 @@ a:hover {
     transition-duration: 250ms;
     color: white;
     cursor: pointer;
+    margin-right: 4px;
 }
 .recargar:hover {
     background-color: var(--haccent);
@@ -336,6 +337,72 @@ footer {
 @keyframes otro {
     0%, 100% {background-color: #5e35b1;}
     50% {background-color: red;}
+}
+
+/* Diálogo de horarios */
+.popup {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+.popup:target {
+    opacity: 1;
+    pointer-events: all;
+}
+.popup-dentro {
+    background-color: var(--bg);
+    padding: 16px 16px;
+    max-width: 768px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Pestañas */
+.pestanas {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+.etiqueta-pestanas {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+.radio-pestanas {
+    display: none;
+}
+.contenido-pestanas {
+    order: 1;
+    width: 100%;
+    /* border-bottom: 3px solid var(--accent); */
+    line-height: 1.5;
+    font-size: 0.9em;
+    display: none;
+    margin-top: 8px;
+}
+.radio-pestanas:checked+.etiqueta-pestanas {
+    font-weight: bold;
+    color: var(--haccent);
+    border-bottom: 2px solid var(--accent);
+}
+.radio-pestanas:checked+.etiqueta-pestanas+.contenido-pestanas {
+    display: initial;
+
+}
+.horario-linea td {
+    padding: 8px 16px;
 }
 
 

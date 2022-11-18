@@ -1,0 +1,158 @@
+/* Información de las paradas */
+/* Diagrama de líneas (parte) */
+.flex-dentro, .diagrama-dentro {
+    flex-grow: 1;
+}
+.flex-parada, .diagrama-linea {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+.lineas-parada, .info-parada, .diagrama-dentro {
+    padding-left: 1em;
+}
+@media (max-width: 720px) {
+    .flex-parada, .diagrama-linea {
+        flex-direction: column;
+    }
+    .lineas-parada {
+        text-align: center;
+    }
+    #mapa-parada {
+        width: 95%;
+    }
+}
+
+/* Búsqueda */
+#buscar {
+    max-width: 100%;
+    width: 65%;
+    /*width: 72.4%;*/
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 6px 10px 6px 20px;
+    outline: none;
+}
+#buscar:focus {
+    border: 1px solid var(--accent);
+    color: var(--haccent);
+}
+
+/* Mapa de paradas */
+.paradas-linea {
+    list-style: none;
+    border-left: 2px solid;
+    border-color: var(--color-linea);
+    padding-left: 1em;
+    margin-left: 4em;
+}
+.parada::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    background-color: var(--color-linea);
+    position: absolute;
+    border-radius: 50%;
+    margin-left: -1.55em;    
+}
+.parada p {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+@media (max-width: 720px) {
+    .paradas-linea {
+        margin-left: 2em;
+    }
+}
+.simbolo_bus {
+    color: white;
+    background-color: #5e35b1;
+    padding: 2px;
+    border-radius: 4px;
+}
+.simbolo_bus_parada {
+    animation-name: parada;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* animation-timing-function: linear; */
+}
+.simbolo_bus_otro {
+    animation-name: otro;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* animation-timing-function: linear; */
+}
+@keyframes parada {
+    0%, 100% {background-color: #5e35b1;}
+    50% {background-color: orange;}
+}
+@keyframes otro {
+    0%, 100% {background-color: #5e35b1;}
+    50% {background-color: red;}
+}
+
+/* Diálogo de horarios */
+.popup {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+.popup:target {
+    opacity: 1;
+    pointer-events: all;
+}
+.popup-dentro {
+    background-color: var(--bg);
+    padding: 16px 16px;
+    max-width: 768px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Pestañas */
+.pestanas {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+.etiqueta-pestanas {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+.radio-pestanas {
+    display: none;
+}
+.contenido-pestanas {
+    order: 1;
+    width: 100%;
+    /* border-bottom: 3px solid var(--accent); */
+    line-height: 1.5;
+    font-size: 0.9em;
+    display: none;
+    margin-top: 8px;
+}
+.radio-pestanas:checked+.etiqueta-pestanas {
+    font-weight: bold;
+    color: var(--haccent);
+    border-bottom: 2px solid var(--accent);
+}
+.radio-pestanas:checked+.etiqueta-pestanas+.contenido-pestanas {
+    display: initial;
+
+}
+.horario-linea td {
+    padding: 8px 16px;
+}

@@ -1,4 +1,5 @@
-{% extends "es/disposicion.html" %}
+{% extends "disposicion.html" %}
+{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
 <h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
 <span id="alerta" style="background-color: red; padding: 8px 75px 8px 25px; display: none">Mensaje</span>

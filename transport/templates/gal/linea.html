@@ -1,0 +1,134 @@
+{% extends "disposicion.html" %}
+{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
+{% block content %}
+<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#"><span class="material-symbols-outlined recargar">map</span></a><a href="#horas"><span class="material-symbols-outlined recargar" id="salidas">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
+<span id="alerta" style="background-color: red; padding: 8px 75px 8px 25px; display: none">Mensaje</span>
+
+<div class="popup" id="horas">
+    <div class="popup-dentro">
+        <h3>Horas de salida<a href="#"><span class="material-symbols-outlined">close</span></a></h3>
+        <p style="text-align: center"><span class="material-symbols-outlined">navigate_before</span>18/11/2022<span class="material-symbols-outlined">navigate_next</span></p>
+        <div class="pestanas">
+            <input type="radio" class="radio-pestanas" name="pestana" id="pestanas-ida" checked>
+            <label for="pestanas-ida" class="etiqueta-pestanas">Ida</label>
+            <div class="contenido-pestanas"><table class="horario-linea">
+                <tr>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                </tr>
+                <tr>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                </tr>
+                <tr>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                </tr>
+                <tr>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                    <td>12:30</td>
+                </tr>
+            </table></div>
+            <input type="radio" class="radio-pestanas" name="pestana" id="pestanas-vuelta">
+            <label for="pestanas-vuelta" class="etiqueta-pestanas">Vuelta</label>
+            <div class="contenido-pestanas"><table class="horario-linea">
+                <tr>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                </tr>
+                <tr>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                </tr>
+                <tr>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                </tr>
+                <tr>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                    <td>08:55</td>
+                </tr>
+            </table></div>
+        </div>
+    </div>
+</div>
+
+<p id="id-linea" style="display: none">{{ line.id }}</p>
+<div class="diagrama-linea">
+    <div class="diagrama-dentro">
+        <h2>Ida</h2>
+        <div style="display: flex; flex-direction: row;" id="ida">
+            <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}">
+                {% for parada in paradas.paradas.ida %}
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang='gal') }}">Enlaces:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                {% endfor %}
+            </ol></div>
+        </div>
+    </div>
+    <div class="diagrama-dentro">
+        <h2>Volta   </h2>
+        <div style="display: flex; flex-direction: row;" id="vuelta">
+            <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}">
+                {% for parada in paradas.paradas.vuelta %}
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang='gal') }}">Enlaces:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                {% endfor %}
+            </ol></div>
+        </div>
+    </div>
+</div>
+<hr>
+<h1>Ida</h1>
+{% if buses[0] %}
+{% for parada in buses[0]['paradas'] %}
+    <p>Parada {{ parada.parada }}
+    {% for bus in parada.buses %}
+        <p>Bus nº: {{ bus.bus }}; Estado: {{ bus.estado }}; Distancia: {{ bus.distancia*100 }}%</p>
+        <p>0 Significa que el bus está en la parada, 1 significa que el bus está en movimiento, el porcentaje representa el porcentaje del bus en el recorrido total</p>
+    {% endfor %}
+    <hr>
+{% endfor %}
+{% endif %}
+<h1>Vuelta</h1>
+{% if buses[1] %}
+{% for parada in buses[1]['paradas'] %}
+    <p>Parada {{ parada.parada }}
+    {% for bus in parada.buses %}
+        <p>Bus nº: {{ bus.bus }}; Estado: {{ bus.estado }}; Distancia: {{ bus.distancia*100 }}%</p>
+        <p>0 Significa que el bus está en la parada, 1 significa que el bus está en movimiento, el porcentaje representa el porcentaje del bus en el recorrido total</p>
+    {% endfor %}
+    <hr>
+{% endfor %}
+{% endif %}
+{% endblock content %}
