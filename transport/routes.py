@@ -73,12 +73,13 @@ def linea(id_linea):
         # return 'La línea no existe', 404
         return render_template('404.html', i='priority_high', m='La línea no existe'), 404
     buses = buses_linea(line['id'])
-    if buses['paradas'] == []:
-        # return 'La línea no está activa en este momento'
-        return render_template('404.html', i='clear_night', m='La línea no está activa en este momento'), 404
     if buses == '429':
+        print('a')
         # return 'Error al conseguir los datos'
         return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
+    elif buses['paradas'] == []:
+        # return 'La línea no está activa en este momento'
+        return render_template('404.html', i='clear_night', m='La línea no está activa en este momento'), 404
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
