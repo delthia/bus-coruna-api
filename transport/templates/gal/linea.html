@@ -1,13 +1,13 @@
 {% extends "disposicion.html" %}
 {% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
-<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#"><span class="material-symbols-outlined recargar">map</span></a><a href="#horas"><span class="material-symbols-outlined recargar" id="salidas">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
+<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#mapa"><span class="material-symbols-outlined recargar">map</span></a><a href="#horas"><span class="material-symbols-outlined recargar" id="salidas">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
 <span id="alerta" style="background-color: red; padding: 8px 75px 8px 25px; display: none">Mensaje</span>
 
 <div class="popup" id="horas">
-    <div class="popup-dentro">
-        <h3>Horas de salida<a href="#"><span class="material-symbols-outlined">close</span></a></h3>
-        <p style="text-align: center"><span class="material-symbols-outlined">navigate_before</span>18/11/2022<span class="material-symbols-outlined">navigate_next</span></p>
+    <div class="popup-dentro" style="padding-right: 32px;">
+        <h3>Horas de salida: <span class="material-symbols-outlined" style="vertical-align: middle">navigate_before</span>18/11/2022<span class="material-symbols-outlined" style="vertical-align: middle;">navigate_next</span><a href="#" class="material-symbols-outlined" style="float: right; text-decoration: none!important; vertical-align: middle">close</a></h3>
+        <p><i style="color: #FF7043">Datos de prueba. No se corresponden con los reales</i></p>
         <div class="pestanas">
             <input type="radio" class="radio-pestanas" name="pestana" id="pestanas-ida" checked>
             <label for="pestanas-ida" class="etiqueta-pestanas">Ida</label>
@@ -82,6 +82,18 @@
                 </tr>
             </table></div>
         </div>
+    </div>
+</div>
+
+<div class="popup" id="mapa">
+    <div class="popup-dentro popup-mapa">
+        <h3>Buses de esta línea: <a href="#" class="material-symbols-outlined" style="float: right; text-decoration: none!important; vertical-align: middle">close</a> <i style="color: #FF7043">Los datos de este mapa se cargan con esta página y no se actualizan dinámicamente. Esto es temporal</i></h3>
+        <script src="/api/linea/{{ linea }}/buses"></script>
+        <!-- leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+        <div id="map" class="mapa-buses"></div>
+        <script src="/static/scripts/buses.js"></script>
     </div>
 </div>
 

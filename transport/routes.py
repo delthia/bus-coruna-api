@@ -49,12 +49,15 @@ def lineas():
 def parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
-        return 'La parada no existe o no hay información disponible', 404
+        # return 'La parada no existe o no hay información disponible', 404
+        return render_template('404.html', i='priority_high', m='La parada no existe o no hay información disponible'), 404
     buses = buses_parada(parada['id'],static+'lineas.json')
     if buses == '1111':
-        return 'Parece que en este momento no hay buses para esta parada'
+        # return 'Parece que en este momento no hay buses para esta parada'
+        return render_template('404.html', i='remove_road', m='Parece que en este momento no hay buses para esta parada'), 404
     elif buses == '429':
-        return 'Error al conseguir los datos'
+        # return 'Error al conseguir los datos'
+        return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
     lang = request.args.get('lang', type=str)
     if lang:
         return render_template(lang+'/parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
@@ -67,12 +70,15 @@ def linea(id_linea):
         paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
-        return 'La línea no existe', 404
+        # return 'La línea no existe', 404
+        return render_template('404.html', i='priority_high', m='La línea no existe'), 404
     buses = buses_linea(line['id'])
     if buses['paradas'] == []:
-        return 'La línea no está activa en este momento'
+        # return 'La línea no está activa en este momento'
+        return render_template('404.html', i='clear_night', m='La línea no está activa en este momento'), 404
     if buses == '429':
-        return 'Error al conseguir los datos'
+        # return 'Error al conseguir los datos'
+        return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
@@ -136,4 +142,5 @@ def bus_linea(id_linea):
     buses = buses_linea(line['id'])
     if buses['paradas'] == []:
         return 'La línea no está activa en este momento'
-    return buses
+    # return buses
+    return geojson_buses(id_linea)
