@@ -10,10 +10,10 @@ El objetivo del proyecto es aprender a obtener datos en formato json de una api,
 ## Planes de futuro
 Esta sección contiene las ideas que tengo para seguir con el proyecto, organizadas según su plausibilidad.
 ### Factibles/Relativamente sencillas de implementar
-- Actualizar los datos sin recargar la página
-- API con los datos
+- ~Actualizar los datos sin recargar la página~ Implementado
+- ~API con los datos~ Implementado
 ### Factibles a largo plazo
-- Mostrar información de las paradas (accesibilidad, características) a través de la API de [OpenStreetmap](https://osm.org) ([Overpass](https://overpass-api.de)).
+- ~Mostrar información de las paradas (accesibilidad, características) a través de la API de [OpenStreetmap](https://osm.org) ([Overpass](https://overpass-api.de)).~ Implementado
 - Mostrar información meteorológica desde la [API de AEMET](https://opendata.aemet.es)
 ### Ideas poco factibles
 - Corregir la información de los tiempos provista por iTranvías a partir de la distancia
