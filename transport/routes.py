@@ -1,6 +1,7 @@
 from flask import render_template, url_for, request, redirect
 from transport import app
-from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, datos_iniciales, geojson_buses
+from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_buses
+from transport.download import cargar_datos, actualizar_datos
 import json, os
 
 # ¡IMPORTANTE!: Cambiar a falso para que funcione en el servidor de producción
@@ -12,7 +13,9 @@ else:
     static = 'static/'
 origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
-lins, pards = datos_iniciales(origen+inicio, static)
+# lins, pards = datos_iniciales(origen+inicio, static)
+actualizar_datos(origen+inicio, static)
+lins, pards = cargar_datos(static)
 
 idioma = 'gal'
 
@@ -52,10 +55,10 @@ def parada(id_parada):
         # return 'La parada no existe o no hay información disponible', 404
         return render_template('404.html', i='priority_high', m='La parada no existe o no hay información disponible'), 404
     buses = buses_parada(parada['id'],static+'lineas.json')
-    if buses == '1111':
+    if buses == 1111:
         # return 'Parece que en este momento no hay buses para esta parada'
         return render_template('404.html', i='remove_road', m='Parece que en este momento no hay buses para esta parada'), 404
-    elif buses == '429':
+    elif buses == 429:
         # return 'Error al conseguir los datos'
         return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
     lang = request.args.get('lang', type=str)
@@ -73,7 +76,7 @@ def linea(id_linea):
         # return 'La línea no existe', 404
         return render_template('404.html', i='priority_high', m='La línea no existe'), 404
     buses = buses_linea(line['id'])
-    if buses == '429':
+    if buses == 429:
         print('a')
         # return 'Error al conseguir los datos'
         return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
