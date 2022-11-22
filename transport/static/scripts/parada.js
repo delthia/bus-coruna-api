@@ -52,3 +52,31 @@ function actualizar(last) {
         },2500)
     }
 }
+
+// Mapa de parada
+var map = L.map('mapa-parada', {
+    center: ubicacion,
+    zoom: 18,
+    dragging: false,
+    boxZoom: false,
+    scrollWheelZoom: 'center',
+    zoomControl: false,
+    doubleClickZoom: 'center',
+    zoomDelta: 0.5,
+});
+
+var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>',
+    minZoom: 17
+}).addTo(map);
+
+var circle = L.circle(ubicacion, {
+    // color: '#280680',
+    // fillcolor: '#5e35b1',
+    color: 'red',
+    fillColor: '#f03',
+    // fillOpacity: 0.5,
+    fillOpacity: 0.25,
+    radius: 7
+}).addTo(map);

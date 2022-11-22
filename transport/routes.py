@@ -24,13 +24,17 @@ idioma = 'gal'
 def inicio():
     lang = request.args.get('lang', type=str)
     if lang:
-        return render_template(lang+'/inicio.html')
+        return render_template('/inicio.html')
     else:
         return redirect(url_for('inicio', lang=idioma))
 
 @app.route("/mapa")
 def mapa():
-    return render_template('mapa.html', title='Coruña; Buses')
+    lang = request.args.get('lang', type=str)
+    if lang:
+        return render_template('mapa.html', title='Coruña; Buses')
+    else:
+        return redirect(url_for('mapa', lang=idioma))
 
 @app.route("/paradas")
 def paradas():
@@ -97,7 +101,7 @@ def linea(id_linea):
 def fuente():
     lang = request.args.get('lang', type=str)
     if lang:
-        return render_template(lang+'/fuente.html', title='Fuente del proyecto')
+        return render_template('/fuente.html', title='Fuente del proyecto')
     else:
         return redirect(url_for('fuente', lang=idioma))
 

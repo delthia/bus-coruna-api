@@ -1,0 +1,18 @@
+{% extends "disposicion.html" %}
+{% block content %}
+{% if request.args.get('lang') == 'es' %}
+    <h1>Bus Urbano de Coruña</h1>
+    <p class="parrafo">Esta página incluye la información en tiempo real sobre el bus urbando de coruña de <a href="https://itranvias.com" target="_blank">iTranvías</a>, pero también incluye datos de las paradas a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>. Este es mi primer proyecto <i>"funcional"</i>, y consiste en esta página hecha con <a href="https://flask.palletsprojects.com" target="_blank">flask</a>, una librería para python. Si tienes curiosidad, te gustaría aprender, o crees que puedes ayudarme a solucionar errores o mejorar la página, puedes ver, modificar y aportar al código que se aloja en <a href="https://codeberg.org/iago" target="_blank">Codeberg</a> y <a href="https://github.com/delthia" target="_blank">GitHub</a>.</p>
+    <div>
+        <img src="/static/img/parada.png" width="40%">
+        <img src="/static/img/parada-mapa.png" width="43.625%">
+    </div>
+{% elif request.args.get('lang') == 'gal' %}
+    <h1>Bus Urbano de Coruña</h1>
+    <p class="parrafo">Esta páxina inclúe a información en tempo real sobre o bus urbano de Coruña de <a href="https://itranvias.com" taget="_blank">iTranvias</a>, pero tamén inclúe datos das paradas a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>. Este é o meu primeiro proxecto <i>"funcional"</i>, e consiste nesta páxina feita con <a href="http://flas.palletsprojects.com" target="_blank">flask</a>, unha libraría para python. Se tes curiosidade, gustaríache aprender, ou crees que podes axudarme a arreglar errores ou mellorar a páxina, podes ver, modificar e aportar ao código que se aloxa en <a href="https://codeberg.org/iago" target="_blank">Codeberg</a> e <a href="https://github.com/delthia" target="_blank">GitHub</a>.</p>
+    <div>
+        <img src="/static/img/parada.png" width="40%">
+        <img src="/static/img/parada-mapa.png" width="43.625%">
+    </div>
+{% endif %}
+{% endblock content %}

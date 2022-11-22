@@ -1,1 +1,0 @@
-document.getElementById('lang').setAttribute('href', window.location.href.toString().replace('lang='+new URLSearchParams(window.location.search).get('lang'), 'lang='+document.getElementById('lang').innerHTML));

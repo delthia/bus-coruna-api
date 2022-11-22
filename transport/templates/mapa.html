@@ -1,6 +1,5 @@
 {% extends "disposicion.html" %}
-{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/map.css">{% endblock head %}
-{% block content %}
+{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/map.css">
 <!-- Posiblemente no sea lo más correcto cargar esto aquí... -->
 <!-- leafletjs -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
@@ -8,34 +7,11 @@
 <!-- leaflet markercluster -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>{% endblock head %}
+{% block content %}
 
-<h1>Mapa de paradas</h1>
+{% if request.args.get('lang') == 'es' %}<h1>Mapa de paradas</h1>{% elif request.args.get('lang') == 'gal' %}<h1>Mapa das paradas</h1>{% endif %}
 <div id="map"></div>
-    <script src="static/paradas.geojson.js"></script>
-    <script>
-        var map = L.map('map').setView([43.3445, -8.425], 13);
-
-        var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
-            minZoom: 13
-        }).addTo(map);
-        // var geojson = L.geoJson(paradas).addTo(map);
-
-        function onEachFeature(feature, layer) {
-            if(feature.properties && feature.properties.popupContent) {
-                layer.bindPopup(feature.properties.popupContent);
-            }
-        }
-
-        var geojson = L.geoJson(paradas, { onEachFeature: onEachFeature});
-        var paradas = L.markerClusterGroup({
-            spiderflyOnMaxZoom: false,
-            showCoverageOnHover: false,
-            zoomToBoundsOnClick: true,
-        });
-        paradas.addLayer(geojson);
-        map.addLayer(paradas)
-    </script>
+<script src="static/paradas.geojson.js"></script>
+<script src="/static/scripts/mapa.js"></script>
 {% endblock content %}
