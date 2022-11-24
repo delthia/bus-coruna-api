@@ -32,7 +32,7 @@ def inicio():
 def mapa():
     lang = request.args.get('lang', type=str)
     if lang:
-        return render_template('mapa.html', title='Coruña; Buses')
+        return render_template('mapa.html', title='Mapa (Paradas)')
     else:
         return redirect(url_for('mapa', lang=idioma))
 
@@ -67,7 +67,7 @@ def parada(id_parada):
         return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
     lang = request.args.get('lang', type=str)
     if lang:
-        return render_template(lang+'/parada.html', title='Parada', buses=buses['buses']['lineas'], parada=parada)
+        return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada)
     else:
         return redirect(url_for('parada', id_parada=id_parada, lang=idioma))
 
@@ -92,7 +92,7 @@ def linea(id_linea):
             break
     lang = request.args.get('lang', type=str)
     if lang:
-        return render_template(lang+'/linea.html', title='Línea', buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
+        return render_template(lang+'/linea.html', title='Línea '+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
     else:
         return redirect(url_for('linea', id_linea=id_linea, lang=idioma))
 
