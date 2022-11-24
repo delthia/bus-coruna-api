@@ -1,7 +1,11 @@
 import json, requests, os.path
+from os import remove
 from transport.utils import encontrar_linea, encontrar_parada, lineas_parada
+# import osmnx as ox
 
 def cargar_datos(dir):
+    if not os.path.exists(dir+'lineas.json') or not os.path.exists(dir+'paradas.json'):
+        actualizar_datos('https://itranvias.com/queryitr_v3.php?dato=20160101T000000_gl_0_20160101T000000&func=7', dir)
     with open(dir+'lineas.json') as a:
         lineas = json.load(a)
     with open(dir+'paradas.json') as a:
@@ -9,12 +13,29 @@ def cargar_datos(dir):
     return lineas, paradas
 
 def actualizar_datos(url, dir):
+    """
+    place_name = "A Coruña, Galicia, España"
+    area = ox.geocode_to_gdf(place_name)
+
+    tags = {'public_transport': 'platform', 'bus': 'yes'}
+    stops = ox.geometries_from_place(place_name, tags)
+    stops.to_file(dir+'osm.json', driver='GeoJSON')
+    """
+    # datos_osm(dir+'osm.json')
+    # ox.geometries_from_place(str(ox.geocode_to_gdf("A Coruña, Galicia, España")), str({'public_transport': 'platform', 'bus': 'yes'})).to_file('osm.json', driver='GeoJSON')
     json_lineas(url, dir+'lineas.json')
-    json_paradas(url, dir+'paradas.json', dir+'paradas-osm.json')
-    crear_geojson(url, dir+'paradas.geojson.js', dir+'paradas-osm.json')
+    json_paradas(url, dir+'paradas.json', dir+'osm.json')
+    crear_geojson(url, dir+'paradas.geojson.js', dir+'osm.json')
     with open(dir+'paradas.json') as a:
         paradas = json.load(a)
     json_paradas_lineas(url, dir+'paradas-linea.json', paradas)
+    # os.remove(dir+'osm.json')
+
+def datos_osm(d):
+    p = "A Coruña, Galicia, España"
+    t = {'public_transport': 'platform', 'bus': 'yes'}
+    s = ox.geometries_from_place(p, t)
+    s.to_file(str(d), driver='GeoJSON')
 
 def json_lineas(url, directorio):
     try:

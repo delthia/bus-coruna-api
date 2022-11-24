@@ -14,7 +14,7 @@ else:
 origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
 # lins, pards = datos_iniciales(origen+inicio, static)
-actualizar_datos(origen+inicio, static)
+# actualizar_datos(origen+inicio, static)
 lins, pards = cargar_datos(static)
 
 idioma = 'gal'
