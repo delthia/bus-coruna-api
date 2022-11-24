@@ -1,3 +1,5 @@
+document.getElementById('buscar').style.display = "";
+
 function buscar() {
     var input, filter, table, tr, i
     input = document.getElementById("buscar");

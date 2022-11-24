@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
-<h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
-<span id="alerta" style="background-color:red; padding: 8px 75px 8px 25px;">Mensaje</span>
+<h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga" style="display: none">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
+<span id="alerta" style="background-color:red; padding: 8px 75px 8px 25px; display: none;">Mensaje</span>
 <div class="flex-parada">
     <div class="lineas-parada flex-dentro">
         <div class="linea-parada" id="lineas">
@@ -51,36 +51,9 @@
                 <td>{% if parada.propiedades.lit == 'y' %}Sí{% elif parada.propiedades.lit == 'n' %}No{% else %}-{% endif %}</td>
             </tr>
         </table>
-        <div id="mapa-parada"></div>
+        <div id="mapa-parada">Para ver o mapa activa o JavaScript</div>
     </div>
 </div>
+<script>var ubicacion = [{{parada.osmcoords[1]}}, {{ parada.osmcoords[0]}}];</script>
 <script src="/static/scripts/parada.js"></script>
-<script>
-    var map = L.map('mapa-parada', {
-        center: [{{ parada.osmcoords[1] }}, {{ parada.osmcoords[0] }}],
-        zoom: 18 ,
-        dragging: false,
-        boxZoom: false,
-        scrollWheelZoom: 'center',
-        zoomControl: false,
-        doubleClickZoom: 'center',
-        zoomDelta: 0.5,
-    });
-
-    var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
-        minZoom: 17
-    }).addTo(map);
-
-    var circle = L.circle([{{ parada.osmcoords[1] }}, {{ parada.osmcoords[0] }}], {
-        // color: '#280680',
-        // fillcolor: '#5e35b1',
-        color: 'red',
-        fillcolor: '#f03',
-        // fillOpacity: 0.5,
-        fillOpacity: 0.25,
-        radius: 7
-    }).addTo(map);
-</script>
 {% endblock content %}
