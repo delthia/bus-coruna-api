@@ -157,6 +157,16 @@ def bus_linea(id_linea):
     # return buses
     return geojson_buses(id_linea)
 
+@app.route("/api/paradas/")
+def api_paradas():
+    with open(static+'paradas.json') as p:
+        return json.load(p)
+
+@app.route("/api/lineas/")
+def api_lineas():
+    with open(static+'lineas.json') as l:
+        return json.load(l)
+
 # service worker
 @app.route("/sw.js")
 def sw():
