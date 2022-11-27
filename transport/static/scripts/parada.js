@@ -50,8 +50,8 @@ function actualizar(last) {
         })
     }
     else {
-        document.getElementById('alerta').style.display = "";
-        document.getElementById('alerta').style.opacity = "100%";
+        // document.getElementById('alerta').style.display = "";
+        document.getElementById('alerta').classList.add('alerta_visible');
         if(new URLSearchParams(window.location.search).get('lang') == 'gal') {
             document.getElementById('alerta').innerHTML = 'Aínda non pasou o tempo necesario';
         }
@@ -59,8 +59,9 @@ function actualizar(last) {
             document.getElementById('alerta').innerHTML = 'Aún no pasó el tiempo necesario';
         }
         setTimeout(function() {
-            document.getElementById('alerta').innerHTML = '';
-            document.getElementById('alerta').style.display = "none";
+            document.getElementById('alerta').classList.remove('alerta_visible');
+            // document.getElementById('alerta').innerHTML = '';
+            // document.getElementById('alerta').style.display = "none";
         },2500)
     }
 }

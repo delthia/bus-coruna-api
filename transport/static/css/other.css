@@ -185,8 +185,14 @@
 /* Alerta */
 #alerta {
     background-color: #F44336;  /* Material red 500 */
-    padding: 8px 75px 8px 25px;
-    border-radius: 2px;
-    transition-duration: 2s;
+    transition-duration:500ms;
+    padding: 4px 16px;
     opacity: 0%;
+    font-size: 65%;
+    vertical-align: middle;
+}
+
+.alerta_visible {
+    opacity: 100%!important;
+    border-radius: 2px;
 }
