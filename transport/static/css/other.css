@@ -181,3 +181,12 @@
     /* overflow: hidden; *//*  TEMPORAL */
     overflow: scroll; /* TEMPORAL */
 }
+
+/* Alerta */
+#alerta {
+    background-color: #F44336;  /* Material red 500 */
+    padding: 8px 75px 8px 25px;
+    border-radius: 2px;
+    transition-duration: 2s;
+    opacity: 0%;
+}

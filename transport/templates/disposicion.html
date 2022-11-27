@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="bus.delthia.com es un cliente para la información sobre el bus urbano de coruña. Combina la información en tiempo real sobre los buses con datos de osm de las paradas, presetnado en mapas y tablas.">
 
+    <link rel="manifest" href="/static/manifest.webmanifest">
+
     {% if title %}
         <title>Transporte público - {{ title }}</title>
     {% else %}
@@ -32,6 +34,11 @@
         {% if request.args.get('lang') == 'gal' %}{%  include 'gal/header.html' %}{% endif %}
         {% if request.args.get('lang') == 'es' %}{%  include 'es/header.html' %}{% endif %}
     </header>
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("/sw.js")
+        }
+    </script>
     <div class="contenido">{% block content %}{% endblock content %}</div>
     {% if request.args.get('lang') == 'gal' %}{%  include 'gal/footer.html' %}{% endif %}
     {% if request.args.get('lang') == 'es' %}{%  include 'es/footer.html' %}{% endif %}

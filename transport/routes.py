@@ -1,4 +1,4 @@
-from flask import render_template, url_for, request, redirect
+from flask import render_template, url_for, request, redirect, send_file
 from transport import app
 from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_buses
 from transport.download import cargar_datos, actualizar_datos
@@ -107,7 +107,11 @@ def fuente():
 
 @app.route("/cambios")
 def changelog():
-    return render_template('changelog.html', title='Cambios recientes')
+    lang = request.args.get('lang', type=str)
+    if lang:
+        return render_template('changelog.html', title='Cambios recientes')
+    else:
+        return redirect(url_for('fuente', lang=idioma))
 
 # API
 @app.route("/api/linea/<int:id_linea>")
@@ -152,3 +156,8 @@ def bus_linea(id_linea):
         return 'La línea no está activa en este momento'
     # return buses
     return geojson_buses(id_linea)
+
+# service worker
+@app.route("/sw.js")
+def sw():
+    return send_file('static/scripts/sw.js')

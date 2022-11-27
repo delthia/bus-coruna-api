@@ -79,6 +79,7 @@ header > a {
     margin: auto;
     text-align: center;
     flex-grow: 1;
+    user-select: none;
 }
 header > a:hover {
     background-color: var(--haccent);
@@ -124,6 +125,7 @@ a:hover {
     color: white;
     cursor: pointer;
     margin-right: 4px;
+    user-select: none;
 }
 .recargar:hover {
     background-color: var(--haccent);
@@ -160,6 +162,7 @@ footer {
     text-align: center;
     border-top: 1px solid #d4d4d4;
     padding: 10px 0px;
+    user-select: none;
 }
 
 /* Páginas de error */

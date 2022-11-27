@@ -1,0 +1,32 @@
+{
+    "background_color": "#5e31b1",
+    "theme_color": "#5e31b1",
+    "description": "Información del bus de Coruña en tiempo real",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/static/icono-bus-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icono-bus-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icons/icono-bus-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icons/icono-bus-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "name": "Bus de Coruña",
+    "short_name": "Bus Coruña",
+    "start_url": "/inicio?lang=gal"
+}

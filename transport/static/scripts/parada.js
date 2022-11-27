@@ -51,6 +51,7 @@ function actualizar(last) {
     }
     else {
         document.getElementById('alerta').style.display = "";
+        document.getElementById('alerta').style.opacity = "100%";
         if(new URLSearchParams(window.location.search).get('lang') == 'gal') {
             document.getElementById('alerta').innerHTML = 'Aínda non pasou o tempo necesario';
         }
