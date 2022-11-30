@@ -66,6 +66,18 @@ function actualizar(last) {
     }
 }
 
+
+if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    tiles = 'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
+}
+else {
+    tiles = 'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+    // tiles = 'https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
+}
+
+// var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+document.getElementById('mapa-parada').innerHTML = '';
+
 // Mapa de parada
 var map = L.map('mapa-parada', {
     center: ubicacion,
@@ -78,9 +90,9 @@ var map = L.map('mapa-parada', {
     zoomDelta: 0.5,
 });
 
-var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var tiles = L.tileLayer(tiles, {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>',
+    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     minZoom: 17
 }).addTo(map);
 
