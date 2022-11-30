@@ -7,7 +7,7 @@ var tiles = L.tileLayer('https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.pn
     minZoom: 13
 });
 
-var bright = L.tileLayer('https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+var bright = L.tileLayer('https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     minZoom: 13
@@ -19,30 +19,29 @@ var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     minZoom: 13
 });
 
-var map = L.map('map', {
-    center: [43.3445, -8.425],
-    zoom: 13,
-    layers: [bright, tiles]
-});
-
-var oscuro = {
-    "Osm": osm,
-    "Claro": bright,
-    "Oscuro": tiles
-}
-
-var claro = {
-    "Osm": osm,
-    "Oscuro": tiles,
-    "Claro": bright
-}
 
 if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    var layerControl = L.control.layers(oscuro).addTo(map);
+    var map = L.map('map', {
+        center: [43.3445, -8.425],
+        zoom: 13,
+        layers: [tiles]
+    });
 }
 else {
-    var layerControl = L.control.layers(claro).addTo(map);
+    var map = L.map('map', {
+        center: [43.3445, -8.425],
+        zoom: 13,
+        layers: [bright]
+    });
 }
+
+var oscuro = {
+    'Osm': osm,
+    'Claro': bright,
+    'Oscuro': tiles
+};
+
+var layerControl = L.control.layers(oscuro).addTo(map);
 
 // const layerControl = L.control.layers(baseLayers).addTo(map);
 
