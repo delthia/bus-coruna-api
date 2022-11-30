@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{% if request.args.get('lang') == 'gal' %}gl-ES{% endif %}{% if request.args.get('lang') == 'es' %}es-ES{% endif %}">
+<html lang="{% if request.args.get('lang') == 'gal' %}gl-ES{% elif request.args.get('lang') == 'es' %}es-ES{% elif request.args.get('lang') == 'en' %}enº{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <link rel="icon" href="/static/commute-w.svg">
-    <link rel="icon" sizes="32x32" href="/static/icono-bus-32.png">
-    <link rel="icon" sizes="256x256" href="/static/icono-bus-256.png">
+    <link rel="icon" sizes="32x32" href="/static/iconos/icono-bus-32.png">
+    <link rel="icon" sizes="256x256" href="/static/iconos/icono-bus-256.png">
 
     <!-- <link rel="stylesheet" type="text/css" href="/static/style.css"> -->
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
@@ -31,8 +31,9 @@
 </head>
 <body>
     <header>
-        {% if request.args.get('lang') == 'gal' %}{%  include 'gal/header.html' %}{% endif %}
-        {% if request.args.get('lang') == 'es' %}{%  include 'es/header.html' %}{% endif %}
+        {% if request.args.get('lang') == 'gal' %}{% include 'gal/header.html' %}{% endif %}
+        {% if request.args.get('lang') == 'es' %}{% include 'es/header.html' %}{% endif %}
+        {% if request.args.get('lang') == 'en' %}{% include 'en/header.html' %}{% endif %}
     </header>
     <script>
         if('serviceWorker' in navigator) {
@@ -40,7 +41,8 @@
         }
     </script>
     <div class="contenido">{% block content %}{% endblock content %}</div>
-    {% if request.args.get('lang') == 'gal' %}{%  include 'gal/footer.html' %}{% endif %}
-    {% if request.args.get('lang') == 'es' %}{%  include 'es/footer.html' %}{% endif %}
+    {% if request.args.get('lang') == 'gal' %}{% include 'gal/footer.html' %}{% endif %}
+    {% if request.args.get('lang') == 'es' %}{% include 'es/footer.html' %}{% endif %}
+    {% if request.args.get('lang') == 'en' %}{% include 'en/footer.html' %}{% endif %}
 </body>
 </html>

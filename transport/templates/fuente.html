@@ -6,5 +6,8 @@
 {% elif request.args.get('lang') == 'gal' %}
     <h1>Fonte do proxecto</h1>
     <p>Por agora, a fonte do proxecto non está disponible de maneira pública. A miña intención é facela pública nalgún momento</p>
+{% elif request.args.get('lang') == 'en' %}
+    <h1>Source for the project</h1> 
+    <p>The source code for the project is not publicaly available yet. My intention is to publish it at some point</p>
 {% endif %}
 {% endblock content %}

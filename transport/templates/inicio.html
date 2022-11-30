@@ -9,10 +9,13 @@
     </div>
 {% elif request.args.get('lang') == 'gal' %}
     <h1>Bus Urbano de Coruña</h1>
-    <p class="parrafo">Esta páxina inclúe a información en tempo real sobre o bus urbano de Coruña de <a href="https://itranvias.com" taget="_blank">iTranvias</a>, pero tamén inclúe datos das paradas a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>. Este é o meu primeiro proxecto <i>"funcional"</i>, e consiste nesta páxina feita con <a href="http://flas.palletsprojects.com" target="_blank">flask</a>, unha libraría para python. Se tes curiosidade, gustaríache aprender, ou crees que podes axudarme a arreglar errores ou mellorar a páxina, podes ver, modificar e aportar ao código que se aloxa en <a href="https://codeberg.org/iago" target="_blank">Codeberg</a> e <a href="https://github.com/delthia" target="_blank">GitHub</a>.</p>
+    <p class="parrafo">Esta páxina inclúe a información en tempo real sobre o bus urbano de Coruña de <a href="https://itranvias.com" taget="_blank">iTranvias</a>, pero tamén inclúe datos das paradas a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>. Este é o meu primeiro proxecto <i>"funcional"</i>, e consiste nesta páxina feita con <a href="http://flask.palletsprojects.com" target="_blank">flask</a>, unha libraría para python. Se tes curiosidade, gustaríache aprender, ou crees que podes axudarme a arreglar errores ou mellorar a páxina, podes ver, modificar e aportar ao código que se aloxa en <a href="https://codeberg.org/iago" target="_blank">Codeberg</a> e <a href="https://github.com/delthia" target="_blank">GitHub</a>.</p>
     <div>
         <img src="/static/img/parada.png" width="40%">
         <img src="/static/img/parada-mapa.png" width="43.625%">
     </div>
+{% elif request.args.get('lang') == 'en' %}
+    <h1>Urban Bus of Coruña</h1>
+    <p class="parrafo">This page includes real time information about the urban bus in Coruña from <a href="https://itranvias.com" target="_blank">iTranvias</a>, but it also includes data from <a href="https://osm.org" target="_blank">OpenStreetMap</a>. This is my first <i>"functional"</i> project, it consists in this page made with <a href="https://flask.palletsprojects.com" target="_blank">flask</a>, a python module. If you're curious, you'd like to learn or you believe you could help me fix errors or make the page better, you can see, modify and add to the code that it is hosted in <a href="https://codeberg.org/iago" target="_blank">Codeber</a> and <a href="https://github.com/delthia" target="_blank">GitHub</a>.</p>
 {% endif %}
 {% endblock content %}

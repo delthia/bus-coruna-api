@@ -1,0 +1,2 @@
+<footer><a href="{{ url_for('changelog', lang='en') }}"> Version: 0.0.2</a> • &copy; 2022 Iago • <a href="{{ url_for('fuente', lang='en') }}">Source Code</a> • Language: <a href="{{ url_for('inicio', lang='es') }}" id="lang">es</a> <b>gal</b> <a href="{{ url_for('inicio', lang='en')" id?=lang">en</a></footer>
+<script>document.getElementById('lang').setAttribute('href', window.location.href.toString().replace('lang='+new URLSearchParams(window.location.search).get('lang'), 'lang='+document.getElementById('lang').innerHTML));</script>
