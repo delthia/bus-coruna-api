@@ -1,5 +1,4 @@
 import json, requests, os.path
-from os import remove
 from transport.utils import encontrar_linea, encontrar_parada, lineas_parada
 # import osmnx as ox
 
