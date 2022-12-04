@@ -143,9 +143,9 @@ table {
     margin: 0 auto;
     border: 1px solid black;
     border-collapse: collapse;
-} @media(width: 720px) {
+} @media(max-width: 720px) {
     table {
-        width: 95%;
+        width: 95%!important;
     }
 }
 th, td {
