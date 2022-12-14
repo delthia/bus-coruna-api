@@ -24,7 +24,7 @@ idioma = 'gal'
 def inicio():
     lang = request.args.get('lang', type=str)
     if lang:
-        return render_template('/inicio.html')
+        return render_template('/inicio.html', lang=lang)
     else:
         return redirect(url_for('inicio', lang=idioma))
 

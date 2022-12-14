@@ -1,5 +1,6 @@
-{% extends "disposicion.html" %}
+{% extends "disposicion.html" %}{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
+<!--
 {% if request.args.get('lang') == 'es' %}
     <h1>Bus Urbano de Coruña</h1>
     <p class="parrafo">Esta página incluye la información en tiempo real sobre el bus urbando de coruña de <a href="https://itranvias.com" target="_blank">iTranvías</a>, pero también incluye datos de las paradas a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>. Este es mi primer proyecto <i>"funcional"</i>, y consiste en esta página hecha con <a href="https://flask.palletsprojects.com" target="_blank">flask</a>, una librería para python. Si tienes curiosidad, te gustaría aprender, o crees que puedes ayudarme a solucionar errores o mejorar la página, puedes ver, modificar y aportar al código que se aloja en <a href="https://codeberg.org/iago" target="_blank">Codeberg</a> y <a href="https://github.com/delthia" target="_blank">GitHub</a>.</p>
@@ -13,5 +14,33 @@
 <div>
     <img src="/static/img/parada.webp">
     <img src="/static/img/mapa.webp">
+</div>-->
+<div>
+    <h1>Bus Urbano de Coruña</h1>
+    <div class="contenedor-pp">
+        <img src="/static/img/inicio/parada.png">
+        <div>
+            <h1>Información de parada</h1>
+            <p>Consulta información sobre los buses que están a punto de llegar. Esta página también incluye una tabla que muestra las características de la parada, con datos a partir de <a href="https://osm.org">OpenStreetMap</a>, y un mapa que muestra dónde se encuentra la parada.</p>
+            <input type="text" class="buscar-pp" placeholder="Busca una parada...">
+            <a href="{{ url_for('paradas', lang=lang ) }}" class="enlace-pp b-pp"><span class="material-symbols-outlined" style="vertical-align: middle">search</span> Buscar la parada</a>
+        </div>
+    </div>
+    <div class="contenedor-pp pp-r">
+        <div>
+            <h1>Mapa de paradas</h1>
+            <p>Consulta un mapa con todas las paradas, toca en una parada para ver las líneas que pasan por ella o simplemente comprueba qué paradas hay en una zona.</p>
+            <a href="{{ url_for('mapa', lang=lang ) }}" class="enlace-pp">Ver el mapa</a>
+        </div>
+        <img src="/static/img/inicio/mapa.png">
+    </div>
+    <div class="contenedor-pp">
+        <img src="/static/img/inicio/linea.png">
+        <div>
+            <h1>Información de línea</h1>
+            <p>Diagrama con todas las paradas de una línea, la posición del bus en el recorrido <i>(próximamente)</i> y los horarios de salida de la línea. También muestra los enlaces con otras líneas en cada parada.</p>
+            <a href="{{ url_for('lineas', lang=lang ) }}" class="enlace-pp">Ver la lista de líneas</a>
+        </div>
+    </div>
 </div>
 {% endblock content %}
