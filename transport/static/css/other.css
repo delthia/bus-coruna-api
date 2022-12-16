@@ -238,6 +238,7 @@
     padding: 12px 16px;
     border-radius: 6px;
     transition-duration: 250ms;
+    color: white;
 }
 .enlace-pp:hover {
     background-color: var(--haccent);
@@ -259,7 +260,6 @@
     color: var(--haccent);
 }
 @media( prefers-color-scheme: dark ) {
-
     .buscar-pp {
         background-color: var(--table-even);
         color: white;
