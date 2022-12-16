@@ -3,7 +3,7 @@ from transport.utils import encontrar_linea, encontrar_parada, lineas_parada
 # import osmnx as ox
 
 def cargar_datos(dir):
-    if not os.path.exists(dir+'lineas.json') or not os.path.exists(dir+'paradas.json'):
+    if not os.path.exists(dir+'lineas.json') or not os.path.exists(dir+'paradas.json') or not os.path.exists(dir+'paradas-linea.json') or not os.path.exists(dir+'paradas.geojson.js'):
         actualizar_datos('https://itranvias.com/queryitr_v3.php?dato=20160101T000000_gl_0_20160101T000000&func=7', dir)
     with open(dir+'lineas.json') as a:
         lineas = json.load(a)
