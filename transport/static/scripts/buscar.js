@@ -1,4 +1,7 @@
+search = new URLSearchParams(window.location.search).get('search');
+
 document.getElementById('buscar').style.display = "";
+document.getElementById('buscar').value = search;
 
 function buscar() {
     var input, filter, table, tr, i
