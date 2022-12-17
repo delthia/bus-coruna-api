@@ -1,0 +1,38 @@
+{% extends "disposicion.html" %}
+{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
+{% block content %}
+{% if request.args.get('lang') == 'en' %}<h1>Stops</h1>{% else %}<h1>Paradas</h1>{% endif %}
+{% if request.args.get('lang') == 'es' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca una parada..." style="display: none">{% elif request.args.get('lang') == 'gal' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca unha parada..." style="display: none">{% elif request.args.get('lang') == 'en' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Search for a stop..." style="display: none">{% endif %}
+<script src="/static/scripts/buscar.js"></script>
+<table id="paradas">
+    <tr>
+        {% if request.args.get('lang') == 'es' %}
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Líneas</th>
+        {% elif request.args.get('lang') == 'gal' %}
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Liñas</th>
+        {% elif request.args.get('lang') == 'en' %}
+            <th>ID</th>
+            <th>Name</th>
+            <th>Lines</th>
+        {% endif %}
+    </tr>
+    {% for parada in paradas['paradas'] %}
+        {% if parada.lineas %}
+            <tr>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}" style="padding: 0px 4px;">{{ parada.id }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}">{{ parada.nombre }}</a></td>
+                <td>
+                    {% for linea in parada.lineas %}
+                        <a href="{{ url_for('linea', id_linea=linea.id, lang=request.args.get('lang')) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+<script>buscar();</script>
+{% endblock content %}

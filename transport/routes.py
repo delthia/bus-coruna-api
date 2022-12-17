@@ -23,34 +23,30 @@ idioma = 'gal'
 @app.route("/inicio")
 def inicio():
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template('/inicio.html', lang=lang)
-    else:
+    if not lang:
         return redirect(url_for('inicio', lang=idioma))
+    return render_template('/inicio.html', lang=lang)
 
 @app.route("/mapa")
 def mapa():
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template('mapa.html', title='Mapa (Paradas)')
-    else:
+    if not lang:
         return redirect(url_for('mapa', lang=idioma))
+    return render_template('mapa.html', title='Mapa (Paradas)')
 
 @app.route("/paradas")
 def paradas():
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template(lang+'/paradas.html', title='Paradas', paradas=pards)
-    else:
+    if not lang:
         return redirect(url_for('paradas', lang=idioma))
+    return render_template('/paradas.html', title='Paradas', paradas=pards)
 
 @app.route("/lineas")
 def lineas():
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template(lang+'/lineas.html', title='Líneas', lineas=lins)
-    else:
+    if not lang:
         return redirect(url_for('lineas', lang=idioma))
+    return render_template('/lineas.html', title='Líneas', lineas=lins)
 
 @app.route("/parada/<int:id_parada>")
 def parada(id_parada):
@@ -66,10 +62,9 @@ def parada(id_parada):
         # return 'Error al conseguir los datos'
         return render_template('404.html', i='link_off', m='Error al conseguir los datos'), 404
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada)
-    else:
+    if not lang:
         return redirect(url_for('parada', id_parada=id_parada, lang=idioma))
+    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada)
 
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
@@ -91,27 +86,24 @@ def linea(id_linea):
         if l['id'] == id_linea:
             break
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template(lang+'/linea.html', title='Línea '+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
-    else:
+    if not lang:
         return redirect(url_for('linea', id_linea=id_linea, lang=idioma))
+    return render_template(lang+'/linea.html', title='Línea '+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
 
 # Temporal
 @app.route("/codigo-fuente")
 def fuente():
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template('/fuente.html', title='Fuente del proyecto')
-    else:
+    if not lang:
         return redirect(url_for('fuente', lang=idioma))
+    return render_template('/fuente.html', title='Fuente del proyecto')
 
 @app.route("/cambios")
 def changelog():
     lang = request.args.get('lang', type=str)
-    if lang:
-        return render_template('changelog.html', title='Cambios recientes')
-    else:
+    if not lang:
         return redirect(url_for('fuente', lang=idioma))
+    return render_template('changelog.html', title='Cambios recientes')
 
 # API
 @app.route("/api/linea/<int:id_linea>")
