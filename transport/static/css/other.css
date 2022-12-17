@@ -238,7 +238,7 @@
     padding: 12px 16px;
     border-radius: 6px;
     transition-duration: 250ms;
-    color: white;
+    color: white!important;
 }
 .enlace-pp:hover {
     background-color: var(--haccent);
