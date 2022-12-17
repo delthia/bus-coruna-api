@@ -2,7 +2,7 @@
 {% block content %}
 {% if request.args.get('lang') == 'es' %}
 <h1>Líneas</h1>
-<p>Esta parte todavía no está completa y por tanto no es funcional. Por este motivo es más útil utilizar la sección <a href="{{ url_for('paradas', lang='es') }}>" style="color: #5e35b1;">"paradas"</a></p>
+<p>Esta parte todavía no está completa y por tanto no es funcional. Por este motivo es más útil utilizar la sección <a href="{{ url_for('paradas', lang='es') }}" style="color: #5e35b1">"paradas"</a></p>
 <table>
     <tr>
         <th>Línea</th>
@@ -11,7 +11,7 @@
     </tr>
 {% elif request.args.get('lang') == 'gal' %}
 <h1>Liñas</h1>
-<p>Esta parte todavía non está completa e por tanto non é funcional. Por esta razón é máis útil utilizar a sección <a hfref="{{ url_for('paradas', lang='gal') }}" style="color: #5e35b1">"paradas"</a></p>
+<p>Esta parte todavía non está completa e por tanto non é funcional. Por esta razón é máis útil utilizar a sección <a href="{{ url_for('paradas', lang='gal') }}" style="color: #5e35b1">"paradas"</a></p>
 <table>
     <tr>
         <th>Liña</th>
@@ -20,7 +20,7 @@
     </tr>
 {% elif request.args.get('lang') == 'en' %}
 <h1>Lines</h1>
-<p>This part isn't functional yet. It is uncomplete. It is better to use the <a hfref="{{ url_for('paradas', lang='en') }}" style="color: #5e35b1">"stops"</a> section</p>
+<p>This part isn't functional yet. It is uncomplete. It is better to use the <a href="{{ url_for('paradas', lang='en') }}" style="color: #5e35b1">"stops"</a> section</p>
 <table>
     <tr>
         <th>Line</th>
