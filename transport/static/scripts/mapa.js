@@ -60,3 +60,22 @@ var paradas = L.markerClusterGroup({
 
 paradas.addLayer(geojson);
 map.addLayer(paradas);
+
+var userIcon = L.icon({
+    iconUrl: 'static/icons/userIcon.png',
+
+    iconSize: [48, 48],
+    iconAnchor: [24, 48]
+});
+
+map.locate({setView: true, maxZoom: 16});
+
+function onLocationFound(e) {
+    L.marker(e.latlng, {icon: userIcon}).addTo(map)
+}
+map.on('locationfound', onLocationFound);
+
+/*function onLocationError(e) {
+    alert(e.message);
+}
+map.on('locationerror', onLocationError);*/
