@@ -92,7 +92,7 @@ var map = L.map('mapa-parada', {
 
 var tiles = L.tileLayer(tiles, {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     minZoom: 17
 }).addTo(map);
 
