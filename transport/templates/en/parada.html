@@ -11,7 +11,7 @@
         <div class="linea-parada" id="lineas">
             {% for linea in buses %}
             <div class="linea">
-                <h1 id="{{ linea.linea.id }}">Liña <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
+                <h1 id="{{ linea.linea.id }}">Line <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
                 {% for bus in linea.buses %}
                     {% if bus.distancia == '0' %}
                         <p>Bus {{ bus.bus }}, <b>in the stop</b>.</p>

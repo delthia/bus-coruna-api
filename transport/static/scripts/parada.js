@@ -7,6 +7,9 @@ setInterval(function() {
     actualizar(last);
 }, 30000);
 
+cadenas = {'es': ['Línea', 'en la parada', 'Aún no pasó el tiempo necesario', 'Última actualización', 'es-ES'], 'gal': ['Liña', 'na parada', 'Aínda non pasou o tempo necesario', 'Última actualización', 'es-ES'], 'en': ['Line', 'in the stop', 'Last update was too recently', 'Last updated on', 'en']};
+idioma = new URLSearchParams(window.location.search).get('lang');
+
 function actualizar(last) {
     right = new Date();
     if(right-last >= 15000) {
@@ -20,11 +23,10 @@ function actualizar(last) {
         .then(function(response) { return response.json(); })
         .then(function(json) {
             const obj = json;
-            // document.getElementById("todo").innerHTML = obj
             document.getElementById("lineas").innerHTML = '';
             for(i=0; i<obj['buses']['lineas'].length; i++) {
                 console.log(obj['buses']['lineas'][i]);
-                document.getElementById("lineas").innerHTML += '<h1>Línea <span class="simbolo_linea" style="background-color: #'+obj['buses']['lineas'][i].linea['color']+'">'+obj['buses']['lineas'][i].linea['nombre']+'</span></h1>';
+                document.getElementById("lineas").innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj['buses']['lineas'][i].linea['color']+'">'+obj['buses']['lineas'][i].linea['nombre']+'</span></h1>';
                 for(b=0; b<obj['buses']['lineas'][i].buses.length; b++) {
                     if(obj['buses']['lineas'][i].buses[b].tiempo >= 60) {
                         ahora = new Date();
@@ -37,31 +39,18 @@ function actualizar(last) {
                         document.getElementById("lineas").innerHTML += '<p>Bus '+obj['buses']['lineas'][i].buses[b].bus+', a '+obj['buses']['lineas'][i].buses[b].distancia+'m, '+hora+'\'.</p>';
                     }
                     else {
-                        if(new URLSearchParams(window.location.search).get('lang') == 'gal') {
-                            document.getElementById("lineas").innerHTML += '<p>Bus '+obj['buses']['lineas'][i].buses[b].bus+', <b>na parada</b>.';
-                        }
-                        else {
-                            document.getElementById("lineas").innerHTML += '<p>Bus '+obj['buses']['lineas'][i].buses[b].bus+', <b>en la parada</b>.';
-                        }
+                        document.getElementById("lineas").innerHTML += '<p>Bus '+obj['buses']['lineas'][i].buses[b].bus+', <b>'+cadenas[idioma][1]+'</b>.';
                     }
                 }
             }
-            document.getElementById('t').innerHTML = 'Última actualización: '+right.toLocaleString('es-ES');
+            document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+right.toLocaleString(cadenas[idioma][4]);
         })
     }
     else {
-        // document.getElementById('alerta').style.display = "";
         document.getElementById('alerta').classList.add('alerta_visible');
-        if(new URLSearchParams(window.location.search).get('lang') == 'gal') {
-            document.getElementById('alerta').innerHTML = 'Aínda non pasou o tempo necesario';
-        }
-        else {
-            document.getElementById('alerta').innerHTML = 'Aún no pasó el tiempo necesario';
-        }
+        document.getElementById('alerta').innerHTML = cadenas[idioma][2];
         setTimeout(function() {
             document.getElementById('alerta').classList.remove('alerta_visible');
-            // document.getElementById('alerta').innerHTML = '';
-            // document.getElementById('alerta').style.display = "none";
         },2500)
     }
 }
