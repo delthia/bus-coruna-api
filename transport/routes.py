@@ -88,7 +88,7 @@ def linea(id_linea):
     lang = request.args.get('lang', type=str)
     if not lang:
         return redirect(url_for('linea', id_linea=id_linea, lang=idioma))
-    return render_template(lang+'/linea.html', title='Línea '+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
+    return render_template('/linea.html', title='Línea '+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
 
 # Temporal
 @app.route("/codigo-fuente")
@@ -146,8 +146,8 @@ def bus_linea(id_linea):
     buses = buses_linea(line['id'])
     if buses['paradas'] == []:
         return 'La línea no está activa en este momento'
-    # return buses
-    return geojson_buses(id_linea)
+    return buses
+    # return geojson_buses(id_linea)
 
 @app.route("/api/paradas/")
 def api_paradas():

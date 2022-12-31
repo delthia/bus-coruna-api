@@ -47,4 +47,5 @@ def geojson_buses(linea):
         for bus in range(0, len(dato[sentido]['buses'])):
             b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus']}, 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}})
 
-    return 'var buses = {"type": "FeatureCollection", "features":'+str(b)+'}'
+    # return 'var buses = {"type": "FeatureCollection", "features":'+str(b)+'}'
+    return '{"type": "FeatureCollection", "features":'+str(b)+'}'

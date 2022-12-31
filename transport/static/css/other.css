@@ -71,10 +71,11 @@
     background-color: #5e35b1;
     padding: 2px;
     border-radius: 4px;
+    user-select: none;
 }
 .simbolo_bus_parada {
     animation-name: parada;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     /* animation-timing-function: linear; */
 }
@@ -85,12 +86,12 @@
     /* animation-timing-function: linear; */
 }
 @keyframes parada {
-    0%, 100% {background-color: #5e35b1;}
-    50% {background-color: orange;}
+    0%, 100% {background-color: var(--accent);}
+    19% {background-color: var(--h-parada);}
 }
 @keyframes otro {
-    0%, 100% {background-color: #5e35b1;}
-    50% {background-color: red;}
+    0%, 100% {background-color: var(--accent);}
+    50% {background-color: var(--h-status);}
 }
 
 /* Diálogo de horarios */

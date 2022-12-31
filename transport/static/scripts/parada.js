@@ -51,7 +51,7 @@ function actualizar(last) {
         document.getElementById('alerta').innerHTML = cadenas[idioma][2];
         setTimeout(function() {
             document.getElementById('alerta').classList.remove('alerta_visible');
-        },2500)
+        }, 2500)
     }
 }
 
