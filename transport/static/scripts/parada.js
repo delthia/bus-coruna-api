@@ -25,7 +25,6 @@ function actualizar(last) {
             const obj = json;
             document.getElementById("lineas").innerHTML = '';
             for(i=0; i<obj['buses']['lineas'].length; i++) {
-                console.log(obj['buses']['lineas'][i]);
                 document.getElementById("lineas").innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj['buses']['lineas'][i].linea['color']+'">'+obj['buses']['lineas'][i].linea['nombre']+'</span></h1>';
                 for(b=0; b<obj['buses']['lineas'][i].buses.length; b++) {
                     if(obj['buses']['lineas'][i].buses[b].tiempo >= 60) {
