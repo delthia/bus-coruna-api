@@ -6,6 +6,8 @@ setInterval(function() {
     actualizar(last);
 }, 30000)
 
+idioma = new URLSearchParams(window.location.search).get('lang');
+
 function actualizar(last) {
     right = new Date();
     if(right-last >= 15000 || f == 't') {
@@ -46,12 +48,12 @@ function actualizar(last) {
                     document.getElementById('buses-vuelta').innerHTML += '<div style="margin-top: '+x+'px; position: absolute"><span class="material-symbols-outlined simbolo_bus simbolo_bus_otro">directions_bus</span></div>';
                 }
             }
-            document.getElementById('t').innerHTML = 'Última actualización: '+right.toLocaleString('es-ES');
+            document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+right.toLocaleString(cadenas[idioma][4]);
         })
     }
     else {
         document.getElementById('alerta').classList.add('alerta_visible');
-        document.getElementById('alerta').innerHTML = 'Aún no pasó el tiempo necesario';
+        document.getElementById('alerta').innerHTML = cadenas[idioma][2];
         setTimeout(function() {
             document.getElementById('alerta').classList.remove('alerta_visible');
         }, 2500)

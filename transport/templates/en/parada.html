@@ -16,7 +16,7 @@
                     {% if bus.distancia == '0' %}
                         <p>Bus {{ bus.bus }}, <b>in the stop</b>.</p>
                     {% else %}
-                        <p>Bus {{ bus.bus }}, at {{ bus.distancia }}m, <span class="timepo">{{ bus.tiempo }}</span>.</p>
+                        <p>Bus {{ bus.bus }}, at {{ bus.distancia }}m, {{ bus.tiempo }}.</p>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -54,5 +54,6 @@
     </div>
 </div>
 <script>var ubicacion = [{{parada.osmcoords[1]}}, {{ parada.osmcoords[0]}}];</script>
+<script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/parada.js"></script>
 {% endblock content %}

@@ -7,7 +7,7 @@ setInterval(function() {
     actualizar(last);
 }, 30000);
 
-cadenas = {'es': ['Línea', 'en la parada', 'Aún no pasó el tiempo necesario', 'Última actualización', 'es-ES'], 'gal': ['Liña', 'na parada', 'Aínda non pasou o tempo necesario', 'Última actualización', 'es-ES'], 'en': ['Line', 'in the stop', 'Last update was too recently', 'Last updated on', 'en']};
+// cadenas = {'es': ['Línea', 'en la parada', 'Aún no pasó el tiempo necesario', 'Última actualización', 'es-ES'], 'gal': ['Liña', 'na parada', 'Aínda non pasou o tempo necesario', 'Última actualización', 'es-ES'], 'en': ['Line', 'in the stop', 'Last update was too recently', 'Last updated on', 'en']};
 idioma = new URLSearchParams(window.location.search).get('lang');
 
 function actualizar(last) {
