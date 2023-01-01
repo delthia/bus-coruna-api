@@ -30,24 +30,24 @@
                 <th>Detalles da parada</th>
             </tr>
             <tr>
-                <td>Pavimento táctil</td>
-                <td>{% if parada.propiedades.tactile_paving == 'y' %}Sí{% elif parada.propiedades.tactile_paving == 'n' %}No{% else %}-{% endif %}</td>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">blind</span> Pavimento táctil</td>
+                <td>{% if parada.propiedades.tactile_paving == 'y' %}Sí{% elif parada.propiedades.tactile_paving == 'n' %}Non{% else %}-{% endif %}</td>
             </tr>
             <tr>
-                <td>Banco</td>
-                <td>{% if parada.propiedades.bench == 'y' %}Sí{% elif parada.propiedades.bench == 'n' %}No{% else %}-{% endif %}</td>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">airline_seat_recline_normal</span> Banco</td>
+                <td>{% if parada.propiedades.bench == 'y' %}Sí{% elif parada.propiedades.bench == 'n' %}Non{% else %}-{% endif %}</td>
             </tr>
             <tr>
-                <td>Cuberta</td>
-                <td>{% if parada.propiedades.shelter == 'y' %}Sí{% elif parada.propiedades.shelter == 'n' %}No{% else %}-{% endif %}</td>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">roofing</span> Cuberta</td>
+                <td>{% if parada.propiedades.shelter == 'y' %}Sí{% elif parada.propiedades.shelter == 'n' %}Non{% else %}-{% endif %}</td>
             </tr>
             <tr>
-                <td>Papeleira</td>
-                <td>{% if parada.propiedades.bin == 'y' %}Sí{% elif parada.propiedades.bin == 'n' %}No{% else %}-{% endif %}</td>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">delete</span> Papeleira</td>
+                <td>{% if parada.propiedades.bin == 'y' %}Sí{% elif parada.propiedades.bin == 'n' %}Non{% else %}-{% endif %}</td>
             </tr>
             <tr>
-                <td>Iluminada</td>
-                <td>{% if parada.propiedades.lit == 'y' %}Sí{% elif parada.propiedades.lit == 'n' %}No{% else %}-{% endif %}</td>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">light</span> Iluminada</td>
+                <td>{% if parada.propiedades.lit == 'y' %}Sí{% elif parada.propiedades.lit == 'n' %}Non{% else %}-{% endif %}</td>
             </tr>
         </table>
         <div id="mapa-parada">Para ver o mapa activa o JavaScript</div>
