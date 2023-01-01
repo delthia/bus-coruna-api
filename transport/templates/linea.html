@@ -3,6 +3,7 @@
 {% block content %}
 <h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span> <small style="font-size: 45%" id="t"></small> <span id="alerta""></span></h1>
 <span id="alerta" style="display: none"></span>
+<i id="msg-js">Para que funcione esta página es necesario ejecutar <a style="color: var(--accent)" href="/static/scripts/simbolo-bus.js" target="_blank">este JavaScript</a>. Haz clic en el enlace si quieres verlo antes de permitir su ejecución.</i>
 
 <div class="diagrama-linea">
     <div class="diagrama-dentro">

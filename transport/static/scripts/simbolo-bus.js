@@ -1,5 +1,6 @@
 document.getElementById('boton-recarga').addEventListener('click', function(event) { actualizar(last); });
 last = new Date();
+document.getElementById('msg-js').style.display = "none";
 
 setInterval(function() {
     actualizar(last);
