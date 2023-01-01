@@ -156,6 +156,12 @@ th, td {
     padding: 8px 0px;
 }
 tr:nth-child(even) { background-color: var(--table-even); }
+.enlace-tabla {
+    display: block;
+}
+.a-p:hover {
+    text-decoration: none;
+}
 
 /* Pie */
 footer {

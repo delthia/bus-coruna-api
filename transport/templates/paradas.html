@@ -23,8 +23,8 @@
     {% for parada in paradas['paradas'] %}
         {% if parada.lineas %}
             <tr>
-                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}" style="padding: 0px 4px;">{{ parada.id }}</a></td>
-                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}">{{ parada.nombre }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}" style="padding: 0px 4px;" class="enlace-tabla">{{ parada.id }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}" class="enlace-tabla">{{ parada.nombre }}</a></td>
                 <td>
                     {% for linea in parada.lineas %}
                         <a href="{{ url_for('linea', id_linea=linea.id, lang=request.args.get('lang')) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a>
