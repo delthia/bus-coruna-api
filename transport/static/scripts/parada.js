@@ -1,3 +1,4 @@
+// Actualiza los próximos buses para una parada periódicamente y añade un mapa que muestra donde se encuentra la parada utilizando Leaflet-js
 document.getElementById('boton-recarga').addEventListener('click', function(event) { actualizar(last); });
 last = new Date();
 // document.getElementById('alerta').style.display = "none";

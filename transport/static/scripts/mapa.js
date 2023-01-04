@@ -1,3 +1,4 @@
+// Muestra un mapa con todas las paradas utilizando Leaflet-js
 document.getElementById('map').innerHTML = '';
 
 // var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

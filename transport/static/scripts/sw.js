@@ -1,3 +1,4 @@
+// Service worker para instalar la PWA, y que hace funcionar la caché en la misma
 self.addEventListener("install", event => {
     console.log("Service worker installed");
 });

@@ -1,3 +1,4 @@
+// Añade los iconos en la posición correcta a la izquierda de los diagramas de paradas para una línea y los actualiza periódicamente
 document.getElementById('boton-recarga').addEventListener('click', function(event) { actualizar(last); });
 last = new Date();
 document.getElementById('msg-js').style.display = "none";

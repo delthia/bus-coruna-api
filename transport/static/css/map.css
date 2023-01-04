@@ -1,3 +1,6 @@
+/* Contiene los estilos para los contenedores de los mapas,
+   tanto el principal como los de las paradas */
+
 /* Mapa */
 .leaflet-container {
     height: 400px;

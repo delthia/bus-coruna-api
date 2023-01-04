@@ -1,3 +1,6 @@
+/* Contiene las variables para los colores que se utilizan, los estilos para la disposición de las páginas
+   y los estilos para la cabeza, el cuerpo, las tablas y el pie de página */
+
 /* Colores */
 :root {
     --bg: #f5f5f6;

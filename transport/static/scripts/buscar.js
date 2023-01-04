@@ -1,3 +1,4 @@
+// Itera a través de todas las filas de una tabla y las oculta si en las columnas indicadas no se encuentra la cadena del campo de búsqueda
 search = new URLSearchParams(window.location.search).get('search');
 
 document.getElementById('buscar').style.display = "";
