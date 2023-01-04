@@ -1,7 +1,7 @@
 # Bus Coruña - Cliente alternativo
 ![licencia](https://img.shields.io/github/license/delthia/bus-coruna-api)
 
-![Captura de pantalla del mapa](transport/static/img/inicio/homepage.png)
+![Captura de pantalla del mapa](transport/static/img/homepage.png)
 
 Este proyecto consiste en una página que muestra datos en tiempo real del Bus de Coruña, combinados con información sobre las paradas y mapas con datos de [OpenStreetMap](https://osm.org), un proyecto libre de mapeo.
 
