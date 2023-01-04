@@ -4,7 +4,7 @@
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- Información en tiempo real sobre el bus de Coruña</i></h1>
     <div class="contenedor-pp">
-        <img src="/static/img/inicio/parada.png">
+        <img src="/static/img/parada.png">
         <div>
             <h1>Información de parada</h1>
             <p>Consulta información sobre los buses que están a punto de llegar. Esta página también incluye una tabla que muestra las características de la parada, con datos a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>, y un mapa que muestra dónde se encuentra la parada.</p>
@@ -25,10 +25,10 @@
             <p>Consulta un mapa con todas las paradas, toca en una parada para ver las líneas que pasan por ella o simplemente comprueba qué paradas hay en una zona.</p>
             <a href="{{ url_for('mapa', lang=lang ) }}" class="enlace-pp">Ver el mapa</a>
         </div>
-        <img src="/static/img/inicio/mapa.png">
+        <img src="/static/img/mapa.png">
     </div>
     <div class="contenedor-pp">
-        <img src="/static/img/inicio/linea.png">
+        <img src="/static/img/linea.png">
         <div>
             <h1>Información de línea</h1>
             <p>Diagrama con todas las paradas de una línea, la posición del bus en el recorrido <i>(próximamente)</i> y los horarios de salida de la línea. También muestra los enlaces con otras líneas en cada parada.</p>
@@ -42,14 +42,14 @@
             <p>La página está hecha con python, utilizando la librería <a href="https://flask.palletsprojects.com/" target="_blank">flask</a>. Descarga los datos desde la página de <a href="https://itranvias.com" target="_blank">iTranvías</a>, los adapta para trabajar con ellos y genera las páginas con la información de los buses y de otras fuentes. También incluye una api que se utiliza para actualizar los datos sin tener que recargar la página.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver el código fuente</a>
         </div>
-        <img src="/static/img/inicio/github.png" style="border-radius: 16px; margin-bottom: 100px;">
+        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 100px;">
     </div>
 </div>
 {% elif request.args.get('lang') == 'gal' %}
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- Información en tempo real sobre o bus da Coruña</i></h1>
     <div class="contenedor-pp">
-        <img src="/static/img/inicio/parada.png">
+        <img src="/static/img/parada.png">
         <div>
             <h1>Información de parada</h1>
             <p>Consulta información sobre os buses que están a punto de chegar. Esta páxina también inclúe unha tabla que mostra as características da parada, con datos a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>, e un mapa que mostra onde se atopa a parada.</p>
@@ -70,10 +70,10 @@
             <p>Consulta un mapa con todas as paradas, toca nunha parada para ver as liñas que pasan por ela ou simplemente comproba que paradas hai nunha zona.</p>
             <a href="{{ url_for('mapa', lang=lang ) }}" class="enlace-pp">Ver o mapa</a>
         </div>
-        <img src="/static/img/inicio/mapa.png">
+        <img src="/static/img/mapa.png">
     </div>
     <div class="contenedor-pp">
-        <img src="/static/img/inicio/linea.png">
+        <img src="/static/img/linea.png">
         <div>
             <h1>Información de liña</h1>
             <p>Diagrama con todas as paradas dunha liña, a posición do bus no recorrido <i>(próximamente)</i> e os horarios de salida da línea. Tamén mostra os enlaces con outras liñas en cada parada.</p>
@@ -87,14 +87,14 @@
             <p>A páxina está feita con python, utilizando a librería <a href="https://flask.palletsprojects.com/" target="_blank">flask</a>. Descarga os datos dende a página de <a href="https://itranvias.com" target="_blank">iTranvías</a>, adáptaos para traballar con eles e xera as páxina coa información dos buses y doutras fontes. Tamén inclúe unha api que se utiliza para actualizar os datos sin ter que recargar a páxina.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver o código fonte</a>
         </div>
-        <img src="/static/img/inicio/github.png" style="border-radius: 16px; margin-bottom: 100px;">
+        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 100px;">
     </div>
 </div>
 {% elif request.args.get('lang') == 'en' %}
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- Realtime information about Coruña's bus</i></h1>
     <div class="contenedor-pp">
-        <img src="/static/img/inicio/parada.png">
+        <img src="/static/img/parada.png">
         <div>
             <h1>Stop information</h1>Look up information about which buses are about to arrive. This page also incudes a table that shows the characteristics of the stop with data from <a href="https://osm.org" target="_blank">OpenStreetMap</a>, and a map that shows where the stop is located.</p>
             <input type="text" class="buscar-pp" id="b" onkeyup="enlace()" placeholder="Search for an stop...">
@@ -114,10 +114,10 @@
             <p>A map with all the stops. Touch in an stop to see the lines that go through it or simply to check what stops are found around that area.</p>
             <a href="{{ url_for('mapa', lang=lang ) }}" class="enlace-pp">See the map</a>
         </div>
-        <img src="/static/img/inicio/mapa.png">
+        <img src="/static/img/mapa.png">
     </div>
     <div class="contenedor-pp">
-        <img src="/static/img/inicio/linea.png">
+        <img src="/static/img/linea.png">
         <div>
             <h1>Line informationInformación de línea</h1>
             <p>Diagrama  with all the stops for a line, the position of the bus on the itinerary <i>(coming soon)</i> and the schedules for the line. It also shows the connections with other lines in each stop.</p>
@@ -131,7 +131,7 @@
             <p>The page is made with python, using the <a href="https://flask.palletsprojects.com/" target="_blank">flask</a> library. It downloads the data from the <a href="https://itranvias.com" target="_blank">iTranvías</a> page, it adapts them to work with them and generates the pages with the information about the buses and other sources. It also includes an API that is used to update the data without having to reload the page.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver el código fuente</a>
         </div>
-        <img src="/static/img/inicio/github.png" style="border-radius: 16px; margin-bottom: 100px;">
+        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 100px;">
     </div>
 </div>
 {% endif %}
