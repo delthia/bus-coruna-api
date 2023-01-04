@@ -1,15 +1,22 @@
 import requests, json
 
+"""
+Funciones variadas. Se utilizan en el resto del código para buscar paradas, líneas, o para obtener los datos de buses y paradas
+"""
+
+# Busca una línea en la lista de líneas y la devuelve
 def encontrar_linea(id, datos):
     for linea in datos['lineas']:
         if linea['id'] == id:
             return linea
 
+# Busca una parada en la lista de paradas y la devuelve
 def encontrar_parada(id, datos):
     for parada in datos['paradas']:
         if parada['id'] == id:
             return parada
 
+# Genera una lista de las líneas que pasan por una parada. Se utiliza para generar los diálogos del mapa, por lo que también incluye el HTML para los enlaces
 def lineas_parada(parada, datos):
     lins = '<br>'
     for linea in parada['enlaces']:
@@ -17,6 +24,7 @@ def lineas_parada(parada, datos):
         lins = lins+'<a href="./linea/'+str(linea)+'" class="simbolo_linea" style="background-color: #'+lin['color']+'">'+lin['lin_comer']+'</a>'
     return lins
 
+# Recoge los datos actuales de los buses para una parada
 def buses_parada(parada, directorio):
     try:
         dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=0&dato='+str(parada)).json()
@@ -30,6 +38,7 @@ def buses_parada(parada, directorio):
         dato['buses']['lineas'][linea]['linea'] = encontrar_linea(dato['buses']['lineas'][linea]['linea'], lista)
     return dato
 
+# Recoge los datos actuales de las posiciones de los buses en el recorrido de una línea
 def buses_linea(linea):
     try:
         dato = requests.get('https://itranvias.com/queryitr_v3.php?&func=2&dato='+str(linea)).json()
@@ -37,6 +46,7 @@ def buses_linea(linea):
         return 429
     return dato
 
+# Recoge los datos de las posiciones de los buses de una línea y devuelve un GeoJSON con esa información
 def geojson_buses(linea):
     try:
         dato = requests.get('http://itranvias.com/queryitr_v3.php?&func=99&mostrar=B&dato='+str(linea)).json()['mapas'][0]['buses']
