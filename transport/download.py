@@ -1,6 +1,6 @@
 import json, requests, os.path
 from transport.utils import encontrar_linea, encontrar_parada, lineas_parada
-import osmnx as ox
+# import osmnx as ox
 
 # Hace una petición a la url especificada y devuelve la respuesta como JSON. En caso de que falle devuelve el código de error
 def peticion(url):
@@ -13,6 +13,7 @@ def peticion(url):
 # Las rutas se especifican en el orden: osm, líneas, paradas, paradas-linea, paradas.geojson
 def actualizar(rutas):
     # Eliminar los archivos
+    """
     try:
         os.remove(rutas[0])
         os.remove(rutas[1])
@@ -21,7 +22,9 @@ def actualizar(rutas):
         os.remove(rutas[4])
     except:
         print("Ya no existían")
+    """
     # Generar los archivos nuevos
+    """
     datos = peticion('https://itranvias.com/queryitr_v3.php?dato=20160101T000000_gl_0_20160101T000000&func=7')['iTranvias']['actualizacion']
     osm(rutas[0])
     with open(rutas[0]) as archivo:
@@ -32,9 +35,12 @@ def actualizar(rutas):
         paradas = json.load(p)
     json_paradas_lineas(datos, rutas[3], paradas)
     geojson(datos, rutas[4], o)
+    """
     # Cargar los archivos
     with open(rutas[1]) as l:
         lineas = json.load(l)
+    with open(rutas[2]) as p:
+        paradas = json.load(p)
     return lineas, paradas
 
 # Consigue los datos de OSM a través de overpass, y los guarda en la ruta especificada en un archivo GeoJSON
