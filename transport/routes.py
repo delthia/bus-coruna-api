@@ -1,7 +1,8 @@
 from flask import render_template, url_for, request, redirect, send_file
 from transport import app
 from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_buses
-from transport.download import cargar_datos, actualizar_datos
+# from transport.download import cargar_datos, actualizar_datos
+from transport.download import actualizar
 import json, os
 
 # ¡IMPORTANTE!: Cambiar a falso para que funcione en el servidor de producción
@@ -15,7 +16,9 @@ origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
 # lins, pards = datos_iniciales(origen+inicio, static)
 # actualizar_datos(origen+inicio, static)
-lins, pards = cargar_datos(static)
+# lins, pards = cargar_datos(static)
+rutas = [static+'osm.json', static+'lineas.json', static+'paradas.json', static+'paradas-linea.json', static+'paradas.geojson.js']
+lins, pards = actualizar(rutas)
  
 idioma = 'gal'  # Idioma al que se redirige por defecto si no existe el parámetro 'lang' en la petición
 # Traducciones de los mensajes de error y los títulos
@@ -85,6 +88,7 @@ def parada(id_parada):
 # Línea. Muestra las paradas para una línea en un diagrama y la posición de los buses en el recorrido
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
+    lang = request.args.get('lang', type=str)
     if not lang:
         return redirect(url_for('linea', id_linea=id_linea, lang=idioma))
     with open(static+'paradas-linea.json') as archivo:
@@ -101,7 +105,6 @@ def linea(id_linea):
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
-    lang = request.args.get('lang', type=str)
     return render_template('/linea.html', title=titulos[lang][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
 
 # Información sobre el funcionamiento de la página y la contribución a este
