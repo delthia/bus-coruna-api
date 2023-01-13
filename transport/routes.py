@@ -22,9 +22,9 @@ lins, pards = actualizar(rutas)
  
 idioma = 'gal'  # Idioma al que se redirige por defecto si no existe el parámetro 'lang' en la petición
 # Traducciones de los mensajes de error y los títulos
-frases = {'es': ['La parada no existe o no hay información disponible', 'Parece que en este momento no hay buses para esta parada', 'Error al conseguir los datos'],
-        'gal': ['A parada non existe ou non hai información dispoñible', 'Parece que neste momento non hai buses para esta parada', 'Erro ao conseguir os datos'],
-        'en': ['The stop doesn\'t exist or there isn\'t enough information', 'It looks like there are no buses for this stop', 'Error getting the data']}
+frases = {'es': ['La parada no existe o no hay información disponible', 'Parece que en este momento no hay buses para esta parada', 'Error al conseguir los datos', 'La línea no existe', 'La línea no está activa en este momento'],
+        'gal': ['A parada non existe ou non hai información dispoñible', 'Parece que neste momento non hai buses para esta parada', 'Erro ao conseguir os datos', 'A liña non existe', 'A liña non está activa neste momento'],
+        'en': ['The stop doesn\'t exist or there isn\'t enough information', 'It looks like there are no buses for this stop', 'Error getting the data', 'The line does not exist', 'The line isn\'t currently active']}
 titulos = {'es': ['Mapa (Paradas)', 'Paradas', 'Líneas', 'Línea ', 'Fuente del proyecto', 'Cambios recientes'],
             'gal': ['Mapa (Paradas)', 'Paradas', 'Liñas', 'Liña ', 'Fonte do proxecto', 'Cambios recentes'],
             'en': ['Map (Stops)', 'Stops', 'Lineas', 'Line ', 'Project source', 'Changelog']}
@@ -95,13 +95,13 @@ def linea(id_linea):
         paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
-        return render_template('404.html', i='priority_high', m=frases[lang][0]), 404
+        return render_template('404.html', i='priority_high', m=frases[lang][3]), 404
     buses = buses_linea(line['id'])
     if buses == 429:
         print('a')
-        return render_template('404.html', i='link_off', m=frases[lang][1]), 404
+        return render_template('404.html', i='link_off', m=frases[lang][2]), 404
     elif buses['paradas'] == []:
-        return render_template('404.html', i='clear_night', m=frases[lang][2]), 404
+        return render_template('404.html', i='clear_night', m=frases[lang][4]), 404
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
