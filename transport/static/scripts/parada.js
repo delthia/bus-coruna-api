@@ -54,14 +54,24 @@ function actualizar(last) {
         }, 2500)
     }
 }
-
-
-if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+provider = new URLSearchParams(window.location.search).get('mapa');
+if(provider == 'osm') {
+    tiles = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+}
+else if(provider == 'carto-light') {
+    tiles = 'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+}
+else if(provider == 'carto-dark') {
     tiles = 'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
 }
 else {
-    tiles = 'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
-    // tiles = 'https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        tiles = 'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
+    }
+    else {
+        tiles = 'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+        // tiles = 'https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
+    }
 }
 
 // var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
