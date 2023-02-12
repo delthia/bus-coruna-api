@@ -28,5 +28,25 @@
     ],
     "name": "Bus de Coruña",
     "short_name": "Bus Coruña",
-    "start_url": "/inicio?lang=gal"
+    "start_url": "/inicio?lang=gal",
+    "shortcuts" : [
+        {
+            "name": "Paradas",
+            "url": "/paradas",
+            "description": "Lista de paradas",
+            "icons": [{ "src": "/static/icons/shortcuts/pergola-w.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Lineas",
+            "url": "/lineas",
+            "description": "Lista de líneas",
+            "icons": [{ "src": "/static/icons/shortcuts/route-w.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Mapa",
+            "url": "/mapa",
+            "description": "Mapa de paradas",
+            "icons": [{ "src": "/static/icons/shortcuts/map-w.png", "sizes": "192x192" }]
+        }
+    ]
 }
