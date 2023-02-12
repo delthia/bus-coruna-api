@@ -75,6 +75,12 @@ function onLocationFound(e) {
     L.marker(e.latlng, {icon: userIcon}).addTo(map)
 }
 map.on('locationfound', onLocationFound);
+// map.setMaxBounds(map.getBounds());
+var topleft = L.latLng(43.3925, -8.4585),
+    bottomright = L.latLng(43.2945, -8.3755);
+map.setMaxBounds(L.latLngBounds(topleft, bottomright));
+// L.rectangle([[43.3925, -8.4525], [43.2945, -8.3865]], {color: "#ff7800", weight: 1}).addTo(map);
+//L.rectangle([[43.3925, -8.4585], [43.2945, -8.3755]], {color: "#ff7800", weight: 1}).addTo(map);
 
 /*function onLocationError(e) {
     alert(e.message);
