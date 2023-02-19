@@ -42,7 +42,7 @@
             <p>La página está hecha con python, utilizando la librería <a href="https://flask.palletsprojects.com/" target="_blank">flask</a>. Descarga los datos desde la página de <a href="https://itranvias.com" target="_blank">iTranvías</a>, los adapta para trabajar con ellos y genera las páginas con la información de los buses y de otras fuentes. También incluye una api que se utiliza para actualizar los datos sin tener que recargar la página.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver el código fuente</a>
         </div>
-        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 100px;">
+        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
 </div>
 {% elif request.args.get('lang') == 'gal' %}
@@ -87,7 +87,7 @@
             <p>A páxina está feita con python, utilizando a librería <a href="https://flask.palletsprojects.com/" target="_blank">flask</a>. Descarga os datos dende a página de <a href="https://itranvias.com" target="_blank">iTranvías</a>, adáptaos para traballar con eles e xera as páxina coa información dos buses y doutras fontes. Tamén inclúe unha api que se utiliza para actualizar os datos sin ter que recargar a páxina.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver o código fonte</a>
         </div>
-        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 100px;">
+        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
 </div>
 {% elif request.args.get('lang') == 'en' %}
@@ -131,7 +131,7 @@
             <p>The page is made with python, using the <a href="https://flask.palletsprojects.com/" target="_blank">flask</a> library. It downloads the data from the <a href="https://itranvias.com" target="_blank">iTranvías</a> page, it adapts them to work with them and generates the pages with the information about the buses and other sources. It also includes an API that is used to update the data without having to reload the page.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver el código fuente</a>
         </div>
-        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 100px;">
+        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
 </div>
 {% endif %}

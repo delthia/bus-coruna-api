@@ -272,6 +272,7 @@
     }
 } 
 
+/* Adaptación de la página principal en pantallas pequeñas */
 @media( max-width: 720px ) {
     .contenedor-pp {
         flex-direction: column-reverse;
@@ -288,7 +289,7 @@
     }
     .contenedor-pp div {
         flex-grow: 1;
-        padding-left: 1.5em;
+        padding-left: 0em;
         width: 90%;
         align-self: center;
         text-align: justify;
