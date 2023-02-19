@@ -108,6 +108,7 @@ header .material-symbols-outlined {
 h1 {
     font-size: 200%;
 }
+@media(max-width: 600px) { h1 { font-size: 150%; } #t { font-size: 60%!important } }
 h1,h2 {
     font-weight: 300;
 }
