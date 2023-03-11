@@ -302,3 +302,17 @@
 .parada p {
     white-space: nowrap;
 }
+
+/* Leyenda de la página de línea */
+#leyenda {
+    border: 1px dashed var(--fg);
+    padding-left: 16px;
+    width: 25%;
+    margin: 0 auto;
+}
+
+@media ( max-width: 1000px ) {
+    #leyenda {
+        width: 85%;
+    }
+}
