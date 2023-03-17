@@ -13,7 +13,7 @@ idioma = new URLSearchParams(window.location.search).get('lang');
 
 function actualizar(last) {
     right = new Date();
-    if(right-last >= 15000) {
+    if(right-last >= 15000 || f == 't') {
     // if(right-last >= 10) {
         window.last = right;
         id = document.getElementById('id-parada').innerHTML
@@ -104,3 +104,7 @@ var circle = L.circle(ubicacion, {
     fillOpacity: 0.25,
     radius: 7
 }).addTo(map);
+
+var f = 't';
+actualizar(last);
+var f = 'f';
