@@ -31,7 +31,7 @@
         <img src="/static/img/linea.png">
         <div>
             <h1>Información de línea</h1>
-            <p>Diagrama con todas las paradas de una línea, la posición del bus en el recorrido <i>(próximamente)</i> y los horarios de salida de la línea. También muestra los enlaces con otras líneas en cada parada.</p>
+            <p>Diagrama con todas las paradas de una línea, la posición del bus en el recorrido y los horarios de salida de la línea. También muestra los enlaces con otras líneas en cada parada.</p>
             <a href="{{ url_for('lineas', lang=lang ) }}" class="enlace-pp">Ver la lista de líneas</a>
         </div>
     </div>
@@ -52,7 +52,7 @@
         <img src="/static/img/parada.png">
         <div>
             <h1>Información de parada</h1>
-            <p>Consulta información sobre os buses que están a punto de chegar. Esta páxina también inclúe unha tabla que mostra as características da parada, con datos a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>, e un mapa que mostra onde se atopa a parada.</p>
+            <p>Consulta información sobre os buses que están a chegar. Esta páxina también inclúe unha táboa que mostra as características da parada, con datos a partir de <a href="https://osm.org" target="_blank">OpenStreetMap</a>, e un mapa que mostra onde se atopa a parada.</p>
             <input type="text" class="buscar-pp" id="b" onkeyup="enlace()" placeholder="Busca unha parada...">
             <a href="{{ url_for('paradas', lang=lang ) }}" class="enlace-pp b-pp" id="lupa"><span class="material-symbols-outlined" style="vertical-align: middle">search</span></a>
             <script>
@@ -76,15 +76,15 @@
         <img src="/static/img/linea.png">
         <div>
             <h1>Información de liña</h1>
-            <p>Diagrama con todas as paradas dunha liña, a posición do bus no recorrido <i>(próximamente)</i> e os horarios de salida da línea. Tamén mostra os enlaces con outras liñas en cada parada.</p>
+            <p>Diagrama con todas as paradas dunha liña, a posición do bus no recorrido e os horarios de saída da liña. Tamén mostra os enlaces con outras liñas en cada parada.</p>
             <a href="{{ url_for('lineas', lang=lang ) }}" class="enlace-pp">Ver a lista de liñas</a>
         </div>
     </div>
     <div class="contenedor-pp pp-r">
         <div>
             <h1>Software libre</h1>
-            <p>O código desta páxina está dispoñible baixo unha licencia libre, para que podas ver como funciona e modificalo.</p>
-            <p>A páxina está feita con python, utilizando a librería <a href="https://flask.palletsprojects.com/" target="_blank">flask</a>. Descarga os datos dende a página de <a href="https://itranvias.com" target="_blank">iTranvías</a>, adáptaos para traballar con eles e xera as páxina coa información dos buses y doutras fontes. Tamén inclúe unha api que se utiliza para actualizar os datos sin ter que recargar a páxina.</p>
+            <p>O código desta páxina está dispoñible baixo unha licencia libre, para que poidas ver como funciona e modificalo.</p>
+            <p>A páxina está feita con python, utilizando a librería <a href="https://flask.palletsprojects.com/" target="_blank">flask</a>. Descarga os datos dende a página de <a href="https://itranvias.com" target="_blank">iTranvías</a>, adáptaos para traballar con eles e xera as páxina coa información dos buses e doutras fontes. Tamén inclúe unha api que se utiliza para actualizar os datos sen ter que recargar a páxina.</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver o código fonte</a>
         </div>
         <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
@@ -120,7 +120,7 @@
         <img src="/static/img/linea.png">
         <div>
             <h1>Line informationInformación de línea</h1>
-            <p>Diagrama  with all the stops for a line, the position of the bus on the itinerary <i>(coming soon)</i> and the schedules for the line. It also shows the connections with other lines in each stop.</p>
+            <p>Diagram with all the stops for a line, the position of the bus on the itinerary and the schedules for the line. It also shows the connections with other lines in each stop.</p>
             <a href="{{ url_for('lineas', lang=lang ) }}" class="enlace-pp">See the line list</a>
         </div>
     </div>
@@ -129,7 +129,7 @@
             <h1>Free Software</h1>
             <p>This page's source code is available under a free software license, so you can see how it works and modify it.</p>
             <p>The page is made with python, using the <a href="https://flask.palletsprojects.com/" target="_blank">flask</a> library. It downloads the data from the <a href="https://itranvias.com" target="_blank">iTranvías</a> page, it adapts them to work with them and generates the pages with the information about the buses and other sources. It also includes an API that is used to update the data without having to reload the page.</p>
-            <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">Ver el código fuente</a>
+            <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">See the source code</a>
         </div>
         <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
