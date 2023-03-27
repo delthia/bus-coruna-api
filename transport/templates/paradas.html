@@ -34,5 +34,6 @@
         {% endif %}
     {% endfor %}
 </table>
+{% if request.args.get('lang') == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif request.args.get('lang') == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif request.args.get('lang') == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (stops)</p>{% endif %}
 <script>buscar();</script>
 {% endblock content %}
