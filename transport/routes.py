@@ -143,6 +143,8 @@ def api_linea(id_linea):
     return encontrar_linea(id_linea,lins)
 
 # Devuelve un GeoJSON con las coordenadas de los buses de la línea que se especifica en <id_linea>
+# Deshabilitado temporalmente
+"""
 @app.route("/api/linea/<int:id_linea>/buses/coords")
 def coords_buses(id_linea):
     line = encontrar_linea(id_linea,lins)
@@ -152,6 +154,7 @@ def coords_buses(id_linea):
     if buses['paradas'] == []:
         return 'La línea no está activa en este momento'
     return geojson_buses(id_linea)
+"""
 
 # Devuelve las posiciones en el recorrido de los buses de la línea que se especifica en <id_linea>
 @app.route("/api/linea/<int:id_linea>/buses")
