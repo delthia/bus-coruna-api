@@ -210,3 +210,8 @@ def api_paradas():
 @app.route("/sw.js")
 def sw():
     return send_file('static/scripts/sw.js')
+
+# robots.txt
+@app.route("/robots.txt")
+def r():
+    return send_file('static/robots.txt')
