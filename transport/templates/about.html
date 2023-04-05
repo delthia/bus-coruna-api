@@ -1,0 +1,73 @@
+{% extends "disposicion.html" %}
+{% block content %}
+{% if request.args.get('lang') == 'es' %}
+<h1>Acerca de</h1>
+<h2>Contacto</h2>
+<p class="parrafo">Si simplemente quieres contactar conmigo, puedes mandarme un correo a <span style="color: var(--accent)">bus [arroba] delthia [punto] com</span>.</p>
+<p class="parrafo">También puedes ver más información en mi <a href="https://github.com/delthia" target="_blank">página de github</a>, o visitando mi <a href="https://delthia.com" target="_blank">sitio web</a>.</p>
+<h2>Historia</h2>
+<p class="parrafo">Este proyecto surge en septiembre de 2022, cuando se me ocurre hacer un mapa con las paradas de bus de coruña, como ejemplo de <a href="https://leafletjs.com" target="_blank">leafletjs</a>, y para aprender a generar <a href="https://geojson.org/" target="_blank">GeoJSON</a> con python.</p>
+<p><img src="/static/img/ej-mapa.png" width="85%" style="display: block; margin: 0 auto"></p>
+<p style="text-align: center; color: var(--accent); font-style: italic; margin-top: -0.8em">Mapa con el que se inicia el proyecto</p>
+<p class="parrafo">A partir de ahí, la parte más complicada estaba hecha, ahora ya sabía cómo descargar los datos y cómo manipularlos para relacionar una parada con las líneas que pasan por la misma, así que solo quedaba aplicar lo que conocía de <a href="https://flask.palletsprojects.com" target="_blank">Flask</a> para hacer que se pudiera acceder a toda la información de los buses desde una página web.</p>
+<p class="parrafo">De esta manera, pude empezar a poner en práctica lo que había aprendido de flask siguiendo <a href="https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH" target="_blank">este tutorial de python</a>. Este me pareció un proyecto interesante porque tenía que aprender a utilizar una API en una aplicación que generaba páginas estáticas con los datos, pero que también se podían actualizar para que la página fuera dinámica. Para esto necesitaba implementar un poco de JavaScript, algo que nunca había hecho. También tuve que investigar como hacer que una aplicación web fuera instalable como una pwa, siguiendo <a href="https://web.dev/learn/pwa/" target="_blank">esta guía</a>.</p>
+<p class="parrafo">Desde luego que esta página no está acabada, aún quedan algunas funciones por implementar, como la tabla de salidas o la posición en tiempo real de los buses, así como mejorar la PWA para que permita añadir paradas favoritas, establecer un idioma que se mantenga entre usos, permitir la creación de avisos para buses determinados o mejorar la búsqueda de paradas, pero ya está en un estado en el que se puede empezar a utilizar y empieza a ser funcional.</p>
+<p class="parrafo">Este es el primer proyecto que hago, e incluye mis conocimientos en muchas áreas
+    <ul>
+        <li>Programación en python</li>
+        <ul>
+            <li>Trabajar con JSON</li>
+            <li>Generar una API</li>
+        </ul>
+        <li>Diseño web: HTML, CSS y JS</li>
+        <li>Docker, donde se ejecuta el programa</li>
+    </ul>
+</p>
+{% elif request.args.get('lang') == 'gal' %}
+<h1>Acerca de</h1>
+<h2>Contacto</h2>
+<p class="parrafo">Se simplemente queres contactar comigo, podes mandarme un correo a <span style="color: var(--accent)">bus [arroba] delthia [punto] com</span>.</p>
+<p class="parrafo">Tamén podes ver máis información na miña <a href="https://github.com/delthia" target="_blank">páxina de github</a>, ou visitando o meu <a href="https://delthia.com" target="_blank">sitio web</a>.</p>
+<h2>Historia</h2>
+<p class="parrafo">Este proxecto xurde en setembro de 2022, cando se me ocorre facer un mapa coas paradas do bus da Coruña como explo de <a href="https://leafletjs.com" target="_blank">leafletjs</a>, e para aprender a xerar <a href="https://geojson.org/" target="_blank">GeoJSON</a> con python.</p>
+<p><img src="/static/img/ej-mapa.png" width="85%" style="display: block; margin: 0 auto"></p>
+<p style="text-align: center; color: var(--accent); font-style: italic; margin-top: -0.8em">Mapa co que se inicia o proxecto</p>
+<p class="parrafo">A partir de ahí, a parte máis complexa do proxecto estaba feita, agora xa sabía como descargar os datos e como manipulalos para relacionar unha parada coas lineas que pasan pola mesma, así que so quedaba aplicar o que coñecía de <a href="https://flask.palletsprojects.com" target="_blank">Flask</a> para facer que se poidera acceder a toda a información dos buses dende unha páxina web.</p>
+<p class="parrafo">De esta maneira, piudem comezar a poñer en práctica o que aprendera de flask seguindo <a href="https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH" target="_blank">este tutorial de python</a>. Este pareceume un proxecto interesante porque tiña que aprende a utilizar unha API nunha aplicación que xeraba páxinas estáticas cos datos, pero que también se podían actualizar para que a páxina fora dinámica. Para isto necesitaba JavaScript, algo que nunca fixera. Tamén tiven que investigar como facer que unha aplicación web fora instalable como una pwa, seguindo <a href="https://web.dev/learn/pwa/" target="_blank">esta guía</a>.</p>
+<p class="parrafo">Dende logo, esta páxina non está rematada, aínda quedan algunhas funcións por implementar, como a táboa de saídas, o a posición en tempo real dos buses, así como mellorar a PWA para que permita engadir paradas favoritas, establecer un idioma que se manteña entre usos, permitir a creación de avisos para buses determinados ou mellorar a búsqueda de paradas, pero xa está nun estado no que se pode comezar a utilizar e comeza a ser funcional.</p>
+<p class="parrafo">Este e o primero proxecto que fago, e inclúe os meus coñecementos en moitas áreas
+    <ul>
+        <li>Programación en python</li>
+        <ul>
+            <li>Traballar con JSON</li>
+            <li>Xerar unha API</li>
+        </ul>
+        <li>Deseño web: HTML, CSS e JS</li>
+        <li>Docker, onde se executa o programa</li>
+    </ul>
+</p>
+{% elif request.args.get('lang') == 'en' %}
+<h1>About</h1>
+<h2>Contact</h2>
+<p class="parrafo">If you just want to get in touch with me, yo can send me an email to <span style="color: var(--accent)">bus [at] delthia [dot] com</span>.</p>
+<p class="parrafo">Yo can also see more information about me in <a href="https://github.com/delthia" target="_blank">my github page</a>, or by visiting my <a href="https://delthia.com" target="_blank">website</a>.</p>
+<h2>Historia</h2>
+<p class="parrafo">This proyect came up in September 2022, when I had the idea to make a map with all the stops for the bus of Coruña, as an example of using <a href="https://leafletjs.com" target="_blank">leafletjs</a>, and to learn to create <a href="https://geojson.org/" target="_blank">GeoJSON</a> in python.</p>
+<p><img src="/static/img/ej-mapa.png" width="85%" style="display: block; margin: 0 auto"></p>
+<p style="text-align: center; color: var(--accent); font-style: italic; margin-top: -0.8em">Mapa that starts the project</p>
+<p class="parrafo">From there, the most difficult part was done, and now I new how to download the data and manipulate it to connect an stop to the lines that go through it, so I just had to apply what I knew about <a href="https://flask.palletsprojects.com" target="_blank">Flask</a> to make it possible to get the information through a webpage.</p>
+<p class="parrafo">This way, I was able to start put into practice what I had learned about flask following <a href="https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH" target="_blank">this python tutorial</a>. I thought that this was an interesting project because I had to learn to use an API in a webapp that generated static pages with the data, but that also allowed to refresh the data dynamically. To do this I needed to learn a bit about JavaScript, something I had never done. I also had to research how to make a webapp installable as a pwa, following <a href="https://web.dev/learn/pwa/" target="_blank">this guide</a>.</p>
+<p class="parrafo">This page is far from done, there is still some features to be implemented, as the departures table, the realtime position of the buses, as well as make the PWA better by allowing to set favourite stops, select a language that is remembered between uses, set an alert for an specific bus or make the stop search better, but it is already in an state that is usable.</p>
+<p class="parrafo">This is my first project that includes my knowledge in several areas
+    <ul>
+        <li>Python programming</li>
+        <ul>
+            <li>Working with JSON</li>
+            <li>Generating an API</li>
+        </ul>
+        <li>Web design: HTML, CSS and JS</li>
+        <li>Docker, where the program is executed</li>
+    </ul>
+</p>
+{% endif %}
+{% endblock content %}

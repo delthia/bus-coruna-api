@@ -25,9 +25,9 @@ idioma = 'gal'  # Idioma al que se redirige por defecto si no existe el parámet
 frases = {'es': ['La parada no existe o no hay información disponible', 'Parece que en este momento no hay buses para esta parada', 'Error al conseguir los datos', 'La línea no existe', 'La línea no está activa en este momento'],
         'gal': ['A parada non existe ou non hai información dispoñible', 'Parece que neste momento non hai buses para esta parada', 'Erro ao conseguir os datos', 'A liña non existe', 'A liña non está activa neste momento'],
         'en': ['The stop doesn\'t exist or there isn\'t enough information', 'It looks like there are no buses for this stop', 'Error getting the data', 'The line does not exist', 'The line isn\'t currently active']}
-titulos = {'es': ['Mapa (Paradas)', 'Paradas', 'Líneas', 'Línea ', 'Fuente del proyecto', 'Cambios recientes'],
-            'gal': ['Mapa (Paradas)', 'Paradas', 'Liñas', 'Liña ', 'Fonte do proxecto', 'Cambios recentes'],
-            'en': ['Map (Stops)', 'Stops', 'Lineas', 'Line ', 'Project source', 'Changelog']}
+titulos = {'es': ['Mapa (Paradas)', 'Paradas', 'Líneas', 'Línea ', 'Fuente del proyecto', 'Cambios recientes', 'Acerca de'],
+            'gal': ['Mapa (Paradas)', 'Paradas', 'Liñas', 'Liña ', 'Fonte do proxecto', 'Cambios recentes', 'Acerca de'],
+            'en': ['Map (Stops)', 'Stops', 'Lineas', 'Line ', 'Project source', 'Changelog', 'About']}
 
 
 #             _
@@ -215,3 +215,17 @@ def sw():
 @app.route("/robots.txt")
 def r():
     return send_file('static/robots.txt')
+
+@app.route("/acerca-de")
+def about():
+    lang = request.args.get('lang', type=str)
+    if not lang:
+        return redirect(url_for('about', lang=idioma))
+    return render_template('/about.html', title=titulos[lang][6])
+
+@app.route("/privacidad")
+def privacy():
+    lang = request.args.get('lang', type=str)
+    if not lang:
+        return redirect(url_for('privacy', lang=idioma))
+    return render_template('/privacy.html', title=titulos[lang][6])
