@@ -1,6 +1,6 @@
 {% extends "disposicion.html" %}{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
-{% if request.args.get('lang') == 'es' %}
+{% if lang == 'es' %}
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- Información en tiempo real sobre el bus de Coruña</i></h1>
     <div class="contenedor-pp">
@@ -45,7 +45,7 @@
         <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
 </div>
-{% elif request.args.get('lang') == 'gal' %}
+{% elif lang == 'gal' %}
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- Información en tempo real sobre o bus da Coruña</i></h1>
     <div class="contenedor-pp">
@@ -90,7 +90,7 @@
         <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
 </div>
-{% elif request.args.get('lang') == 'en' %}
+{% elif lang == 'en' %}
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- Realtime information about Coruña's bus</i></h1>
     <div class="contenedor-pp">

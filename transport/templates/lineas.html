@@ -1,6 +1,6 @@
 {% extends "disposicion.html" %}
 {% block content %}
-{% if request.args.get('lang') == 'es' %}
+{% if lang == 'es' %}
 <h1>Líneas</h1>
 <table>
     <tr>
@@ -8,7 +8,7 @@
         <th>Origen</th>
         <th>Destino</th>
     </tr>
-{% elif request.args.get('lang') == 'gal' %}
+{% elif lang == 'gal' %}
 <h1>Liñas</h1>
 <table>
     <tr>
@@ -16,7 +16,7 @@
         <th>Orixe</th>
         <th>Destino</th>
     </tr>
-{% elif request.args.get('lang') == 'en' %}
+{% elif lang == 'en' %}
 <h1>Lines</h1>
 <table>
     <tr>
@@ -26,11 +26,11 @@
 {% endif %}
     {% for linea in lineas['lineas'] %}
         <tr>
-            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=request.args.get('lang')) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
-            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=request.args.get('lang')) }}" class="enlace-tabla a-p">{{ linea.origen }}</a></td>
-            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=request.args.get('lang')) }}" class="enlace-tabla a-p">{{ linea.destino }}</a></td>
+            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
+            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="enlace-tabla a-p">{{ linea.origen }}</a></td>
+            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="enlace-tabla a-p">{{ linea.destino }}</a></td>
         </tr>
     {% endfor %}
 </table>
-{% if request.args.get('lang') == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (líneas)</p>{% elif request.args.get('lang') == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (liñas)</p>{% elif request.args.get('lang') == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (lines)</p>{% endif %}
+{% if lang == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (líneas)</p>{% elif lang == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (liñas)</p>{% elif lang == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (lines)</p>{% endif %}
 {% endblock content %}

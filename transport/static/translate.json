@@ -1,0 +1,16 @@
+{
+    "langs": ["es", "gal", "en"],
+    "default": "gal",
+    "es": {
+        "sentences": ["La parada no existe o no hay información disponible", "Parece que en este momento no hay buses para esta parada", "Error al conseguir los datos", "La línea no existe", "La línea no está activa en este momento"],
+        "titles": ["Mapa (Paradas)", "Paradas", "Líneas", "Línea ", "Fuente del proyecto", "Cambios recientes", "Acerca de"]
+    },
+    "gal": {
+        "sentences": ["A parada non existe ou non hai información dispoñible", "Parece que neste momento non hai buses para esta parada", "Erro ao conseguir os datos", "A liña non existe", "A liña non está activa neste momento"],
+        "titles": ["Mapa (Paradas)", "Paradas", "Liñas", "Liña ", "Fonte do proxecto", "Cambios recentes", "Acerca de"]
+    },
+    "en": {
+        "sentences": ["The stop doesn't exist or there isn't enough information", "It looks like there are no buses for this stop", "Error getting the data", "The line does not exist", "The line isn't currently active"],
+        "titles": ["Map (Stops)", "Stops", "Lines", "Line ", "Project source", "Changelog", "About"]
+    }
+}

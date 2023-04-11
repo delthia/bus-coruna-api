@@ -3,7 +3,7 @@ from transport import app
 from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_buses
 # from transport.download import cargar_datos, actualizar_datos
 from transport.download import actualizar
-import json, os
+import json
 
 # ¡IMPORTANTE!: Cambiar a falso para que funcione en el servidor de producción
 dev = True
@@ -14,21 +14,15 @@ else:
     static = 'static/'
 origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
+rutas = {'osm': 'osm.json', 'translate': 'translate.json'}  # Innecesario. Luego se sobreescribe. Por acabar de cambiar
+
+with open(static+rutas['translate']) as t:
+    translations = json.load(t)
 # lins, pards = datos_iniciales(origen+inicio, static)
 # actualizar_datos(origen+inicio, static)
 # lins, pards = cargar_datos(static)
 rutas = [static+'osm.json', static+'lineas.json', static+'paradas.json', static+'paradas-linea.json', static+'paradas.geojson.js']
 lins, pards = actualizar(rutas)
- 
-idioma = 'gal'  # Idioma al que se redirige por defecto si no existe el parámetro 'lang' en la petición
-# Traducciones de los mensajes de error y los títulos
-frases = {'es': ['La parada no existe o no hay información disponible', 'Parece que en este momento no hay buses para esta parada', 'Error al conseguir los datos', 'La línea no existe', 'La línea no está activa en este momento'],
-        'gal': ['A parada non existe ou non hai información dispoñible', 'Parece que neste momento non hai buses para esta parada', 'Erro ao conseguir os datos', 'A liña non existe', 'A liña non está activa neste momento'],
-        'en': ['The stop doesn\'t exist or there isn\'t enough information', 'It looks like there are no buses for this stop', 'Error getting the data', 'The line does not exist', 'The line isn\'t currently active']}
-titulos = {'es': ['Mapa (Paradas)', 'Paradas', 'Líneas', 'Línea ', 'Fuente del proyecto', 'Cambios recientes', 'Acerca de'],
-            'gal': ['Mapa (Paradas)', 'Paradas', 'Liñas', 'Liña ', 'Fonte do proxecto', 'Cambios recentes', 'Acerca de'],
-            'en': ['Map (Stops)', 'Stops', 'Lineas', 'Line ', 'Project source', 'Changelog', 'About']}
-
 
 #             _
 #  _ __ _   _| |_ __ _ ___
@@ -40,88 +34,92 @@ titulos = {'es': ['Mapa (Paradas)', 'Paradas', 'Líneas', 'Línea ', 'Fuente del
 @app.route("/")
 @app.route("/inicio")
 def inicio():
-    lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('inicio', lang=idioma))
-    return render_template('/inicio.html', lang=lang)
+    lang = request.args.get('lang', type=str)   # Idioma de la página
+    if not lang:    # Si no se especifica un idioma con el parámetro, tomar el valor por defecto
+        lang = translations['default']
+    elif lang not in translations['langs']: # Si el valor indicado no existe, eliminar el parámetro
+        return redirect(url_for('inicio'))
+    return render_template('inicio.html', lang=lang)
 
 # Mapa con todas las paradas
 @app.route("/mapa")
 def mapa():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('mapa', lang=idioma))
-    return render_template('mapa.html', title=titulos[lang][0])
+    if lang not in translations['langs']:
+        return redirect(url_for('mapa', lang=translations['default']))
+    return render_template('mapa.html', title=translations[lang]['titles'][0], lang=lang)
 
 # Lista con todas las paradas
 @app.route("/paradas")
 def paradas():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('paradas', lang=idioma))
-    return render_template('/paradas.html', title=titulos[lang][1], paradas=pards)
+    if lang not in translations['langs']:
+        return redirect(url_for('paradas', lang=translations['default']))
+    return render_template('/paradas.html', title=translations[lang]['titles'][1], paradas=pards, lang=lang)
 
 # Lista con todas las líneas
 @app.route("/lineas")
 def lineas():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('lineas', lang=idioma))
-    return render_template('/lineas.html', title=titulos[lang][2], lineas=lins)
+    if lang not in translations['langs']:
+        return redirect(url_for('lineas', lang=translations['default']))
+    return render_template('/lineas.html', title=translations[lang]['titles'][2], lineas=lins, lang=lang)
 
 # Parada. Muestra los próximos buses, sus características y un mapa
 @app.route("/parada/<int:id_parada>")
 def parada(id_parada):
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('parada', id_parada=id_parada, lang=idioma))
+    if lang not in translations['langs']:
+        return redirect(url_for('parada', id_parada=id_parada, lang=translations['default']))
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
-        return render_template('404.html', i='priority_high', m=frases[lang][0]), 404
+        return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang), 404
     buses = buses_parada(parada['id'],static+'lineas.json')
     if buses == 1111:
-        return render_template('404.html', i='remove_road', m=frases[lang][1]), 404
+        return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang), 404
     elif buses == 429:
-        return render_template('404.html', i='link_off', m=frases[lang][2]), 404
-    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada)
+        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
+    # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada)
+    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
 
 # Línea. Muestra las paradas para una línea en un diagrama y la posición de los buses en el recorrido
 @app.route("/linea/<int:id_linea>")
 def linea(id_linea):
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('linea', id_linea=id_linea, lang=idioma))
+    if lang not in translations['langs']:
+        return redirect(url_for('linea', id_linea=id_linea, lang=translations['default']))
     with open(static+'paradas-linea.json') as archivo:
         paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
-        return render_template('404.html', i='priority_high', m=frases[lang][3]), 404
+        return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang), 404
     buses = buses_linea(line['id'])
     if buses == 429:
         print('a')
-        return render_template('404.html', i='link_off', m=frases[lang][2]), 404
+        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
     elif buses['paradas'] == []:
-        return render_template('404.html', i='clear_night', m=frases[lang][4]), 404
+        return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang), 404
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
-    return render_template('/linea.html', title=titulos[lang][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line)
+    # Traducción incompleta
+    return render_template('/linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line, lang=lang)
 
 # Información sobre el funcionamiento de la página y la contribución a este
 @app.route("/codigo-fuente")
 def fuente():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('fuente', lang=idioma))
-    return render_template('/fuente.html', title=titulos[lang][4])
+    if lang not in translations['langs']:
+        return redirect(url_for('fuente', lang=translations['default']))
+    return render_template('/fuente.html', title=translations[lang]['titles'][4], lang=lang)
 
 # Historial de cambios
 @app.route("/cambios")
 def changelog():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('fuente', lang=idioma))
-    return render_template('changelog.html', title=titulos[lang][5])
+    if lang not in translations['langs']:
+        return redirect(url_for('fuente', lang=translations['default']))
+    return render_template('changelog.html', title=translations[lang]['titles'][5], lang=lang)
 
 #     _    ____ ___
 #    / \  |  _ \_ _|
@@ -180,7 +178,7 @@ def api_lineas():
 # |  __/ (_| | | | (_| | (_| | (_| \__ \
 # |_|   \__,_|_|  \__,_|\__,_|\__,_|___/
 # Devuelve los próximos buses para la parada que se especifíca en <id_parada>, así como información de cada línea. (bus, distancia, estado, tiempo, última_parada); línea: [color, destino, id, nombre, origen]
-@app.route("/api/parada/<int:id_parada>")
+@app.route("/api/parada/<int:id_parada>/buses")
 def api_parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
@@ -190,6 +188,7 @@ def api_parada(id_parada):
 
 # Devuelve información sobre la parada que se especifica en <id_parada>: [coordenadas, líneas: [color, id, nombre], coordenadas_openstreetmap, propiedades: [banco, papelera, iluminada, marquesina, pavimento]]
 @app.route("/api/parada/<int:id_parada>/detalles")
+@app.route("/api/parada/<int:id_parada>")
 def api_detalles_parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
@@ -219,13 +218,13 @@ def r():
 @app.route("/acerca-de")
 def about():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('about', lang=idioma))
-    return render_template('/about.html', title=titulos[lang][6])
+    if lang not in translations['langs']:
+        return redirect(url_for('about', lang=translations['default']))
+    return render_template('/about.html', title=translations[lang]['titles'][6])
 
 @app.route("/privacidad")
 def privacy():
     lang = request.args.get('lang', type=str)
-    if not lang:
-        return redirect(url_for('privacy', lang=idioma))
-    return render_template('/privacy.html', title=titulos[lang][6])
+    if lang not in translations['langs']:
+        return redirect(url_for('privacy', lang=translations['default']))
+    return render_template('/privacy.html', title=translations[lang]['titles'][6])

@@ -1,20 +1,20 @@
 {% extends "disposicion.html" %}
 {% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
-{% if request.args.get('lang') == 'en' %}<h1>Stops</h1>{% else %}<h1>Paradas</h1>{% endif %}
-{% if request.args.get('lang') == 'es' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca una parada..." style="display: none">{% elif request.args.get('lang') == 'gal' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca unha parada..." style="display: none">{% elif request.args.get('lang') == 'en' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Search for a stop..." style="display: none">{% endif %}
+{% if lang == 'en' %}<h1>Stops</h1>{% else %}<h1>Paradas</h1>{% endif %}
+{% if lang == 'es' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca una parada..." style="display: none">{% elif lang == 'gal' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca unha parada..." style="display: none">{% elif lang == 'en' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Search for a stop..." style="display: none">{% endif %}
 <script src="/static/scripts/buscar.js"></script>
 <table id="paradas">
     <tr>
-        {% if request.args.get('lang') == 'es' %}
+        {% if lang == 'es' %}
             <th>ID</th>
             <th>Nombre</th>
             <th>Líneas</th>
-        {% elif request.args.get('lang') == 'gal' %}
+        {% elif lang == 'gal' %}
             <th>ID</th>
             <th>Nome</th>
             <th>Liñas</th>
-        {% elif request.args.get('lang') == 'en' %}
+        {% elif lang == 'en' %}
             <th>ID</th>
             <th>Name</th>
             <th>Lines</th>
@@ -23,17 +23,17 @@
     {% for parada in paradas['paradas'] %}
         {% if parada.lineas %}
             <tr>
-                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}" style="padding: 0px 4px;" class="enlace-tabla">{{ parada.id }}</a></td>
-                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=request.args.get('lang')) }}" class="enlace-tabla">{{ parada.nombre }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}" style="padding: 0px 4px;" class="enlace-tabla">{{ parada.id }}</a></td>
+                <td><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}" class="enlace-tabla">{{ parada.nombre }}</a></td>
                 <td>
                     {% for linea in parada.lineas %}
-                        <a href="{{ url_for('linea', id_linea=linea.id, lang=request.args.get('lang')) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a>
+                        <a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a>
                     {% endfor %}
                 </td>
             </tr>
         {% endif %}
     {% endfor %}
 </table>
-{% if request.args.get('lang') == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif request.args.get('lang') == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif request.args.get('lang') == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (stops)</p>{% endif %}
+{% if lang == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif lang == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif lang == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (stops)</p>{% endif %}
 <script>buscar();</script>
 {% endblock content %}

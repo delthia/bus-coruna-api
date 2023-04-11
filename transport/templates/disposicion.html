@@ -11,7 +11,7 @@
 
     <link rel="manifest" href="/static/manifest.webmanifest">
 
-    {% if request.args.get('lang') == 'en' %}<title>Public transportation {% if title %}- {{ title }}{% endif %}</title>{% else %}<title>Transporte público {% if title %}- {{ title }}{% endif %}</title>{% endif %}
+    {% if lang == 'en' %}<title>Public transportation {% if title %}- {{ title }}{% endif %}</title>{% else %}<title>Transporte público {% if title %}- {{ title }}{% endif %}</title>{% endif %}
 
     <!-- Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,9 +36,9 @@
 </head>
 <body>
     <header>
-        {% if request.args.get('lang') == 'gal' %}{% include 'gal/header.html' %}{% endif %}
-        {% if request.args.get('lang') == 'es' %}{% include 'es/header.html' %}{% endif %}
-        {% if request.args.get('lang') == 'en' %}{% include 'en/header.html' %}{% endif %}
+        {% if lang == 'gal'%}{% include 'gal/header.html' %}{% endif %}
+        {% if lang == 'es' %}{% include 'es/header.html' %}{% endif %}
+        {% if lang == 'en' %}{% include 'en/header.html' %}{% endif %}
     </header>
     <script>
         if('serviceWorker' in navigator) {
@@ -46,8 +46,8 @@
         }
     </script>
     <div class="contenido">{% block content %}{% endblock content %}</div>
-    {% if request.args.get('lang') == 'gal' %}{% include 'gal/footer.html' %}{% endif %}
-    {% if request.args.get('lang') == 'es' %}{% include 'es/footer.html' %}{% endif %}
-    {% if request.args.get('lang') == 'en' %}{% include 'en/footer.html' %}{% endif %}
+    {% if lang == 'gal'%}{% include 'gal/footer.html' %}{% endif %}
+    {% if lang == 'es' %}{% include 'es/footer.html' %}{% endif %}
+    {% if lang == 'en' %}{% include 'en/footer.html' %}{% endif %}
 </body>
 </html>
