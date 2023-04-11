@@ -11,6 +11,25 @@ setInterval(function() {
 // cadenas = {'es': ['Línea', 'en la parada', 'Aún no pasó el tiempo necesario', 'Última actualización', 'es-ES'], 'gal': ['Liña', 'na parada', 'Aínda non pasou o tempo necesario', 'Última actualización', 'es-ES'], 'en': ['Line', 'in the stop', 'Last update was too recently', 'Last updated on', 'en']};
 idioma = new URLSearchParams(window.location.search).get('lang');
 
+// lineas = {}
+/*
+function l() {
+    k = {};
+    fetch('/api/parada/'+document.getElementById('id-parada').innerHTML, {
+        method: 'GET'
+    })
+    .then(function(response) { return response.json(); })
+    .then(function(json) {
+        const obj = json['lineas'];
+        for(i=0; i<obj.length; i++) {
+            k[obj[i]['id']] = [obj[i]['nombre'], obj[i]['color']]
+        }
+        return k;
+    })
+    return k; 
+}
+*/
+
 function actualizar(last) {
     right = new Date();
     if(right-last >= 15000 || f == 't') {
@@ -18,7 +37,8 @@ function actualizar(last) {
         window.last = right;
         id = document.getElementById('id-parada').innerHTML
     
-        fetch('/api/parada/'+id, {
+        // fetch('/api/parada/'+id, {
+        fetch('/api/parada/'+id+'/buses', {
             method: 'GET'
         })
         .then(function(response) { return response.json(); })
@@ -26,7 +46,10 @@ function actualizar(last) {
             const obj = json;
             document.getElementById("lineas").innerHTML = '';
             for(i=0; i<obj['buses']['lineas'].length; i++) {
+                // console.log(obj['lineas'][i]);
+                // document.getElementById("lineas").innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+lineas[obj['lineas'][i]]['color']+'">'+lineas[obj['lineas'][i]]['nombre  ']+'</span></h1>';
                 document.getElementById("lineas").innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj['buses']['lineas'][i].linea['color']+'">'+obj['buses']['lineas'][i].linea['nombre']+'</span></h1>';
+                // for(b=0; b<obj['lineas'][i].buses.length; b++) {
                 for(b=0; b<obj['buses']['lineas'][i].buses.length; b++) {
                     if(obj['buses']['lineas'][i].buses[b].tiempo >= 60) {
                         ahora = new Date();
@@ -105,6 +128,9 @@ var circle = L.circle(ubicacion, {
     radius: 7
 }).addTo(map);
 
+lineas = l();
+console.log(lineas)
+console.log(lineas[100])
 var f = 't';
 actualizar(last);
 var f = 'f';

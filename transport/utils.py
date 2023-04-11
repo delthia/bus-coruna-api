@@ -42,7 +42,7 @@ def buses_parada(parada, directorio):
     if type(dato['buses']['lineas'][0]['linea']) == int:
         for linea in range(0, len(dato['buses']['lineas'])):
             dato['buses']['lineas'][linea]['linea'] = encontrar_linea(dato['buses']['lineas'][linea]['linea'], lista)
-    return dato 
+    return dato
 
 # Recoge los datos actuales de las posiciones de los buses en el recorrido de una línea
 def buses_linea(linea):
