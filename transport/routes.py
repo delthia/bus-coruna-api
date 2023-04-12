@@ -1,6 +1,6 @@
 from flask import render_template, url_for, request, redirect, send_file
 from transport import app
-from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_buses
+from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada #, geojson_buses
 # from transport.download import cargar_datos, actualizar_datos
 from transport.download import actualizar
 import json
@@ -14,15 +14,15 @@ else:
     static = 'static/'
 origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
-rutas = {'osm': 'osm.json', 'translate': 'translate.json'}  # Innecesario. Luego se sobreescribe. Por acabar de cambiar
+rutas = {'base': static, 'osm': 'osm.json', 'translate': 'translate.json', 'paradas': 'paradas.json', 'lineas': 'lineas.json', 'geojson': 'paradas.geojson.js', 'rutas': 'rutas.json'}  # Innecesario. Luego se sobreescribe. Por acabar de cambiar
 
 with open(static+rutas['translate']) as t:
     translations = json.load(t)
 # lins, pards = datos_iniciales(origen+inicio, static)
 # actualizar_datos(origen+inicio, static)
 # lins, pards = cargar_datos(static)
-rutas = [static+'osm.json', static+'lineas.json', static+'paradas.json', static+'paradas-linea.json', static+'paradas.geojson.js']
-lins, pards = actualizar(rutas)
+# rutas = [static+'osm.json', static+'lineas.json', static+'paradas.json', static+'paradas-linea.json', static+'paradas.geojson.js']
+lins, pards = actualizar(origen+inicio, rutas)
 
 #             _
 #  _ __ _   _| |_ __ _ ___
@@ -95,7 +95,6 @@ def linea(id_linea):
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang), 404
     buses = buses_linea(line['id'])
     if buses == 429:
-        print('a')
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
     elif buses['paradas'] == []:
         return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang), 404
