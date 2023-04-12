@@ -79,8 +79,8 @@ def parada(id_parada):
         return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang), 404
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
-    # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada)
-    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
+    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
+    # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
 
 # Línea. Muestra las paradas para una línea en un diagrama y la posición de los buses en el recorrido
 @app.route("/linea/<int:id_linea>")

@@ -128,9 +128,6 @@ var circle = L.circle(ubicacion, {
     radius: 7
 }).addTo(map);
 
-lineas = l();
-console.log(lineas)
-console.log(lineas[100])
 var f = 't';
 actualizar(last);
 var f = 'f';
