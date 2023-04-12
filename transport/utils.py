@@ -20,12 +20,14 @@ def encontrar_parada(id, datos):
             return parada
 
 # Genera una lista de las líneas que pasan por una parada. Se utiliza para generar los diálogos del mapa, por lo que también incluye el HTML para los enlaces
+"""
 def lineas_parada(parada, datos):
     lins = '<br>'
     for linea in parada['enlaces']:
         lin = encontrar_linea(linea, datos)
         lins = lins+'<a href="./linea/'+str(linea)+'" class="simbolo_linea" style="background-color: #'+lin['color']+'">'+lin['lin_comer']+'</a>'
     return lins
+"""
 
 # Recoge los datos actuales de los buses para una parada
 def buses_parada(parada, directorio):
@@ -53,7 +55,7 @@ def buses_linea(linea):
     return dato
 
 # Recoge los datos de las posiciones de los buses de una línea y devuelve un GeoJSON con esa información
-def geojson_buses(linea):
+"""def geojson_buses(linea):
     try:
         dato = requests.get('http://itranvias.com/queryitr_v3.php?&func=99&mostrar=B&dato='+str(linea)).json()['mapas'][0]['buses']
     except:
@@ -64,7 +66,7 @@ def geojson_buses(linea):
             b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus']}, 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}})
 
     # return 'var buses = {"type": "FeatureCollection", "features":'+str(b)+'}'
-    return '{"type": "FeatureCollection", "features":'+str(b)+'}'
+    return '{"type": "FeatureCollection", "features":'+str(b)+'}'"""
 
 #                 _
 #   ___ __ _  ___| |__   ___
