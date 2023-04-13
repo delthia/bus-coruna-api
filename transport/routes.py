@@ -16,12 +16,10 @@ origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
 rutas = {'base': static, 'osm': 'osm.json', 'translate': 'translate.json', 'paradas': 'paradas.json', 'lineas': 'lineas.json', 'geojson': 'paradas.geojson.js', 'rutas': 'rutas.json'}  # Innecesario. Luego se sobreescribe. Por acabar de cambiar
 
+# Cargar las traducciones
 with open(static+rutas['translate']) as t:
     translations = json.load(t)
-# lins, pards = datos_iniciales(origen+inicio, static)
-# actualizar_datos(origen+inicio, static)
-# lins, pards = cargar_datos(static)
-# rutas = [static+'osm.json', static+'lineas.json', static+'paradas.json', static+'paradas-linea.json', static+'paradas.geojson.js']
+# Actualizar los datos
 lins, pards = actualizar(origen+inicio, rutas)
 
 #             _
@@ -88,7 +86,7 @@ def linea(id_linea):
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('linea', id_linea=id_linea, lang=translations['default']))
-    with open(static+'paradas-linea.json') as archivo:
+    with open(static+rutas['rutas']) as archivo:
         paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
@@ -168,7 +166,7 @@ def bus_linea(id_linea):
 # Igual que /api/linea, peor devuelve la lista de todas las líneas
 @app.route("/api/lineas/")
 def api_lineas():
-    with open(static+'lineas.json') as l:
+    with open(static+rutas['lineas']) as l:
         return json.load(l)
 
 #  ____                     _
@@ -197,7 +195,7 @@ def api_detalles_parada(id_parada):
 # Igual que /api/parada, pero devuelve la lista de todas las paradas
 @app.route("/api/paradas/")
 def api_paradas():
-    with open(static+'paradas.json') as p:
+    with open(static+rutas['paradas']) as p:
         return json.load(p)
 
 #                      _                               _
