@@ -1,16 +1,158 @@
 {
-    "langs": ["es", "gal", "en"],
+    "langs": [
+        "es",
+        "gal",
+        "en"
+    ],
     "default": "gal",
     "es": {
-        "sentences": ["La parada no existe o no hay información disponible", "Parece que en este momento no hay buses para esta parada", "Error al conseguir los datos", "La línea no existe", "La línea no está activa en este momento"],
-        "titles": ["Mapa (Paradas)", "Paradas", "Líneas", "Línea ", "Fuente del proyecto", "Cambios recientes", "Acerca de"]
+        "sentences": [
+            "La parada no existe o no hay información disponible",
+            "Parece que en este momento no hay buses para esta parada",
+            "Error al conseguir los datos",
+            "La línea no existe",
+            "La línea no está activa en este momento"
+        ],
+        "titles": [
+            "Mapa (Paradas)",
+            "Paradas",
+            "Líneas",
+            "Línea ",
+            "Fuente del proyecto",
+            "Cambios recientes",
+            "Acerca de"
+        ],
+        "strings": {
+            "mensaje-js": "Para que funcione esta página es necesario ejecutar <a style=\"color: var(--accent)\" href=\"/static/scripts/simbolo-bus.js\" target=\"_blank\">este JavaScript</a>. Haz click en el enlace si quieres verlo antes de permitir su ejecución.",
+            "ida": "ida",
+            "vuelta": "vuelta",
+            "leyenda": "leyenda",
+            "en-parada": "bus en la parada",
+            "otro-estado": "otros estados",
+            "fuentes": "fuentes de los datos",
+            "fuentes-linea": "posición de los buses y horarios",
+            "enlaces": "enlaces",
+            "lineas": "líneas",
+            "linea": "línea",
+            "origen": "origen",
+            "destino": "destino",
+            "mapa": "mapa de paradas",
+            "mapa-error": "Si no ves el mapa puede ser porque tu navegador bloquea los scripts de JavaScript. Si quieres saber qué JavaScript ejecuta esta página, puedes mirar el código fuente. La funcionalidad principal de la página debería de mantenerse de todas formas.",
+            "paradas": "paradas",
+            "buscar": "Busca una parada...",
+            "nombre": "nombre",
+            "en-parada": "en la parada",
+            "a": "a",
+            "detalles": "Detalles de la parada",
+            "si": "sí",
+            "no": "no",
+            "pavimento": "pavimento táctil",
+            "banco": "banco",
+            "papelera": "papelera",
+            "iluminada": "iluminada",
+            "mapa-parada": "Para ver el mapa activa el JavaScript",
+            "fuente-mapa-parada": "mapa e información de la parada",
+            "informacion-buses": "información de los buses"
+        }
     },
     "gal": {
-        "sentences": ["A parada non existe ou non hai información dispoñible", "Parece que neste momento non hai buses para esta parada", "Erro ao conseguir os datos", "A liña non existe", "A liña non está activa neste momento"],
-        "titles": ["Mapa (Paradas)", "Paradas", "Liñas", "Liña ", "Fonte do proxecto", "Cambios recentes", "Acerca de"]
+        "sentences": [
+            "A parada non existe ou non hai información dispoñible",
+            "Parece que neste momento non hai buses para esta parada",
+            "Erro ao conseguir os datos",
+            "A liña non existe",
+            "A liña non está activa neste momento"
+        ],
+        "titles": [
+            "Mapa (Paradas)",
+            "Paradas",
+            "Liñas",
+            "Liña ",
+            "Fonte do proxecto",
+            "Cambios recentes",
+            "Acerca de"
+        ],
+        "strings": {
+            "mensaje-js": "Para que funcione esta páxina é necesario executar <a style=\"color: var(--accent)\" href=\"/static/scripts/simbolo-bus.js\" target=\"_blank\">este JavaScript</a>. Fai click na ligazón se queres velo antes de permitir a súa execución.",
+            "ida": "ida",
+            "vuelta": "volta",
+            "leyenda": "lenda",
+            "en-parada": "bus na parada",
+            "otro-estado": "otros estados",
+            "fuentes": "fontes dos datos",
+            "fuentes-linea": "posición dos buses e horarios",
+            "enlaces": "enlaces",
+            "lineas": "liñas",
+            "linea": "liña",
+            "origen": "orixe",
+            "destino": "destino",
+            "mapa": "mapa das paradas",
+            "mapa-error": "Se non ves o mapa pode ser porque o teu navegador bloquea os scripts de JavaScript. Se queres saber qué JavaScript exectuta esta página, podes mirar o código fonte. A funcionalidade principal da páxina debería de manterse de todas formas.",
+            "paradas": "paradas",
+            "buscar": "Busca unha parada...",
+            "nombre": "nome",
+            "en-parada": "na parada",
+            "a": "a",
+            "detalles": "Detalles da parada",
+            "si": "sí",
+            "no": "non",
+            "pavimento": "pavemento táctil",
+            "banco": "banco",
+            "papelera": "papeleira",
+            "iluminada": "iluminada",
+            "mapa-parada": "Para ver o mapa activa o JavaScript",
+            "fuente-mapa-parada": "mapa e información da parada",
+            "informacion-buses": "información dos buses"
+        }
     },
     "en": {
-        "sentences": ["The stop doesn't exist or there isn't enough information", "It looks like there are no buses for this stop", "Error getting the data", "The line does not exist", "The line isn't currently active"],
-        "titles": ["Map (Stops)", "Stops", "Lines", "Line ", "Project source", "Changelog", "About"]
+        "sentences": [
+            "The stop doesn't exist or there isn't enough information",
+            "It looks like there are no buses for this stop",
+            "Error getting the data",
+            "The line does not exist",
+            "The line isn't currently active"
+        ],
+        "titles": [
+            "Map (Stops)",
+            "Stops",
+            "Lines",
+            "Line ",
+            "Project source",
+            "Changelog",
+            "About"
+        ],
+        "strings": {
+            "mensaje-js": "For this page to work, <a style=\"color: var(--accent)\" href=\"/static/scripts/simbolo-bus.js\" target=\"_blank\">this JavaScript</a> must be executed. Click the link if you want to see it before allowing its execution.",
+            "ida": "going",
+            "vuelta": "return",
+            "leyenda": "legend",
+            "en-parada": "bus at the stop",
+            "otro-estado": "other states",
+            "fuentes": "data sources",
+            "fuentes-linea": "bus position and times",
+            "enlaces": "connections",
+            "lineas": "lines",
+            "linea": "line",
+            "origen": "origin",
+            "destino": "destination",
+            "mapa": "stop map",
+            "mapa-error": "If you don't see the map try enabling JavaScript.",
+            "paradas": "stops",
+            "buscar": "Search for a stop...",
+            "nombre": "name",
+            "en-parada": "at the stop",
+            "a": "at",
+            "detalles": "Stop details",
+            "si": "yes",
+            "no": "no",
+            "pavimento": "tactile paving",
+            "banco": "bench",
+            "papelera": "bin",
+            "iluminada": "lit",
+            "mapa-parada": "To see the map enable JavaScript",
+            "fuente-mapa-parada": "map and stop information",
+            "informacion-buses": "bus information"
+        }
     }
 }

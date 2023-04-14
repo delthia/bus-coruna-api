@@ -45,7 +45,7 @@ def mapa():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('mapa', lang=translations['default']))
-    return render_template('mapa.html', title=translations[lang]['titles'][0], lang=lang)
+    return render_template('mapa.html', title=translations[lang]['titles'][0], lang=lang, t=translations[lang]['strings'])
 
 # Lista con todas las paradas
 @app.route("/paradas")
@@ -53,7 +53,7 @@ def paradas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('paradas', lang=translations['default']))
-    return render_template('/paradas.html', title=translations[lang]['titles'][1], paradas=pards, lang=lang)
+    return render_template('/paradas.html', title=translations[lang]['titles'][1], paradas=pards, lang=lang, t=translations[lang]['strings'])
 
 # Lista con todas las líneas
 @app.route("/lineas")
@@ -61,7 +61,7 @@ def lineas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('lineas', lang=translations['default']))
-    return render_template('/lineas.html', title=translations[lang]['titles'][2], lineas=lins, lang=lang)
+    return render_template('/lineas.html', title=translations[lang]['titles'][2], lineas=lins, lang=lang, t=translations[lang]['strings'])
 
 # Parada. Muestra los próximos buses, sus características y un mapa
 @app.route("/parada/<int:id_parada>")
@@ -77,7 +77,8 @@ def parada(id_parada):
         return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang), 404
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
-    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
+    # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
+    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang, t=translations[lang]['strings'])
     # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
 
 # Línea. Muestra las paradas para una línea en un diagrama y la posición de los buses en el recorrido
@@ -100,7 +101,7 @@ def linea(id_linea):
         if l['id'] == id_linea:
             break
     # Traducción incompleta
-    return render_template('/linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line, lang=lang)
+    return render_template('/linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line, lang=lang, t=translations[lang]['strings'])
 
 # Información sobre el funcionamiento de la página y la contribución a este
 @app.route("/codigo-fuente")

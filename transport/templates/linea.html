@@ -3,41 +3,41 @@
 {% block content %}
 <h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span> <small style="font-size: 45%" id="t"></small> <span id="alerta"></span></h1>
 <span id="alerta" style="display: none"></span>
-<i id="msg-js">Para que funcione esta página es necesario ejecutar <a style="color: var(--accent)" href="/static/scripts/simbolo-bus.js" target="_blank">este JavaScript</a>. Haz clic en el enlace si quieres verlo antes de permitir su ejecución.</i>
+<i id="msg-js">{{ t['mensaje-js']|safe }}</i>
 
 <div class="diagrama-linea">
     <div class="diagrama-dentro">
-        {% if lang == 'gal' %}<h2>Ida</h2>{% elif lang == 'es' %}<h2>Ida</h2>{% elif lang == 'en' %}<h2>Going</h2>{% endif %}
+        <h2>{{ t['ida']|capitalize }}</h2>
         <div style="display: flex; flex-direction: row;" id="ida">
             <div id="buses-ida"></div>
             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em">
                 {% for parada in paradas.paradas.ida %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{% if request.args.get('lang') == 'en' %}Connections{% else %}Enlaces{% endif %}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces'] }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                 {% endfor %}
             </ol></div>
         </div>
     </div>
     <div class="diagrama-dentro">
-        {% if lang == 'gal' %}<h2>Volta</h2>{% elif lang == 'es' %}<h2>Vuelta</h2>{% elif lang == 'en' %}<h2>Return</h2>{% endif %}
+        {{ t['vuelta']|capitalize }}
         <div style="display: flex; flex-direction: row;" id="vuelta">
             <div id="buses-vuelta"></div>
             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em;">
                 {% for parada in paradas.paradas.vuelta %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{% if request.args.get('lang') == 'en' %}Connections{% else %}Enlaces{% endif %}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces'] }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                 {% endfor %}
             </ol></div>
         </div>
     </div>
 </div>
 <div id="leyenda">
-    <p><i>Leyenda:</i></p>
+    <p><i>{{ t['leyenda']|capitalize }}:</i></p>
     <ul>
-        <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_parada" style="vertical-align: middle;">directions_bus</span> → Bus en la parada</li>
-        <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_otro" style="vertical-align: middle">directions_bus</span> → Otros estados</li>
+        <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_parada" style="vertical-align: middle;">directions_bus</span> → {{ t['en-parada']|capitalize }}</li>
+        <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_otro" style="vertical-align: middle">directions_bus</span> → {{ t['otro-estado']|capitalize }}</li>
 
     </ul>
 </div>
-<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (posición de los buses y horarios)</p>
+<p>{{ t['fuentes']|capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['fuentes-linea'] }})</p>
 <script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/simbolo-bus.js"></script>
 {% endblock content %}

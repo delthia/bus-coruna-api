@@ -1,24 +1,14 @@
 {% extends "disposicion.html" %}
 {% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
-{% if lang == 'en' %}<h1>Stops</h1>{% else %}<h1>Paradas</h1>{% endif %}
-{% if lang == 'es' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca una parada..." style="display: none">{% elif lang == 'gal' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Busca unha parada..." style="display: none">{% elif lang == 'en' %}<input type="text" id="buscar" onkeyup="buscar()" placeholder="Search for a stop..." style="display: none">{% endif %}
+<h1>{{ t['paradas']|capitalize }}</h1>
+<input type="text" id="buscar" onkeyup="buscar()" placeholder="{{ t['buscar'] }}" style="display: none">
 <script src="/static/scripts/buscar.js"></script>
 <table id="paradas">
     <tr>
-        {% if lang == 'es' %}
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Líneas</th>
-        {% elif lang == 'gal' %}
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Liñas</th>
-        {% elif lang == 'en' %}
-            <th>ID</th>
-            <th>Name</th>
-            <th>Lines</th>
-        {% endif %}
+        <th>ID</th>
+        <th>{{ t['nombre']|capitalize }}</th>
+        <th>{{ t['lineas']|capitalize }}</th>
     </tr>
     {% for parada in paradas['paradas'] %}
         {% if parada.lineas %}
@@ -34,6 +24,6 @@
         {% endif %}
     {% endfor %}
 </table>
-{% if lang == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif lang == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (paradas)</p>{% elif lang == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (stops)</p>{% endif %}
+<p>{{ t['fuentes']|capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['paradas'] }})</p>
 <script>buscar();</script>
 {% endblock content %}

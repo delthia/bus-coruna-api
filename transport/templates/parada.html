@@ -1,0 +1,55 @@
+{% extends "disposicion.html" %}
+% block head %<link rel="stylesheet" href="text/css" href="/static/css/map.css"><link rel="stylesheet" href="text/css" href="/static/css/other.css">{% endblock head %}
+{% block content %}
+<!-- leafletjs -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+
+<h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga" style="display: none">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"><span id="alerta"></span></small></h1>
+<div class="flex-parada">
+    <div class="lineas-parada flex-dentro">
+        <div class="linea-parada" id="lineas">
+            {% for linea in buses %}
+            <div class="linea">
+                <h1 id="{{ linea.linea.id }}">{{ t['linea']|capitalize }} <span class="simbolo_linea" style="backgorund-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
+                {% for bus in linea.buses %}
+                    {% if bus.distancia == '0' %}
+                        <p>Bus {{ bus.bus }}, <b>{{ t['en-parada'] }}</b>.</p>
+                    {% else %}
+                        <p>Bus {{ bus.bus }}, {{ t['a'] }}{{ bus.distancia }}m, {{ bus.tiempo }}.</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="info-parada flex-dentro">
+        <table>
+            <tr>
+                <th>{{ t['detalles'] }}</th>
+            </tr>
+            <tr>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">blind</span> {{ t['pavimento']|capitalize }}</td>
+                <td>{% if parada.propiedades.tactile_paving == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.tactile_paving == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+            </tr>
+            <tr>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">airline_seat_recline_normal</span> {{ t['banco']|capitalize }}</td>
+                <td>{% if parada.propiedades.bench == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.bench == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+            </tr>
+            <tr>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">delete</span> {{ t['papelera']|capitalize }}</td>
+                <td>{% if parada.propiedades.bin == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.bin == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+            </tr>
+            <tr>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">light</span>{ { t['iluminada']|capitalize }}</td>
+                <td>{% if parada.propiedades.lit == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.lit == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+            </tr>
+        </table>
+        <div id="mapa-parada">{{ t['mapa-parada'] }}</div>
+    </div>
+</div>
+<p>{{ t['fuentes']|capitalize }}: <a href="https://osm.org" target="_blank" class="source">OpenStreetMap</a> ({{ t['fuente-mapa-parada'] }}) <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['informacion-buses'] }})</p>
+<script>var ubicacion = [ {% if parada.osmcoords != [] %}{{parada.osmcoords[1]}}, {{parada.osmcoords[0]}}{% else %}{{parada.coords[1]}}, {{parada.coords[0]}}{% endif %} ];</script>
+<script src="/static/scripts/lang.js"></script>
+<script src="/static/scripts/parada.js"></script>
+{% endblock content %}

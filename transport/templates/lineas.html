@@ -1,29 +1,12 @@
 {% extends "disposicion.html" %}
 {% block content %}
-{% if lang == 'es' %}
-<h1>Líneas</h1>
+<h1>{{ t['lineas'] | capitalize }}</h1>
 <table>
     <tr>
-        <th>Línea</th>
-        <th>Origen</th>
-        <th>Destino</th>
+        <th>{{ t['linea'] | capitalize }}</th>
+        <th>{{ t['origen'] | capitalize }}</th>
+        <th>{{ t['destino'] | capitalize }}</th>
     </tr>
-{% elif lang == 'gal' %}
-<h1>Liñas</h1>
-<table>
-    <tr>
-        <th>Liña</th>
-        <th>Orixe</th>
-        <th>Destino</th>
-    </tr>
-{% elif lang == 'en' %}
-<h1>Lines</h1>
-<table>
-    <tr>
-        <th>Line</th>
-        <th>Origin</th>
-        <th>Desination</th>
-{% endif %}
     {% for linea in lineas['lineas'] %}
         <tr>
             <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
@@ -32,5 +15,5 @@
         </tr>
     {% endfor %}
 </table>
-{% if lang == 'es' %}<p>Fuentes de los datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (líneas)</p>{% elif lang == 'gal' %}<p>Fontes dos datos: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (liñas)</p>{% elif lang == 'en' %}<p>Data sources: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (lines)</p>{% endif %}
+<p>{{ t['fuentes'] | capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['lineas] }})</p>
 {% endblock content %}
