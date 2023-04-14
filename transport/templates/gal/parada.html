@@ -54,7 +54,6 @@
     </div>
 </div>
 <p>Fontes dos datos: <a href="https://osm.org" target="_blank" class="source">OpenStreetMap</a> (mapa e información da parada) <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> (información dos buses)</p>
-<!-- <script>var ubicacion = [{{parada.osmcoords[1]}}, {{ parada.osmcoords[0]}}];</script> -->
 <script>var ubicacion = [ {% if parada.osmcoords != [] %}{{parada.osmcoords[1]}}, {{parada.osmcoords[0]}}{% else %}{{parada.coords[1]}}, {{parada.coords[0]}}{% endif %} ];</script>
 <script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/parada.js"></script>
