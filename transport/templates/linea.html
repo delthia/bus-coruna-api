@@ -12,7 +12,7 @@
             <div id="buses-ida"></div>
             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em">
                 {% for parada in paradas.paradas.ida %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces'] }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                 {% endfor %}
             </ol></div>
         </div>
@@ -23,7 +23,7 @@
             <div id="buses-vuelta"></div>
             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em;">
                 {% for parada in paradas.paradas.vuelta %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces'] }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                 {% endfor %}
             </ol></div>
         </div>
