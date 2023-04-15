@@ -3,7 +3,7 @@
 <div>
     <h1>bus.delthia.com <i style="font-size: 65%">- {{ t.descripcion }}</i></h1>
     <div class="contenedor-pp">
-        <img src="/static/img/parada.png">
+        <img src="/static/img/parada.webp">
         <div>
             <h1>{{ t.inicio['info-parada'] }}</h1>
             <p>{{ t.inicio['desc-parada']|safe }}</p>
@@ -24,10 +24,10 @@
             <p>{{ t.inicio['desc-mapa'] }}</p>
             <a href="{{ url_for('mapa', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-mapa'] }}</a>
         </div>
-        <img src="/static/img/mapa.png">
+        <img src="/static/img/mapa.webp">
     </div>
     <div class="contenedor-pp">
-        <img src="/static/img/linea.png">
+        <img src="/static/img/linea.webp">
         <div>
             <h1>{{ t.inicio.linea }}</h1>
             <p>{{ t.inicio['desc-linea'] }}</p>
@@ -41,7 +41,7 @@
             <p>{{ t.inicio['desc-fuente-2']|safe }}</p>
             <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-fuente'] }}</a>
         </div>
-        <img src="/static/img/github.png" style="border-radius: 16px; margin-bottom: 25px;">
+        <img src="/static/img/github.webp" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
 </div>
 {% endblock content %}
