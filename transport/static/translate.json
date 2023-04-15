@@ -43,16 +43,46 @@
             "nombre": "nombre",
             "en-parada": "en la parada",
             "a": "a",
+            "titulo-tabla": "Información de la parada",
             "detalles": "Detalles de la parada",
             "si": "sí",
             "no": "no",
             "pavimento": "pavimento táctil",
             "banco": "banco",
+            "cubierta": "cubierta",
             "papelera": "papelera",
             "iluminada": "iluminada",
             "mapa-parada": "Para ver el mapa activa el JavaScript",
             "fuente-mapa-parada": "mapa e información de la parada",
-            "informacion-buses": "información de los buses"
+            "informacion-buses": "información de los buses",
+            "descripcion": "Información en tiempo real sobre el bus de Coruña",
+            "inicio": {
+                "info-parada": "Información de parada",
+                "desc-parada": "Consulta información sobre los buses que están a punto de llegar. Esta página también incluye una tabla que muestra las características de la parada, con datos a partir de <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, y un mapa que muestra dónde se encuentra la parada.",
+                "mapa": "Mapa de paradas",
+                "desc-mapa": "Consulta un mapa con todas las paradas, toca en una parada para ver las líneas que pasan por ella o simplemente comprueba qué paradas hay en una zona.",
+                "enlace-mapa": "Ver el mapa",
+                "linea": "Información de línea",
+                "desc-linea": "Diagrama con todas las paradas de una línea, la posición del bus en el recorrido y los horarios de salida de la línea. También muestra los enlaces con otras líneas en cada parada.",
+                "enlace-linea": "Ver la lista de líneas",
+                "fuente": "Software libre",
+                "desc-fuente": "El código de esta página está disponible bajo una licencia libre, para que puedas ver como funciona y modificarlo.",
+                "desc-fuente-2": "La página está hecha con <a href=\"https://python.org\" target=\"_blank\">python</a> utilizando la librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">flask</a>. Descarga los datos desde la página de <a href=\"https://itranvias.com\" target=\"_blank\">iTranvías</a>, los adapta para trabajar con ellos y genera las páginas con la información de los buses y de otras fuentes. También incluye una api que se utiliza para actualizar los datos sin tener que recargar la página.",
+                "enlace-fuente": "Ver el código fuente"
+            },
+            "privacidad": {
+                "titulo": "Privacidad",
+                "resumen": "Este sitio web no recoge ningún dato personal sobre tí, pero si que tiene un script de analíticas",
+                "analiticas": "Analíticas",
+                "analiticas-desc": "Para conocer el tráfico del sitio, este incluye <a href=\"https://plausible.io/\" target=\"_blank\">un script de analíticas basado en Plausible.io</a> que hospedo personalmente en el mismo servidor que la aplicación. El script envía al servidor información como las rutas que visitas, el tiempo de la visita, y el navegador y el sistema operativo que utilizas. Todos estos datos son anónimos y me permiten optimizar el sitio web, así como saber de dónde vienen la mayoría de usuarios. Puedes consultar más información sobre las analíticas de plausible <a href=\"https://plausible.io/privacy-focused-web-analytics\" target=\"_blank\">aquí</a>. Si no quieres participar en estas analíticas, puedes bloquear el script. También puedes utilizar la página sin JavaScript, pero ten en cuenta que algunas de las funcionalidades, como los mapas o la vista de línea no funcionarán."
+            },
+            "fuente": {
+                "titulo": "Fuente del proyecto",
+                "lin1": "Este es un proyecto libre que muestra información en tiempo real sobre el bus de Coruña. Los datos se descargan desde su servidor y se generan algunos archivos que continenen las paradas, las líneas, una relación de estas y un archivo con los datos para el mapa, que se actualizan periódicamente. El servidor también renderiza las páginas con la información dinámica, como los buses para una parada, y hospeda una API que los clientes utilizan para conseguir los últimos datos.",
+                "lin2": "Todo está hecho en python, utilizando la librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, una librería para el lenguaje de programación <a href=\"https://python.org\" target=\"blank\">Python</a>. El backend es sencillo, ya que solo tiene las funciones que se mencionan arriba. Lo más complicado son las plantillas utilizadas para renderizar la página, ya que está disponible en tres idiomas y las plantillas deben de funcionar para todos ellos, así como los scripts del frontend, ya que utilizar javascript no es algo a lo que esté acostumbrado.",
+                "lin3": "Después la aplicación se mete en un contenedor de <a href=\"https://docker.com\" target=\"_blank\">Docker</a> utilizando <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, ya que esto me permite instalar y actualizar fácilmente la aplicación en el servidor simplemente ejecutando un script que se incluye en el repositorio.",
+                "lin4": "El código estará publicado en <a href=\"https://github.com/\" target=\"_blank\">GitHub</a> bajo la licencia <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a>, que está hecha específicamente para software de servidor, de modo que cualquiera puede modificar y ejecutar el programa, siempre y cuando los usuarios sigan teniendo acceso al código fuente de la versión modificada que está utilizando."
+            }
         }
     },
     "gal": {
@@ -93,16 +123,46 @@
             "nombre": "nome",
             "en-parada": "na parada",
             "a": "a",
+            "titulo-tabla": "Información da parada",
             "detalles": "Detalles da parada",
             "si": "sí",
             "no": "non",
-            "pavimento": "pavemento táctil",
+            "pavimento": "pavimento táctil",
             "banco": "banco",
+            "cubierta": "cuberta",
             "papelera": "papeleira",
             "iluminada": "iluminada",
             "mapa-parada": "Para ver o mapa activa o JavaScript",
             "fuente-mapa-parada": "mapa e información da parada",
-            "informacion-buses": "información dos buses"
+            "informacion-buses": "información dos buses",
+            "descripcion": "Información en tempo real sobre o bus da Coruña",
+            "inicio": {
+                "info-parada": "Información de parada",
+                "desc-parada": "Consulta información sobre os buses que están a chegar. Esta páxina también inclúe unha táboa que mostra as características da parada, con datos a partir de <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, e un mapa que mostra onde se atopa a parada.",
+                "mapa": "Mapa de paradas",
+                "desc-mapa": "Consulta un mapa con todas as paradas, toca nunha parada para ver as liñas que pasan por ela ou simplemente comproba que paradas hai nunha zona.",
+                "enlace-mapa": "Ver o mapa",
+                "linea": "Información de liña",
+                "desc-linea": "Diagrama con todas as paradas dunha liña, a posición do bus no recorrido e os horarios de saída da liña. Tamén mostra os enlaces con outras liñas en cada parada.",
+                "enlace-linea": "Ver a lista de liñas",
+                "fuente": "Software libre",
+                "desc-fuente": "O código desta páxina está dispoñible baixo unha licencia libre, para que poidas ver como funciona e modificalo.",
+                "desc-fuente-2": "A páxina está feita con <a href=\"https://python.org\" target=\"_blank\">python</a>, utilizando a librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">flask</a>. Descarga os datos dende a páxina de <a href=\"https://itranvias.com\" target=\"_blank\">iTranvías</a>, adáptaos para traballar con eles e xera as páxina coa información dos buses e doutras fontes. Tamén inclúe unha api que se utiliza para actualizar os datos sen ter que recargar a páxina.",
+                "enlace-fuente": "Ver o código fonte"
+            },
+            "privacidad": {
+                "titulo": "Privacidade",
+                "resumen": "Este sitio web non recolle ningún dato persoal sobre ti, pero si que ten un script de analíticas.",
+                "analiticas": "Analíticas",
+                "analiticas-desc": "Para coñecer o tráfico do sitio, este inclúe <a href=\"https://plausible.io/\" target=\"_blank\">un script de analíticas basado en Plausible.io</a> que hospedo persoalmente no mesmo servidor que a aplicación. O script envía ao servidor información como as rutas que visitas, o tempo da visita e o navegador e sistema operativo que estás a utilizar. Todos estos datos son anónimos e me permiten optimizar o sitio web, así como saber de onde veñen a maioría de usuarios. Podes consultar máis información sobre as analíticas de plausible <a href=\"https://plausible.io/privacy-focused-web-analytics\" target=\"_blank\">aquí</a>. Se non queres participar nas mesmas, podes bloquear o script. Tamén podes utilizar a páxina sen JavaScript, pero ten en conta que algunhas das funcionalidades, como os mapas ou a vista de liña, non funcionarán."
+            },
+            "fuente": {
+                "titulo": "Fonte do proxecto",
+                "lin1": "Este é un proxecto libre que mostra información en tempo real sobre o bus da Coruña. Os datos se descargan dende o seu servidor e se xeran algúns arquivos que conteñen as paradas, as liñas, unha relación destas e un arquivo cos datos para o mapa, que se actualizan periódicamente. O servidor tamén renderiza as páxinas coa información dinámica, como os buses para unha parada, e hospeda una API que os clientes utilizan para conseguir os últimos datos.",
+                "lin2": "Todo está feito en python, utilizando a librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, unha librería para a linguaxe de programación <a href=\"https://python.org\" target=\"_blank\">Python</a>. O backend é sinxelo, xa que solo ten as funcións que se mencionan enriba. O máis complicado son as plantillas utilizadas para renderizar a páxina, xa que está dispoñible en tres idiomas e as plantillas deben de funcionar para todos eles, así como os scripts do frontend, xa que utilizar javascript non é algo ao que esté acostumado.",
+                "lin3": "Despois a aplicación se mete nun contedor de <a href=\"https://docker.com\" target=\"_blank\">Docker</a> utilizando <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, xa que isto me permite instalar e actualizar fácilmente a aplicación no servidor simplemente executando un script que se inclúe no repositorio.",
+                "lin4": "O código estará publicado en <a href=\"https://github.com/\" target=\"_blank\">GitHub</a> baixo a licencia <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a>, que está feita específicamente para software de servidor, de modo que calqueira pode modificar e executar o programa, sempre e cando os usuarios sigan tendo acceso ao código fonte da versión modificada que está a utilizar."
+            }
         }
     },
     "en": {
@@ -143,16 +203,46 @@
             "nombre": "name",
             "en-parada": "at the stop",
             "a": "at",
+            "titulo-tabla": "Stop info",
             "detalles": "Stop details",
             "si": "yes",
             "no": "no",
             "pavimento": "tactile paving",
             "banco": "bench",
+            "cubierta": "shelter",
             "papelera": "bin",
             "iluminada": "lit",
             "mapa-parada": "To see the map enable JavaScript",
             "fuente-mapa-parada": "map and stop information",
-            "informacion-buses": "bus information"
+            "informacion-buses": "bus information",
+            "descripcion": "Realtime information about Coruña's bus",
+            "inicio": {
+                "info-parada": "Stop information",
+                "desc-parada": "Look up information about which buses are about to arrive. This page also incudes a table that shows the characteristics of the stop with data from <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, and a map that shows where the stop is located.",
+                "mapa": "Stop map",
+                "desc-mapa": "A map with all the stops. Touch in an stop to see the lines that go through it or simply to check what stops are found around that area.",
+                "enlace-mapa": "See the map",
+                "linea": "Line information",
+                "desc-linea": "Diagram with all the stops for a line, the position of the bus on the itinerary and the schedules for the line. It also shows the connections with other lines in each stop.",
+                "enlace-linea": "See the line list",
+                "fuente": "Free Software",
+                "desc-fuente": "This page's source code is available under a free software license, so you can see how it works and modify it.",
+                "desc-fuente-2": "The page is made with <a href=\"https://python.org\" target=\"_blank\">python</a>, using the <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">flask</a> library. It downloads the data from the <a href=\"https://itranvias.com\" target=\"_blank\">iTranvías</a> page, it adapts them to work with them and generates the pages with the information about the buses and other sources. It also includes an API that is used to update the data without having to reload the page.",
+                "enlace-fuente": "See the source code"
+            },
+            "privacidad": {
+                "titulo": "Privacy",
+                "resumen": "This website does not collect any personal data about you, but it does contain an analytics script.",
+                "analiticas": "Analytics",
+                "analiticas-desc": "To learn about the website's traffic, this website includes <a href=\"https://plausible.io/\" target=\"_blank\">an analytics script based on Plausible.io</a> that I selfhost on the same server as the application. The script sends to the server information like what routes you visit, the length of the visit and the browser and OS that you are using. All this data is anonymous and allow me to optimise the website, as well as know were the users come from. You can check more information about the analytics <a href=\"https://plausible.io/privacy-focused-web-analytics\" target=\"_blank\">here</a>. If you don't want to participate in this analytics, you can block the script. You can also use the page without JavaScript, but keep in mind the some features, like the maps or the line view, won't work."
+            },
+            "fuente": {
+                "titulo": "Source for the project",
+                "lin1": "This is a free project that shows realtime information on the bus of Coruña. The data is gathered from their server, and some files that contain the stops, the lines, a relation of both and a file with the data for the map is created and updated periodically. The server also renders the pages with the dynamic information such as the buses for an stop, and hosts an API that the client uses the fetch the latest data.",
+                "lin2": "It is all made in python, using <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, a library for the <a href=\"https://python.org\" target=\"_blank\">Python</a> programming language. The backend part is simple, as it just does the functions mentioned above. The more complex part are the templates used to render de page, as this page is available in three languages, and the templates should work for all of them, as well as the scripts for the frontend, as using javascript is not something I'm used to doing.",
+                "lin3": "The application is then put into a <a href=\"https://docker.com\" target=\"_blank\">Docker</a> container, using <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, as this allows me to easily install and update it in the server with just executing an script included on the repo.",
+                "lin4": "The code will be published to <a href=\"https://github.com/\" target=\"_blank\">GitHub</a> under the <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a> license, which is specifically made for server software, so that anyone can modify and run the program, as long as the users still have access to the source for the modified version they are using."
+            }
         }
     }
 }

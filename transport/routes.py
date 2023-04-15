@@ -37,7 +37,7 @@ def inicio():
         lang = translations['default']
     elif lang not in translations['langs']: # Si el valor indicado no existe, eliminar el parámetro
         return redirect(url_for('inicio'))
-    return render_template('inicio.html', lang=lang)
+    return render_template('inicio.html', lang=lang, t=translations[lang]['strings'])
 
 # Mapa con todas las paradas
 @app.route("/mapa")
@@ -53,7 +53,7 @@ def paradas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('paradas', lang=translations['default']))
-    return render_template('/paradas.html', title=translations[lang]['titles'][1], paradas=pards, lang=lang, t=translations[lang]['strings'])
+    return render_template('paradas.html', title=translations[lang]['titles'][1], paradas=pards, lang=lang, t=translations[lang]['strings'])
 
 # Lista con todas las líneas
 @app.route("/lineas")
@@ -61,7 +61,7 @@ def lineas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('lineas', lang=translations['default']))
-    return render_template('/lineas.html', title=translations[lang]['titles'][2], lineas=lins, lang=lang, t=translations[lang]['strings'])
+    return render_template('lineas.html', title=translations[lang]['titles'][2], lineas=lins, lang=lang, t=translations[lang]['strings'])
 
 # Parada. Muestra los próximos buses, sus características y un mapa
 @app.route("/parada/<int:id_parada>")
@@ -78,7 +78,7 @@ def parada(id_parada):
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
     # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
-    return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang, t=translations[lang]['strings'])
+    return render_template('parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang, t=translations[lang]['strings'])
     # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
 
 # Línea. Muestra las paradas para una línea en un diagrama y la posición de los buses en el recorrido
@@ -101,7 +101,7 @@ def linea(id_linea):
         if l['id'] == id_linea:
             break
     # Traducción incompleta
-    return render_template('/linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line, lang=lang, t=translations[lang]['strings'])
+    return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line, lang=lang, t=translations[lang]['strings'])
 
 # Información sobre el funcionamiento de la página y la contribución a este
 @app.route("/codigo-fuente")
@@ -109,7 +109,7 @@ def fuente():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('fuente', lang=translations['default']))
-    return render_template('/fuente.html', title=translations[lang]['titles'][4], lang=lang)
+    return render_template('fuente.html', title=translations[lang]['titles'][4], lang=lang, t=translations[lang]['strings'])
 
 # Historial de cambios
 @app.route("/cambios")
@@ -218,11 +218,11 @@ def about():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('about', lang=translations['default']))
-    return render_template('/about.html', title=translations[lang]['titles'][6])
+    return render_template('about.html', title=translations[lang]['titles'][6], lang=lang, t=translations[lang]['strings'])
 
 @app.route("/privacidad")
 def privacy():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('privacy', lang=translations['default']))
-    return render_template('/privacy.html', title=translations[lang]['titles'][6])
+    return render_template('privacy.html', title=translations[lang]['titles'][6], lang=lang, t=translations[lang]['strings'])

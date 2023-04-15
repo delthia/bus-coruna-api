@@ -1,5 +1,5 @@
 {% extends "disposicion.html" %}
-% block head %<link rel="stylesheet" href="text/css" href="/static/css/map.css"><link rel="stylesheet" href="text/css" href="/static/css/other.css">{% endblock head %}
+{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/map.css"><link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
 <!-- leafletjs -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
@@ -24,6 +24,7 @@
         </div>
     </div>
     <div class="info-parada flex-dentro">
+        <h2>{{ t['titulo-tabla'] }}</h2>
         <table>
             <tr>
                 <th>{{ t['detalles'] }}</th>
@@ -37,11 +38,15 @@
                 <td>{% if parada.propiedades.bench == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.bench == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
             <tr>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">roofing</span> {{ t['cubierta']|capitalize }}</td>
+                <td>{% if parada.propiedades.shelter == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.shelter == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+            </tr>
+            <tr>
                 <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">delete</span> {{ t['papelera']|capitalize }}</td>
                 <td>{% if parada.propiedades.bin == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.bin == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
             <tr>
-                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">light</span>{ { t['iluminada']|capitalize }}</td>
+                <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">light</span>{{ t['iluminada']|capitalize }}</td>
                 <td>{% if parada.propiedades.lit == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.lit == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
         </table>

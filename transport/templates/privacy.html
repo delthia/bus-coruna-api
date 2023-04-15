@@ -1,19 +1,7 @@
 {% extends "disposicion.html" %}
 {% block content %}
-{% if request.args.get('lang') == 'es' %}
-<h1>Privacidad</h1>
-<p class="parrafo">Este sitio web no recoge ningún dato personal sobre tí, pero si que tiene un script de analíticas.</p>
-<h2>Analíticas</h2>
-<p class="parrafo">Para conocer el tráfico del sitio, este incluye <a href="https://plausible.io/" target="_blank">un script de analíticas basado en Plausible.io</a> que hospedo personalmente en el mismo servidor que la aplicación. El script envía al servidor información como las rutas que visitas, el tiempo de la visita, y el navegador y el sistema operativo que utilizas. Todos estos datos son anónimos y me permiten optimizar el sitio web, así como saber de dónde vienen la mayoría de usuarios. Puedes consultar más información sobre las analíticas de plausible <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank">aquí</a>. Si no quieres participar en estas analíticas, puedes bloquear el script. También puedes utilizar la página sin JavaScript, pero ten en cuenta que algunas de las funcionalidades, como los mapas o la vista de línea no funcionarán.</p>
-{% elif request.args.get('lang') == 'gal' %}
-<h1>Privacidade</h1>
-<p class="parrafo">Este sitio web non recolle ningún dato persoal sobre ti, pero si que ten un script de analíticas.</p>
-<h2>Analíticas</h2>
-<p class="parrafo">Para coñecer o tráfico do sitio, este inclúe <a href="https://plausible.io/" target="_blank">un script de analíticas basado en Plausible.io</a> que hospedo persoalmente no mesmo servidor que a aplicación. O script envía ao servidor información como as rutas que visitas, o tempo da visita e o navegador e sistema operativo que estás a utilizar. Todos estos datos son anónimos e me permiten optimizar o sitio web, así como saber de onde veñen a maioría de usuarios. Podes consultar máis información sobre as analíticas de plausible <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank">aquí</a>. Se non queres participar nas mesmas, podes bloquear o script. Tamén podes utilizar a páxina sen JavaScript, pero ten en conta que algunhas das funcionalidades, como os mapas ou a vista de liña, non funcionarán.</p>
-{% elif request.args.get('lang') == 'en' %}
-<h1>Privacy</h1>
-<p class="parrafo">This website does not collect any personal data about you, but it does contain an analytics script.</p>
-<h2>Analytics</h2>
-<p class="parrafo">To learn about the website's traffic, this website includes <a href="https://plausible.io/" target="_blank">an analytics script based on Plausible.io</a> that I selfhost on the same server as the application. The script sends to the server information like what routes you visit, the length of the visit and the browser and OS that you are using. All this data is anonymous and allow me to optimise the website, as well as know were the users come from. You can check more information about the analytics <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank">here</a>. If you don't want to participate in this analytics, you can block the script. You can also use the page without JavaScript, but keep in mind the some features, like the maps or the line view, won't work.</p>
-{% endif %}
+<h1>{{ t.privacidad.titulo }}</h1>
+<p class="parrafo">{{ t.privacidad.resumen }}</p>
+<h2>{{ t.privacidad.analiticas }}</h2>
+<p class="parrafo">{{ t.privacidad['analiticas-desc']|safe }}</p>
 {% endblock content %}
