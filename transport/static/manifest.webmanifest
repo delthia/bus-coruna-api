@@ -28,7 +28,7 @@
     ],
     "name": "Bus de Coruña",
     "short_name": "Bus Coruña",
-    "start_url": "/inicio?lang=gal",
+    "start_url": "/inicio",
     "shortcuts" : [
         {
             "name": "Paradas",
