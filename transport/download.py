@@ -1,6 +1,6 @@
 import json, requests, time
 from transport.utils import encontrar_linea, encontrar_parada
-import osmnx as ox
+# import osmnx as ox
 
 def actualizar(url, dirs):
     r = 3   # Número de veces que se intentará hacer la petición si no funciona
@@ -15,7 +15,7 @@ def actualizar(url, dirs):
 
     # Generar los archivos
     json_lineas(respuesta, dirs['base']+dirs['lineas'])
-    datos_osm(dirs['base']+dirs['osm'])
+    # datos_osm(dirs['base']+dirs['osm'])
     with open(dirs['base']+dirs['osm']) as a:
         osm = json.load(a)
     json_paradas(respuesta, dirs['base']+dirs['paradas'], osm)
