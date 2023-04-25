@@ -22,7 +22,7 @@ def actualizar(url, dirs):
     with open(dirs['base']+dirs['paradas']) as a:
         paradas = json.load(a)
     json_rutas(respuesta, dirs['base']+dirs['rutas'], paradas)
-    geojson(paradas, dirs['base']+dirs['geojson'])
+    geojson(paradas, dirs['static']+dirs['geojson'])
     # Cargar el resto de archivos
     with open(dirs['base']+dirs['lineas']) as a:
         lineas = json.load(a)

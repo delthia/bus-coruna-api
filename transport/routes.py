@@ -9,15 +9,16 @@ import json
 dev = True
 
 if dev == True:
-    static = 'transport/static/'
+    b = 'transport/'
 else:
-    static = 'static/'
+    b = ''
+datos, static = b+'datos/', b+'static/'
 origen = 'https://itranvias.com/queryitr_v3.php'
 inicio = '?dato=20160101T000000_gl_0_20160101T000000&func=7'
-rutas = {'base': static, 'osm': 'osm.json', 'translate': 'translate.json', 'paradas': 'paradas.json', 'lineas': 'lineas.json', 'geojson': 'paradas.geojson.js', 'rutas': 'rutas.json'}  # Innecesario. Luego se sobreescribe. Por acabar de cambiar
+rutas = {'base': datos, 'static': static, 'osm': 'osm.json', 'translate': 'translate.json', 'paradas': 'paradas.json', 'lineas': 'lineas.json', 'geojson': 'paradas.geojson.js', 'rutas': 'rutas.json'}  # Innecesario. Luego se sobreescribe. Por acabar de cambiar
 
 # Cargar las traducciones
-with open(static+rutas['translate']) as t:
+with open(datos+rutas['translate']) as t:
     translations = json.load(t)
 # Actualizar los datos
 lins, pards = actualizar(origen+inicio, rutas)
@@ -71,12 +72,12 @@ def parada(id_parada):
         return redirect(url_for('parada', id_parada=id_parada, lang=translations['default']))
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
-        return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang), 404
-    buses = buses_parada(parada['id'],static+'lineas.json')
+        return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang, t=translations[lang]['strings']), 404
+    buses = buses_parada(parada['id'],datos+'lineas.json')
     if buses == 1111:
-        return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang), 404
+        return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang, t=translations[lang]['strings']), 404
     elif buses == 429:
-        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
+        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
     # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
     return render_template('parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang, t=translations[lang]['strings'])
     # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
@@ -87,16 +88,16 @@ def linea(id_linea):
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('linea', id_linea=id_linea, lang=translations['default']))
-    with open(static+rutas['rutas']) as archivo:
+    with open(datos+rutas['rutas']) as archivo:
         paradas = json.load(archivo)
     line = encontrar_linea(id_linea,lins)
     if line == None:
-        return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang), 404
+        return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang, t=translations[lang]['strings']), 404
     buses = buses_linea(line['id'])
     if buses == 429:
-        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang), 404
+        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
     elif buses['paradas'] == []:
-        return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang), 404
+        return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang, t=translations[lang]['strings']), 404
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
@@ -167,7 +168,7 @@ def bus_linea(id_linea):
 # Igual que /api/linea, peor devuelve la lista de todas las líneas
 @app.route("/api/lineas/")
 def api_lineas():
-    with open(static+rutas['lineas']) as l:
+    with open(datos+rutas['lineas']) as l:
         return json.load(l)
 
 #  ____                     _
@@ -181,7 +182,7 @@ def api_parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
         return 'La parada no existe'
-    buses = buses_parada(parada['id'],static+'lineas.json')
+    buses = buses_parada(parada['id'],datos+'lineas.json')
     return buses
 
 # Devuelve información sobre la parada que se especifica en <id_parada>: [coordenadas, líneas: [color, id, nombre], coordenadas_openstreetmap, propiedades: [banco, papelera, iluminada, marquesina, pavimento]]
@@ -196,7 +197,7 @@ def api_detalles_parada(id_parada):
 # Igual que /api/parada, pero devuelve la lista de todas las paradas
 @app.route("/api/paradas/")
 def api_paradas():
-    with open(static+rutas['paradas']) as p:
+    with open(datos+rutas['paradas']) as p:
         return json.load(p)
 
 #                      _                               _
