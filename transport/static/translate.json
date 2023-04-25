@@ -82,6 +82,15 @@
                 "lin2": "Todo está hecho en python, utilizando la librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, una librería para el lenguaje de programación <a href=\"https://python.org\" target=\"blank\">Python</a>. El backend es sencillo, ya que solo tiene las funciones que se mencionan arriba. Lo más complicado son las plantillas utilizadas para renderizar la página, ya que está disponible en tres idiomas y las plantillas deben de funcionar para todos ellos, así como los scripts del frontend, ya que utilizar javascript no es algo a lo que esté acostumbrado.",
                 "lin3": "Después la aplicación se mete en un contenedor de <a href=\"https://docker.com\" target=\"_blank\">Docker</a> utilizando <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, ya que esto me permite instalar y actualizar fácilmente la aplicación en el servidor simplemente ejecutando un script que se incluye en el repositorio.",
                 "lin4": "El código está publicado en <a href=\"https://github.com/delthia/bus-coruna-api/\" target=\"_blank\">este repositorio de GitHub</a> bajo la licencia <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a>, que está hecha específicamente para software de servidor, de modo que cualquiera puede modificar y ejecutar el programa, siempre y cuando los usuarios sigan teniendo acceso al código fuente de la versión modificada que está utilizando."
+            },
+            "t-mapa": "mapa",
+            "t-inicio": "inicio",
+            "foot": {
+                "version": "Versión",
+                "copy": "2023 Iago",
+                "fuente": "Código fuente",
+                "privacidad": "Privacidad",
+                "idioma": "Idioma"
             }
         }
     },
@@ -162,6 +171,15 @@
                 "lin2": "Todo está feito en python, utilizando a librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, unha librería para a linguaxe de programación <a href=\"https://python.org\" target=\"_blank\">Python</a>. O backend é sinxelo, xa que solo ten as funcións que se mencionan enriba. O máis complicado son as plantillas utilizadas para renderizar a páxina, xa que está dispoñible en tres idiomas e as plantillas deben de funcionar para todos eles, así como os scripts do frontend, xa que utilizar javascript non é algo ao que esté acostumado.",
                 "lin3": "Despois a aplicación se mete nun contedor de <a href=\"https://docker.com\" target=\"_blank\">Docker</a> utilizando <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, xa que isto me permite instalar e actualizar fácilmente a aplicación no servidor simplemente executando un script que se inclúe no repositorio.",
                 "lin4": "O código está publicado neste <a href=\"https://github.com/delthia/bus-coruna-api\" target=\"_blank\">repositorio GitHub</a> baixo a licencia <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a>, que está feita específicamente para software de servidor, de modo que calqueira pode modificar e executar o programa, sempre e cando os usuarios sigan tendo acceso ao código fonte da versión modificada que está a utilizar."
+            },
+            "t-mapa": "mapa",
+            "t-inicio": "inicio",
+            "foot": {
+                "version": "Versión",
+                "copy": "2023 Iago",
+                "fuente": "Código fonte",
+                "privacidad": "Privacidad",
+                "idioma": "Idioma"
             }
         }
     },
@@ -242,6 +260,15 @@
                 "lin2": "It is all made in python, using <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, a library for the <a href=\"https://python.org\" target=\"_blank\">Python</a> programming language. The backend part is simple, as it just does the functions mentioned above. The more complex part are the templates used to render de page, as this page is available in three languages, and the templates should work for all of them, as well as the scripts for the frontend, as using javascript is not something I'm used to doing.",
                 "lin3": "The application is then put into a <a href=\"https://docker.com\" target=\"_blank\">Docker</a> container, using <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, as this allows me to easily install and update it in the server with just executing an script included on the repo.",
                 "lin4": "The code is published in <a href=\"https://github.com/delthia/bus-coruna-api\" target=\"_blank\">this GitHub repository</a> under the <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a> license, which is specifically made for server software, so that anyone can modify and run the program, as long as the users still have access to the source for the modified version they are using."
+            },
+            "t-mapa": "map",
+            "t-inicio": "home",
+            "foot": {
+                "version": "Version",
+                "copy": "2023 Iago",
+                "fuente": "Source code",
+                "privacidad": "Privacy",
+                "idioma": "Language"
             }
         }
     }
