@@ -117,7 +117,7 @@ def changelog():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
         return redirect(url_for('fuente', lang=translations['default']))
-    return render_template('changelog.html', title=translations[lang]['titles'][5], lang=lang)
+    return render_template('changelog.html', title=translations[lang]['titles'][5], lang=lang, t=translations[lang]['strings'])
 
 #     _    ____ ___
 #    / \  |  _ \_ _|
