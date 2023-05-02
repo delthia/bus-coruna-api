@@ -20,6 +20,12 @@ var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     minZoom: 13
 });
 
+var pnoa = L.tileLayer('https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://pnoa.ign.es">PNOA</a>, <a href="https://idee.es">IDEE</a>',
+    minZoom: 13
+});
+
 
 if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     var map = L.map('map', {
@@ -39,7 +45,8 @@ else {
 var oscuro = {
     'Osm': osm,
     'Claro': bright,
-    'Oscuro': tiles
+    'Oscuro': tiles,
+    'PNOA (ortofotos)': pnoa
 };
 
 var layerControl = L.control.layers(oscuro).addTo(map);

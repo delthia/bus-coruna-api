@@ -87,6 +87,9 @@ else if(provider == 'carto-light') {
 else if(provider == 'carto-dark') {
     tiles = 'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
 }
+else if(provider == 'pnoa') {
+    tiles = 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg';
+}
 else {
     if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         tiles = 'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
@@ -114,7 +117,7 @@ var map = L.map('mapa-parada', {
 
 var tiles = L.tileLayer(tiles, {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>, &copy; <a href="https://pnoa.ign.es">PNOA</a>',
     minZoom: 17
 }).addTo(map);
 
