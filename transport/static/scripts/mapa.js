@@ -76,10 +76,18 @@ var userIcon = L.icon({
     iconAnchor: [24, 48]
 });
 
+var marcador = L.icon({
+    iconUrl: 'static/icons/marcador-3.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+});
+
 map.locate({setView: true, maxZoom: 16});
 
 function onLocationFound(e) {
-    L.marker(e.latlng, {icon: userIcon}).addTo(map)
+    // L.marker(e.latlng, {icon: userIcon}).addTo(map)
+    L.marker(e.latlng, {icon: marcador}).addTo(map)
 }
 map.on('locationfound', onLocationFound);
 // map.setMaxBounds(map.getBounds());
