@@ -7,23 +7,26 @@
         {
             "src": "/static/icons/icono-bus-32.png",
             "sizes": "32x32",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "/static/icons/icono-bus-256.png",
             "sizes": "256x256",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "/static/icons/icono-bus-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "/static/icons/icono-bus-maskable.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "maskable"
         }
     ],
     "name": "Bus de Coruña",
@@ -34,19 +37,24 @@
             "name": "Paradas",
             "url": "/paradas",
             "description": "Lista de paradas",
-            "icons": [{ "src": "/static/icons/shortcuts/pergola-w.png", "sizes": "192x192" }]
+            "icons": [{ "src": "/static/icons/shortcuts/pergola-w.png", "sizes": "192x192" }, { "src": "/static/icons/shortcuts/pergola-w-96.png", "sizes": "96x96" }]
         },
         {
             "name": "Lineas",
             "url": "/lineas",
             "description": "Lista de líneas",
-            "icons": [{ "src": "/static/icons/shortcuts/route-w.png", "sizes": "192x192" }]
+            "icons": [{ "src": "/static/icons/shortcuts/route-w.png", "sizes": "192x192" }, { "src": "/static/icons/shortcuts/route-w-96.png", "sizes": "96x96" }]
         },
         {
             "name": "Mapa",
             "url": "/mapa",
             "description": "Mapa de paradas",
-            "icons": [{ "src": "/static/icons/shortcuts/map-w.png", "sizes": "192x192" }]
+            "icons": [{ "src": "/static/icons/shortcuts/map-w.png", "sizes": "192x192" }, { "src": "/static/icons/shortcuts/map-w-96.png", "sizes": "96x96" }]
         }
-    ]
+    ],
+    "dir": "ltr",
+    "scope": "https://bus.delthia.com",
+    "lang": "es",
+    "orientation": "portrait",
+    "categories": ["navigation", "utilities"]
 }
