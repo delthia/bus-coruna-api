@@ -149,8 +149,8 @@
     order: 1;
     width: 100%;
     /* border-bottom: 3px solid var(--accent); */
-    line-height: 1.5;
-    font-size: 0.9em;
+    /* line-height: 1.5;
+    font-size: 0.9em; */
     display: none;
     margin-top: 8px;
 }

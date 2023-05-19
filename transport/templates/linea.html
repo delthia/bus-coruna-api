@@ -5,28 +5,48 @@
 <span id="alerta" style="display: none"></span>
 <i id="msg-js">{{ t['mensaje-js']|safe }}</i>
 
-<div class="diagrama-linea">
-    <div class="diagrama-dentro">
-        <h2>{{ t['ida']|capitalize }}: <small><i>{{ line.origen }} - {{ line.destino }}</i></small></h2>
-        <div style="display: flex; flex-direction: row;" id="ida">
-            <div id="buses-ida"></div>
-            <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em">
-                {% for parada in paradas.paradas.ida %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
-                {% endfor %}
-            </ol></div>
+<div class="flex-parada">
+    <div class="flex-dentro">
+        <div class="pestanas">
+            <input type="radio" class="radio-pestanas" name="pestana" id="pestanas-ida" checked onclick="actualizar(0)">
+            <label for="pestanas-ida" class="etiqueta-pestanas">{{ t['ida']|capitalize }}</label>
+            <div class="contenido-pestanas">
+                <div class="diagrama-linea">
+                    <div class="diagrama-dentro">
+                        <h2><i>{{ line.origen }} - {{ line.destino }}</i></h2>
+                        <div style="display: flex; flex-direction: row;" id="ida">
+                            <div id="buses-ida"></div>
+                            <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em">
+                                {% for parada in paradas.paradas.ida %}
+                                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                                {% endfor %}
+                            </ol></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="radio" class="radio-pestanas" name="pestana" id="pestanas-vuelta" onclick="actualizar(0)">
+            <label for="pestanas-vuelta" class="etiqueta-pestanas">{{ t['vuelta']|capitalize }}</label>
+            <div class="contenido-pestanas">
+                <div class="diagrama-linea">
+                    <div class="diagrama-dentro">
+                        <h2><i>{{ line.destino }} - {{ line.origen }}</i></h2>
+                        <div style="display: flex; flex-direction: row;" id="vuelta">
+                            <div id="buses-vuelta"></div>
+                            <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em;">
+                                {% for parada in paradas.paradas.vuelta %}
+                                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                                {% endfor %}
+                            </ol></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="diagrama-dentro">
-        <h2>{{ t['vuelta']|capitalize }}: <small><i>{{ line.destino }} - {{ line.origen }}</i></small></h2>
-        <div style="display: flex; flex-direction: row;" id="vuelta">
-            <div id="buses-vuelta"></div>
-            <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em;">
-                {% for parada in paradas.paradas.vuelta %}
-                    <li class="parada"><span class="nombre_parada">{{ parada.nombre }}</span><p><a href="{{ url_for('parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
-                {% endfor %}
-            </ol></div>
-        </div>
+    <div class="info-parada flex-dentro">
+        <h2>Lo otro</h2>
+        <p>Otra cosa</p>
     </div>
 </div>
 <div id="leyenda">
