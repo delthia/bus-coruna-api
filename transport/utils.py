@@ -68,6 +68,25 @@ def buses_linea(linea):
     # return 'var buses = {"type": "FeatureCollection", "features":'+str(b)+'}'
     return '{"type": "FeatureCollection", "features":'+str(b)+'}'"""
 
+# GeoJSON con las paradas de una línea
+def geojson_linea(id, geojson):
+    head = {'type': 'FeatureCollection', 'features': []}
+    for linea in geojson['lineas']:
+        if linea['id'] == id:
+            for parada in linea['paradas']['ida']:
+                if parada['osmcoords'] == []:
+                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['coords']}}
+                else:
+                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['osmcoords']}}
+                head['features'].append(feature)
+            for parada in linea['paradas']['vuelta']:
+                if parada['osmcoords'] == []:
+                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['coords']}}
+                else:
+                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['osmcoords']}}
+                head['features'].append(feature)
+    return 'var paradas = '+json.dumps(head)+';'
+
 #                 _
 #   ___ __ _  ___| |__   ___
 #  / __/ _` |/ __| '_ \ / _ \

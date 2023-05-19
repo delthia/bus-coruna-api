@@ -1,6 +1,6 @@
 from flask import render_template, url_for, request, redirect, send_file
 from transport import app
-from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada #, geojson_buses
+from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_linea #, geojson_buses
 # from transport.download import cargar_datos, actualizar_datos
 from transport.download import actualizar
 import json
@@ -170,6 +170,17 @@ def bus_linea(id_linea):
 def api_lineas():
     with open(datos+rutas['lineas']) as l:
         return json.load(l)
+    
+# GeoJSON con las paradas de una línea
+@app.route("/api/linea/<int:id_linea>/paradas")
+def paradas_linea(id_linea):
+    line = encontrar_linea(id_linea, lins)
+    if line == None:
+        return 'La línea no existe'
+    with open(datos+rutas['rutas']) as archivo:
+        paradas = json.load(archivo)
+    geojson = geojson_linea(line['id'], paradas)
+    return geojson
 
 #  ____                     _
 # |  _ \ __ _ _ __ __ _  __| | __ _ ___
