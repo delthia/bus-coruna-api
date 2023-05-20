@@ -26,6 +26,15 @@
         width: 95%;
     }
 }
+/* Ajustar los contenedores de la página de línea */
+.flex-linea {
+    width: 50%;
+}
+@media(max-width: 720px) {
+    .flex-linea {
+        width: 100%;
+    }
+}
 
 /* Búsqueda */
 #buscar {
@@ -307,12 +316,6 @@
 #leyenda {
     border: 1px dashed var(--fg);
     padding-left: 16px;
-    width: 25%;
-    margin: 0 auto;
-}
-
-@media ( max-width: 1000px ) {
-    #leyenda {
-        width: 85%;
-    }
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
 }

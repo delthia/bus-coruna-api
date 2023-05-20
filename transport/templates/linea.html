@@ -1,5 +1,5 @@
 {% extends "disposicion.html" %}
-{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
+{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/map.css"><link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
 <!-- leafletjs -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
@@ -10,7 +10,7 @@
 <i id="msg-js">{{ t['mensaje-js']|safe }}</i>
 
 <div class="flex-parada">
-    <div class="flex-dentro">
+    <div class="flex-dentro flex-linea">
         <div class="pestanas">
             <input type="radio" class="radio-pestanas" name="pestana" id="pestanas-ida" checked onclick="actualizar(0)">
             <label for="pestanas-ida" class="etiqueta-pestanas">{{ t['ida']|capitalize }}</label>
@@ -48,8 +48,8 @@
             </div>
         </div>
     </div>
-    <div class="info-parada flex-dentro">
-        <div id="mapa-linea" style="width: 600px; height: 400px; border-radius: 0px 0px 10px 10px"></div>
+    <div class="flex-dentro">
+        <div id="mapa-linea"></div>
         <script src="/api/linea/{{ line.id }}/paradas"></script>
         <script src="/static/out/linea-{{ line.id }}.js"></script>
         <script src="/static/scripts/mapa-linea.js"></script>
