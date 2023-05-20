@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="flex-dentro">
+    <div class="flex-dentro flex-linea-2">
         <div id="mapa-linea"></div>
         <script src="/api/linea/{{ line.id }}/paradas"></script>
         <script src="/static/out/linea-{{ line.id }}.js"></script>
@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-<p>{{ t['fuentes']|capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['fuentes-linea'] }})</p>
+<p>{{ t['fuentes']|capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['fuentes-linea'] }}), <a href="https://nap.mitma.es/Files/Detail/1376" target="_blank" class="source">MITMA</a> ({{ t['fuentes-mitma-linea'] }})</a></p>
 <script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/simbolo-bus.js"></script>
 {% endblock content %}

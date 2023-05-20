@@ -56,6 +56,7 @@
             "fuente-mapa-parada": "mapa e información de la parada",
             "informacion-buses": "información de los buses",
             "descripcion": "Información en tiempo real sobre el bus de Coruña",
+            "fuentes-mitma-linea": "Rutas de los buses",
             "inicio": {
                 "info-parada": "Información de parada",
                 "desc-parada": "Consulta información sobre los buses que están a punto de llegar. Esta página también incluye una tabla que muestra las características de la parada, con datos a partir de <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, y un mapa que muestra dónde se encuentra la parada.",
@@ -117,7 +118,7 @@
             "vuelta": "volta",
             "leyenda": "lenda",
             "en-parada": "bus na parada",
-            "otro-estado": "otros estados",
+            "otro-estado": "outros estados",
             "fuentes": "fontes dos datos",
             "fuentes-linea": "posición dos buses e horarios",
             "enlaces": "enlaces",
@@ -145,6 +146,7 @@
             "fuente-mapa-parada": "mapa e información da parada",
             "informacion-buses": "información dos buses",
             "descripcion": "Información en tempo real sobre o bus da Coruña",
+            "fuentes-mitma-linea": "Rutas dos buses",
             "inicio": {
                 "info-parada": "Información de parada",
                 "desc-parada": "Consulta información sobre os buses que están a chegar. Esta páxina también inclúe unha táboa que mostra as características da parada, con datos a partir de <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, e un mapa que mostra onde se atopa a parada.",
@@ -234,6 +236,7 @@
             "fuente-mapa-parada": "map and stop information",
             "informacion-buses": "bus information",
             "descripcion": "Realtime information about Coruña's bus",
+            "fuentes-mitma-linea": "Bus routes shown in the map",
             "inicio": {
                 "info-parada": "Stop information",
                 "desc-parada": "Look up information about which buses are about to arrive. This page also incudes a table that shows the characteristics of the stop with data from <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, and a map that shows where the stop is located.",

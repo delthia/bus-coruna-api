@@ -37,12 +37,13 @@ var map = L.map('mapa-linea', {
     // zoomControl: false,
     zoomControl: true,
     doubleClickZoom: 'center',
-    zoomDelta: 0.5,
+    zoomDelta: 1,
+    zoomSnap: 0.2,
 });
 
 var tiles = L.tileLayer(tiles, {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>, &copy; <a href="https://pnoa.ign.es">PNOA</a>',
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
     minZoom: 2
 }).addTo(map);
 
@@ -76,4 +77,4 @@ map.fitBounds(geojson.getBounds());
 
 var topleft = L.latLng(43.3925, -8.4585),
     bottomright = L.latLng(43.2945, -8.3755);
-map.setMaxBounds(L.latLngBounds(topleft, bottomright));
+// map.setMaxBounds(L.latLngBounds(topleft, bottomright));

@@ -28,10 +28,16 @@
 }
 /* Ajustar los contenedores de la página de línea */
 .flex-linea {
-    width: 50%;
+    width: 60%;
+}
+.flex-linea-2 {
+    width: 40%;
 }
 @media(max-width: 720px) {
     .flex-linea {
+        width: 100%;
+    }
+    .flex-linea-2 {
         width: 100%;
     }
 }
@@ -316,6 +322,6 @@
 #leyenda {
     border: 1px dashed var(--fg);
     padding-left: 16px;
-    width: 100%;
+    width: 100%-16px;
     border-radius: 0px 0px 10px 10px;
 }

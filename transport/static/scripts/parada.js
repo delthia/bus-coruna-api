@@ -106,13 +106,14 @@ document.getElementById('mapa-parada').innerHTML = '';
 // Mapa de parada
 var map = L.map('mapa-parada', {
     center: ubicacion,
-    zoom: 18,
+    zoom: 17,
     dragging: false,
     boxZoom: false,
     scrollWheelZoom: 'center',
     zoomControl: false,
     doubleClickZoom: 'center',
     zoomDelta: 0.5,
+    touchZoom: 'center'
 });
 
 var tiles = L.tileLayer(tiles, {
