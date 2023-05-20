@@ -51,16 +51,17 @@
     <div class="info-parada flex-dentro">
         <div id="mapa-linea" style="width: 600px; height: 400px; border-radius: 0px 0px 10px 10px"></div>
         <script src="/api/linea/{{ line.id }}/paradas"></script>
+        <script src="/static/out/linea-{{ line.id }}.js"></script>
         <script src="/static/scripts/mapa-linea.js"></script>
+        <div id="leyenda">
+            <p><i>{{ t['leyenda']|capitalize }}:</i></p>
+            <ul>
+                <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_parada" style="vertical-align: middle;">directions_bus</span> → {{ t['en-parada']|capitalize }}</li>
+                <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_otro" style="vertical-align: middle">directions_bus</span> → {{ t['otro-estado']|capitalize }}</li>
+        
+            </ul>
+        </div>
     </div>
-</div>
-<div id="leyenda">
-    <p><i>{{ t['leyenda']|capitalize }}:</i></p>
-    <ul>
-        <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_parada" style="vertical-align: middle;">directions_bus</span> → {{ t['en-parada']|capitalize }}</li>
-        <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_otro" style="vertical-align: middle">directions_bus</span> → {{ t['otro-estado']|capitalize }}</li>
-
-    </ul>
 </div>
 <p>{{ t['fuentes']|capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['fuentes-linea'] }})</p>
 <script src="/static/scripts/lang.js"></script>

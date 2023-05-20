@@ -55,13 +55,25 @@ function onEachFeature(feature, layer) {
 var stopIcon = L.icon({
     iconUrl: '/static/icons/maps/punto.png',
 
-    iconSize: [16, 16],
-    iconAnchor: [8, 8]
+    iconSize: [8, 8],
+    iconAnchor: [4, 4]
 });
 
 L.Marker.prototype.options.icon = stopIcon;
 
+var estiloLineas = {
+    "color": "#5e31b1",
+    "weight": 2,
+    "opacity": 1
+};
+
 var geojson = L.geoJson(paradas, { onEachFeature: onEachFeature });
+var lin = L.geoJson(linea, { onEachFeature: onEachFeature, style: estiloLineas });
 
 map.addLayer(geojson);
+map.addLayer(lin);
 map.fitBounds(geojson.getBounds());
+
+var topleft = L.latLng(43.3925, -8.4585),
+    bottomright = L.latLng(43.2945, -8.3755);
+map.setMaxBounds(L.latLngBounds(topleft, bottomright));

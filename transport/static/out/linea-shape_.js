@@ -1,0 +1,1 @@
+var linea = {"type": "FeatureCollection", "features": [{"type": "LineString", "coordinates": [["shape_pt_lon", "shape_pt_lat"]]}]};
