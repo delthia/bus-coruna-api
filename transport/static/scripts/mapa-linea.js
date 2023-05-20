@@ -78,3 +78,41 @@ map.fitBounds(geojson.getBounds());
 var topleft = L.latLng(43.3925, -8.4585),
     bottomright = L.latLng(43.2945, -8.3755);
 // map.setMaxBounds(L.latLngBounds(topleft, bottomright));
+
+// Tabla de salidas
+fetch('/api/linea/'+window.location.pathname.split('/')[window.location.pathname.split('/').length-1]+'/salidas/20230520', {
+    method: 'GET'
+})
+.then(function(response) { return response.json(); })
+.then(function(json) {
+    const obj = json;
+    ancho = 5
+    // ida
+    a = 0
+    tabla = ''
+    while(a < obj.ida.length/ancho){
+        // document.getElementById('horario-linea-ida').innerHTML += '<tr>'
+        fila = ''
+        for(i=0;i<5;i++){
+            if(obj.ida[i+a*ancho] != undefined) { fila += '<td>'+obj.ida[i+a*ancho]+'</td>' }
+            else { break; }
+        }
+        a += 1
+        tabla += '<tr>'+fila+'</tr>'
+    }
+    document.getElementById('horario-linea-ida').innerHTML += tabla
+    // vuelta
+    a = 0
+    tabla = ''
+    while(a < obj.vuelta.length/ancho){
+        // document.getElementById('horario-linea-ida').innerHTML += '<tr>'
+        fila = ''
+        for(i=0;i<5;i++){
+            if(obj.vuelta[i+a*ancho] != undefined) { fila += '<td>'+obj.vuelta[i+a*ancho]+'</td>' }
+            else { break; }
+        }
+        a += 1
+        tabla += '<tr>'+fila+'</tr>'
+    }
+    document.getElementById('horario-linea-vuelta').innerHTML += tabla
+})

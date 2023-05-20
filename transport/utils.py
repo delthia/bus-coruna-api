@@ -87,6 +87,22 @@ def geojson_linea(id, geojson):
                 head['features'].append(feature)
     return 'var paradas = '+json.dumps(head)+';'
 
+# Salidas de una línea
+def salidas(id, fecha):
+    base = 'https://itranvias.com/queryitr_v3.php?func='
+    func = '8'
+    dato = str(id)
+    fecha = str(fecha)
+    ip = '192.168.20.'+str(math.ceil(id/100))
+    print(ip)
+    horas = requests.get(base+func+'&dato='+dato+'&fecha='+fecha, headers={'X-Forwarded-For': ip}).json()
+    respuesta = {'ida': [], 'vuelta': [], 'tipo': horas['servicios'][0]['tipo']}
+    for x in horas['servicios'][0]['ida']:
+        respuesta['ida'].append(str(x)[:-2]+':'+str(x)[-2:])
+    for x in horas['servicios'][0]['vuelta']:
+        respuesta['vuelta'].append(str(x)[:-2]+':'+str(x)[-2:])
+    return respuesta
+
 #                 _
 #   ___ __ _  ___| |__   ___
 #  / __/ _` |/ __| '_ \ / _ \
