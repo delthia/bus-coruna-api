@@ -199,6 +199,7 @@ footer {
     left: 75px;
     padding: 8px 64px 8px 32px;    /* Arriba derecha abajo izquierda */
     border-radius: 4px;
+    z-index: 9999;
 
     /* Animación */
     /* animation-name: error; */
