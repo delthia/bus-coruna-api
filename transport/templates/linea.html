@@ -11,8 +11,7 @@
 
 <div class="popup" id="horas">
     <div class="popup-dentro" style="padding-right: 32px;">
-        <h3>Horas de salida: <span class="material-symbols-outlined" style="vertical-align: middle">navigate_before</span>18/11/2022<span class="material-symbols-outlined" style="vertical-align: middle;">navigate_next</span><a href="#" class="material-symbols-outlined" style="float: right; text-decoration: none!important; vertical-align: middle">close</a></h3>
-        <p><i style="color: #FF7043">Datos de prueba. No se corresponden con los reales</i></p>
+        <h3>Horas de salida: <span class="material-symbols-outlined" style="vertical-align: middle; user-select: none; cursor: pointer;" onclick="calendario('subtract')">navigate_before</span><span id="fecha-consulta"></span><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none; cursor: pointer;" onclick="calendario('add')">navigate_next</span><a href="#" class="material-symbols-outlined" style="float: right; text-decoration: none!important; vertical-align: middle; user-select: none;">close</a></h3>
         <div class="pestanas">
             <input type="radio" class="radio-pestanas" name="pestana1" id="pestanas-horas-ida" checked>
             <label for="pestanas-horas-ida" class="etiqueta-pestanas">Ida</label>
