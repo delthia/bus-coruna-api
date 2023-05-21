@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
-<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#horas"><span class="material-symbols-outlined recargar" id="salidas">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span> <small style="font-size: 45%" id="t"></small> <span id="alerta"></span></h1>
+<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#horas"><span class="material-symbols-outlined recargar" id="salidas">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga">refresh</span> <small style="font-size: 45%" id="t"></small></h1>
 <span id="alerta" style="display: none"></span>
 <i id="msg-js">{{ t['mensaje-js']|safe }}</i>
 
@@ -78,6 +78,9 @@
     </div>
 </div>
 <p>{{ t['fuentes']|capitalize }}: <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['fuentes-linea'] }}), <a href="https://nap.mitma.es/Files/Detail/1376" target="_blank" class="source">MITMA</a> ({{ t['fuentes-mitma-linea'] }})</a></p>
+
+<div id="mensaje-error" class="error"><span id="mensaje-error-mensaje">Error</span><div id="borde-abajo" class="bordeerror"></div></div>
+
 <script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/simbolo-bus.js"></script>
 {% endblock content %}

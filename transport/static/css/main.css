@@ -190,3 +190,60 @@ footer {
     font-size: 200%;
     margin-bottom: 150px;
 }
+
+/* Mensaje de error flotante */
+.error {
+    background-color: var(--accent);
+    position: fixed;
+    /* bottom: 25px; */
+    left: 75px;
+    padding: 8px 64px 8px 32px;    /* Arriba derecha abajo izquierda */
+    border-radius: 4px;
+
+    /* Animación */
+    /* animation-name: error; */
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out  ;
+}
+
+@media(max-width: 720px) {
+    .error {
+        width: 95%;
+        left: 1.5%;
+        padding: 8px 0px 8px 8px;
+    }
+}
+
+@keyframes error {
+    0%, 100% { bottom: -5%; }
+    5%, 95% { bottom: 25px; }
+}
+
+.animar.error {
+    animation-name: error;
+}
+
+#borde-abajo {
+    border-bottom: 4px solid var(--haccent);
+    position: absolute;
+    /* right: 100%; */
+    left: 0;
+    bottom: 0;
+    border-radius: 4px;
+
+    /* Animación */
+    /* animation-name: indicador; */
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+@keyframes indicador {
+    0%, 5% { right: 0%; }
+    95% { right: 100%; }
+}
+
+.animar.bordeerror {
+    animation-name: indicador;
+}

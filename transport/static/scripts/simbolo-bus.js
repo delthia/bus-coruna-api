@@ -57,11 +57,13 @@ function actualizar(last) {
         })
     }
     else {
-        document.getElementById('alerta').classList.add('alerta_visible');
-        document.getElementById('alerta').innerHTML = cadenas[idioma][2];
+        document.getElementById('mensaje-error').classList.remove('animar');
+        document.getElementById('borde-abajo').classList.remove('animar');
         setTimeout(function() {
-            document.getElementById('alerta').classList.remove('alerta_visible');
-        }, 2500)
+            document.getElementById('mensaje-error-mensaje').innerHTML = cadenas[idioma][2];
+            document.getElementById('mensaje-error').classList.add('animar');
+            document.getElementById('borde-abajo').classList.add('animar');
+        }, 250);
     }
 }
 
