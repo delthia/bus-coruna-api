@@ -11,13 +11,13 @@
 
 <div class="popup" id="horas">
     <div class="popup-dentro" style="padding-right: 32px;">
-        <h3>Horas de salida: <span class="material-symbols-outlined" style="vertical-align: middle; user-select: none; cursor: pointer;" onclick="calendario('subtract')">navigate_before</span><span id="fecha-consulta"></span><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none; cursor: pointer;" onclick="calendario('add')">navigate_next</span><a href="#" class="material-symbols-outlined" style="float: right; text-decoration: none!important; vertical-align: middle; user-select: none;">close</a></h3>
+        <h3>{{ t['horas-salida'] }} <span class="material-symbols-outlined" style="vertical-align: middle; user-select: none; cursor: pointer;" onclick="calendario('subtract')">navigate_before</span><span id="fecha-consulta"></span><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none; cursor: pointer;" onclick="calendario('add')">navigate_next</span><a href="#" class="material-symbols-outlined" style="float: right; text-decoration: none!important; vertical-align: middle; user-select: none;">close</a></h3>
         <div class="pestanas">
             <input type="radio" class="radio-pestanas" name="pestana1" id="pestanas-horas-ida" checked>
-            <label for="pestanas-horas-ida" class="etiqueta-pestanas">Ida</label>
+            <label for="pestanas-horas-ida" class="etiqueta-pestanas">{{ t['ida']|capitalize }}</label>
             <div class="contenido-pestanas"><table class="horario-linea" id="horario-linea-ida"></table></div>
             <input type="radio" class="radio-pestanas" name="pestana1" id="pestanas-horas-vuelta">
-            <label for="pestanas-horas-vuelta" class="etiqueta-pestanas">Vuelta</label>
+            <label for="pestanas-horas-vuelta" class="etiqueta-pestanas">{{ t['vuelta']|capitalize }}</label>
             <div class="contenido-pestanas"><table class="horario-linea" id="horario-linea-vuelta"></table></div>
         </div>
     </div>
