@@ -63,4 +63,4 @@ var topleft = L.latLng(43.3925, -8.4585),
     bottomright = L.latLng(43.2945, -8.3755);
 mapa.setMaxBounds(L.latLngBounds(topleft, bottomright));
 
-mapa.on('locationerror', flash_error('Error al buscar tu ubicación'));
+/* mapa.on('locationerror', flash_error('Error al buscar tu ubicación'));   */
