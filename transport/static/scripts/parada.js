@@ -56,11 +56,11 @@ function actualizar(last) {
 
 // Mapa
 // Establecer el estilo del mapa en función del de la página o del parámetro
-if(estilo == 'osm') { style = L.tileLayer(osm[0], osm[1]) }
-else if(estilo == 'pnoa') { style = L.tileLayer(pnoa[0], pnoa[1]) }
-else if(estilo == 'carto-light') { style = L.tileLayer(bright[0], bright[1]) }
-else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = L.tileLayer(dark[0], dark[1]) }
-else { style = L.tileLayer(bright[0], bright[1]) }
+if(estilo == 'osm') { style = [osm] }
+else if(estilo == 'pnoa') { style = [pnoa] }
+else if(estilo == 'carto-light') { style = [bright] }
+else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = [dark] }
+else { style = [bright] }
 
 
 // Mapa
@@ -74,7 +74,7 @@ var mapa = L.map('mapa-parada', {
     doubleClickZoom: 'center',
     touchZoom: 'center',
     zoomDelta: 0.5,
-    layers: [style],
+    layers: style,
 });
 
 var circulo = L.circle(ubicacion, {

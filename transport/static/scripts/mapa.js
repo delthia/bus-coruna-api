@@ -6,24 +6,24 @@ estilo = new URLSearchParams(window.location.search).get('mapa');   // Guardar e
 
 
 // Establecer el estilo del mapa en función del de la página o del parámetro
-if(estilo == 'osm') { style = L.tileLayer(osm[0], osm[1]) }
-else if(estilo == 'pnoa') { style = L.tileLayer(pnoa[0], pnoa[1]) }
-else if(estilo == 'carto-light') { style = L.tileLayer(bright[0], bright[1]) }
-else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = L.tileLayer(dark[0], dark[1]) }
-else { style = L.tileLayer(bright[0], bright[1]) }
+if(estilo == 'osm') { style = [osm] }
+else if(estilo == 'pnoa') { style = [pnoa] }
+else if(estilo == 'carto-light') { style = [bright] }
+else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = [dark] }
+else { style = [bright] }
 
 var mapa = L.map('map', {
     center: [43.3445, -8.425],
     zoom: 13,
-    layers: [style]
+    layers: style
 });
 
 // Lista de estilos
 var estilos = {
-    'Osm': L.tileLayer(osm[0], osm[1]),
-    'Claro': L.tileLayer(bright[0], bright[1]),
-    'Oscuro': L.tileLayer(dark[0], dark[1]),
-    'PNOA (ortofotos)': L.tileLayer(pnoa[0], pnoa[1]),
+    'Osm': osm,
+    'Claro': bright,
+    'Oscuro': dark,
+    'PNOA (ortofotos)': pnoa,
 };
 
 var layerControl = L.control.layers(estilos).addTo(mapa);   // Añadir el selector de estilos

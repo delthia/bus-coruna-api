@@ -58,7 +58,6 @@
 <div id="mensaje-error" class="error"><span id="mensaje-error-mensaje">Error</span><div id="borde-abajo" class="bordeerror"></div></div>
 
 <script>var ubicacion = [ {% if parada.osmcoords != [] %}{{parada.osmcoords[1]}}, {{parada.osmcoords[0]}}{% else %}{{parada.coords[1]}}, {{parada.coords[0]}}{% endif %} ];</script>
-<script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/utils.js"></script>
 <script src="/static/scripts/parada.js"></script>
 {% endblock content %}

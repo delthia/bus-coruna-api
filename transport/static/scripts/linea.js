@@ -57,11 +57,11 @@ function actualizar(last) {
 
 // Mapa
 // Establecer el estilo del mapa en función del de la página o del parámetro
-if(estilo == 'osm') { style = L.tileLayer(osm[0], osm[1]) }
-else if(estilo == 'pnoa') { style = L.tileLayer(pnoa[0], pnoa[1]) }
-else if(estilo == 'carto-light') { style = L.tileLayer(bright[0], bright[1]) }
-else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = L.tileLayer(dark[0], dark[1]) }
-else { style = L.tileLayer(bright[0], bright[1]) }
+if(estilo == 'osm') { style = [osm] }
+else if(estilo == 'pnoa') { style = [pnoa] }
+else if(estilo == 'carto-light') { style = [bright] }
+else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = [dark] }
+else { style = [bright] }
 
 // Configuración del mapa
 var mapa = L.map('mapa-linea', {
@@ -70,7 +70,7 @@ var mapa = L.map('mapa-linea', {
     scrollWheelZoom: 'center',
     doubleClickZoom: 'center',
     zoomSnap: 0.2,
-    layers: [style],
+    layers: style,
 })
 
 function onEachFeature(feature, layer) { if(feature.properties && feature.properties.popupContent) { layer.bindPopup(feature.properties.popupContent); } }

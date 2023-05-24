@@ -2,3 +2,4 @@ requests==2.29.0
 flask==2.3.2
 gunicorn==20.1.0
 # osmnx==1.3.0
+flask-minify==0.42

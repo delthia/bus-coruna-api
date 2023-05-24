@@ -65,8 +65,7 @@
     <div class="flex-dentro flex-linea-2">
         <div id="mapa-linea"></div>
         <script src="/api/linea/{{ line.id }}/paradas"></script>
-        <script src="/static/out/linea-{{ line.id }}.js"></script>
-        <!-- <script src="/static/scripts/mapa-linea.js"></script> -->
+        <script src="/static/geojson/linea-{{ line.id }}.js"></script>
         <div id="leyenda">
             <p><i>{{ t['leyenda']|capitalize }}:</i></p>
             <ul>
@@ -81,8 +80,6 @@
 
 <div id="mensaje-error" class="error"><span id="mensaje-error-mensaje">Error</span><div id="borde-abajo" class="bordeerror"></div></div>
 
-<script src="/static/scripts/lang.js"></script>
 <script src="/static/scripts/utils.js"></script>
-<!-- <script src="/static/scripts/simbolo-bus.js"></script> -->
 <script src="/static/scripts/linea.js"></script>
 {% endblock content %}

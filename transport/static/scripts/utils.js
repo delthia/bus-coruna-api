@@ -1,3 +1,4 @@
+// Mensajes de error
 function flash_error(mensaje) {
     // Reiniciar la clase de los elementos animables
     document.getElementById('mensaje-error').classList.remove('animar');
@@ -34,3 +35,16 @@ var pnoa = ['https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg', {
     attribution: '&copy; <a href="https://pnoa.ign.es">PNOA</a>, <a href="https://idee.es">IDEE</a>',
     minZoom: 13
 }];
+
+// Definir los estilos
+osm = L.tileLayer(osm[0], osm[1]);
+pnoa = L.tileLayer(pnoa[0], pnoa[1]);
+bright = L.tileLayer(bright[0], bright[1])
+dark = L.tileLayer(dark[0], dark[1])
+
+// Cadenas para traducir los mensajes del resto de scripts
+cadenas = {
+    'es': ['Línea', 'en la parada', 'Aún no pasó el tiempo necesario', 'Última actualización', 'es-ES'],
+    'gal': ['Liña', 'na parada', 'Aínda non pasou o tempo necesario', 'Última actualización', 'es-ES'],
+    'en': ['Line', 'in the stop', 'Last update was too recently', 'Last updated on', 'en']
+};

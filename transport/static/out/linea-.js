@@ -1,1 +1,0 @@
-var linea = {"type": "FeatureCollection", "features": [{"type": "LineString", "coordinates": []}]};
