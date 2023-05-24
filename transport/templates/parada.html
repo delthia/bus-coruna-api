@@ -5,13 +5,13 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
-<h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga" style="display: none">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
+<h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga" style="display: none" onclick="actualizar(last)">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
 <div class="flex-parada">
     <div class="lineas-parada flex-dentro">
         <div class="linea-parada" id="lineas">
             {% for linea in buses %}
             <div class="linea">
-                <h1 id="{{ linea.linea.id }}">{{ t['linea']|capitalize }} <span class="simbolo_linea" style="backgorund-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
+                <h1 id="{{ linea.linea.id }}">{{ t['linea']|capitalize }} <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
                 {% for bus in linea.buses %}
                     {% if bus.distancia == '0' %}
                         <p>Bus {{ bus.bus }}, <b>{{ t['en-parada'] }}</b>.</p>
@@ -59,5 +59,6 @@
 
 <script>var ubicacion = [ {% if parada.osmcoords != [] %}{{parada.osmcoords[1]}}, {{parada.osmcoords[0]}}{% else %}{{parada.coords[1]}}, {{parada.coords[0]}}{% endif %} ];</script>
 <script src="/static/scripts/lang.js"></script>
+<script src="/static/scripts/utils.js"></script>
 <script src="/static/scripts/parada.js"></script>
 {% endblock content %}

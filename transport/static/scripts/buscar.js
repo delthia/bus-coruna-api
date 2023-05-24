@@ -18,10 +18,7 @@ function buscar() {
         if(id) {
             t = id.textContent || id.innerText;
             n = nombre.textContent || nombre.innerText;
-            if(t.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            }
-            else if(n.toUpperCase().indexOf(filter) > -1) {
+            if(t.toUpperCase().indexOf(filter) > -1 || n.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             }
             else {

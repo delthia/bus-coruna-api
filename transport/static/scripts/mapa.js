@@ -1,57 +1,32 @@
 // Muestra un mapa con todas las paradas utilizando Leaflet-js
 document.getElementById('map').innerHTML = '';
 
-// var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-var tiles = L.tileLayer('https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    minZoom: 13
+idioma = new URLSearchParams(window.location.search).get('lang');   // Guardar el idioma
+estilo = new URLSearchParams(window.location.search).get('mapa');   // Guardar el estilo del mapa
+
+
+// Establecer el estilo del mapa en función del de la página o del parámetro
+if(estilo == 'osm') { style = L.tileLayer(osm[0], osm[1]) }
+else if(estilo == 'pnoa') { style = L.tileLayer(pnoa[0], pnoa[1]) }
+else if(estilo == 'carto-light') { style = L.tileLayer(bright[0], bright[1]) }
+else if(estilo == 'carto-dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { style = L.tileLayer(dark[0], dark[1]) }
+else { style = L.tileLayer(bright[0], bright[1]) }
+
+var mapa = L.map('map', {
+    center: [43.3445, -8.425],
+    zoom: 13,
+    layers: [style]
 });
 
-var bright = L.tileLayer('https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    minZoom: 13
-});
-
-var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>',
-    minZoom: 13
-});
-
-var pnoa = L.tileLayer('https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://pnoa.ign.es">PNOA</a>, <a href="https://idee.es">IDEE</a>',
-    minZoom: 13
-});
-
-
-if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    var map = L.map('map', {
-        center: [43.3445, -8.425],
-        zoom: 13,
-        layers: [tiles]
-    });
-}
-else {
-    var map = L.map('map', {
-        center: [43.3445, -8.425],
-        zoom: 13,
-        layers: [bright]
-    });
-}
-
-var oscuro = {
-    'Osm': osm,
-    'Claro': bright,
-    'Oscuro': tiles,
-    'PNOA (ortofotos)': pnoa
+// Lista de estilos
+var estilos = {
+    'Osm': L.tileLayer(osm[0], osm[1]),
+    'Claro': L.tileLayer(bright[0], bright[1]),
+    'Oscuro': L.tileLayer(dark[0], dark[1]),
+    'PNOA (ortofotos)': L.tileLayer(pnoa[0], pnoa[1]),
 };
 
-var layerControl = L.control.layers(oscuro).addTo(map);
-
-// const layerControl = L.control.layers(baseLayers).addTo(map);
+var layerControl = L.control.layers(estilos).addTo(mapa);   // Añadir el selector de estilos
 
 function onEachFeature(feature, layer) {
     if(feature.properties && feature.properties.popupContent) {
@@ -59,6 +34,7 @@ function onEachFeature(feature, layer) {
     }
 }
 
+// Añadir los marcadores al mapa
 var geojson = L.geoJson(paradas, { onEachFeature: onEachFeature});
 var paradas = L.markerClusterGroup({
     spiderflyOnMaxZoom: false,
@@ -67,15 +43,9 @@ var paradas = L.markerClusterGroup({
 });
 
 paradas.addLayer(geojson);
-map.addLayer(paradas);
+mapa.addLayer(paradas);
 
-var userIcon = L.icon({
-    iconUrl: 'static/icons/userIcon.png',
-
-    iconSize: [48, 48],
-    iconAnchor: [24, 48]
-});
-
+// Marcador para la posición del usuario
 var marcador = L.icon({
     iconUrl: 'static/icons/marcador-3.png',
 
@@ -83,21 +53,14 @@ var marcador = L.icon({
     iconAnchor: [16, 16]
 });
 
-map.locate({setView: true, maxZoom: 16});
+mapa.locate({setView: true, maxZoom: 16});
 
-function onLocationFound(e) {
-    // L.marker(e.latlng, {icon: userIcon}).addTo(map)
-    L.marker(e.latlng, {icon: marcador}).addTo(map)
-}
-map.on('locationfound', onLocationFound);
-// map.setMaxBounds(map.getBounds());
+// Centrar la vista en la posición del usuario
+function onLocationFound(e) { L.marker(e.latlng, {icon: marcador}).addTo(mapa) };
+mapa.on('locationfound', onLocationFound);
+
 var topleft = L.latLng(43.3925, -8.4585),
     bottomright = L.latLng(43.2945, -8.3755);
-map.setMaxBounds(L.latLngBounds(topleft, bottomright));
-// L.rectangle([[43.3925, -8.4525], [43.2945, -8.3865]], {color: "#ff7800", weight: 1}).addTo(map);
-//L.rectangle([[43.3925, -8.4585], [43.2945, -8.3755]], {color: "#ff7800", weight: 1}).addTo(map);
+mapa.setMaxBounds(L.latLngBounds(topleft, bottomright));
 
-/*function onLocationError(e) {
-    alert(e.message);
-}
-map.on('locationerror', onLocationError);*/
+mapa.on('locationerror', flash_error('Error al buscar tu ubicación'));
