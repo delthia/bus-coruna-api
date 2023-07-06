@@ -75,7 +75,7 @@ def parada(id_parada):
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang, t=translations[lang]['strings']), 404
     buses = buses_parada(parada['id'],datos+'lineas.json')
     if buses == 1111:
-        return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang, t=translations[lang]['strings']), 404
+        return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang, t=translations[lang]['strings'], lineas=parada['lineas'], leyenda=translations[lang]['sentences'][5]), 404
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
     # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
@@ -94,15 +94,16 @@ def linea(id_linea):
     if line == None:
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang, t=translations[lang]['strings']), 404
     buses = buses_linea(line['id'])
-    if buses == 429:
-        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
-    elif buses['paradas'] == []:
-        return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang, t=translations[lang]['strings']), 404
     for l in paradas['lineas']:
         if l['id'] == id_linea:
             break
+    if buses == 429:
+        return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
+    elif buses['paradas'] == []:
+        # return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang, t=translations[lang]['strings']), 404
+        return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), paradas=l, line=line, lang=lang, t=translations[lang]['strings'], asleep=True)
     # Traducción incompleta
-    return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), buses=buses['paradas'], linea=id_linea, paradas=l, line=line, lang=lang, t=translations[lang]['strings'])
+    return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), paradas=l, line=line, lang=lang, t=translations[lang]['strings'])
 
 # Información sobre el funcionamiento de la página y la contribución a este
 @app.route("/codigo-fuente")

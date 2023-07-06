@@ -3,8 +3,13 @@
 idioma = new URLSearchParams(window.location.search).get('lang');   // Guardar el idioma
 estilo = new URLSearchParams(window.location.search).get('mapa');   // Guardar el estilo de mapa
 document.getElementById('msg-js').style.display = "none";   // Ocultar el error
-actualizar(0);  // Actualizar al cargar la página
-setInterval(function() { actualizar(last) }, 30000);   // Actualizar los datos cada 30s
+if(document.getElementById('estado') == null) {
+    actualizar(0);  // Actualizar al cargar la página
+    setInterval(function() { actualizar(last) }, 30000);   // Actualizar los datos cada 30s
+}
+else {
+    document.getElementById('boton-recarga').style.display = 'none';
+}
 
 // Diagrama
 var last = new Date();  // Momento en el que se actualizaron los datos por última vez
@@ -130,6 +135,10 @@ function calendario(accion) {
 
         // Generar la tabla a partir de los datos y el número de colunmas
         function tabla(datos, ancho) {
+            if(datos.length == 0) {
+                console.log('0')
+                return 'Sin salidas';
+            }
             var a = 0;
             var t = '';
 

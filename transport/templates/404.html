@@ -2,4 +2,11 @@
 {% block content %}
     <h1 class="material-symbols-outlined icono-error">{{ i }}</h1>
     <h2 class="mensaje-error">{{ m }}</h2>
+
+    {% if i == 'remove_road' %}
+        <p style="text-align: center">{{ leyenda }}
+        {% for linea in lineas %}
+            <a href="{{ url_for('linea', id_linea=linea['id']) }}"><span class="simbolo_linea" style="background-color: #{{ linea['color'] }}">{{ linea['nombre'] }}</span></a>
+        {% endfor %}
+    {% endif %}
 {% endblock content %}
