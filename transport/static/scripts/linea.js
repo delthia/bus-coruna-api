@@ -3,6 +3,10 @@
 idioma = new URLSearchParams(window.location.search).get('lang');   // Guardar el idioma
 estilo = new URLSearchParams(window.location.search).get('mapa');   // Guardar el estilo de mapa
 document.getElementById('msg-js').style.display = "none";   // Ocultar el error
+document.getElementById('salidas').style.display = "";
+document.getElementById('boton-recarga').style.display = "";
+document.getElementById('mapa-linea').innerHTML = "";
+document.getElementById('leyenda').style.display = "";
 if(document.getElementById('estado') == null) {
     actualizar(0);  // Actualizar al cargar la página
     setInterval(function() { actualizar(last) }, 30000);   // Actualizar los datos cada 30s

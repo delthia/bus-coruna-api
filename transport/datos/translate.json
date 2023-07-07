@@ -24,7 +24,7 @@
             "Acerca de"
         ],
         "strings": {
-            "mensaje-js": "Para que funcione esta página es necesario ejecutar <a style=\"color: var(--accent)\" href=\"/static/scripts/simbolo-bus.js\" target=\"_blank\">este JavaScript</a>. Haz click en el enlace si quieres verlo antes de permitir su ejecución.",
+            "mensaje-js": "Para que funcione esta página es necesario ejecutar <a style=\"color: var(--accent)\" href=\"/static/scripts/linea.js\" target=\"_blank\">este JavaScript</a>. Haz click en el enlace si quieres verlo antes de permitir su ejecución.",
             "ida": "ida",
             "vuelta": "vuelta",
             "leyenda": "leyenda",
@@ -116,7 +116,7 @@
             "Acerca de"
         ],
         "strings": {
-            "mensaje-js": "Para que funcione esta páxina é necesario executar <a style=\"color: var(--accent)\" href=\"/static/scripts/simbolo-bus.js\" target=\"_blank\">este JavaScript</a>. Fai click na ligazón se queres velo antes de permitir a súa execución.",
+            "mensaje-js": "Para que funcione esta páxina é necesario executar <a style=\"color: var(--accent)\" href=\"/static/scripts/linea.js\" target=\"_blank\">este JavaScript</a>. Fai click na ligazón se queres velo antes de permitir a súa execución.",
             "ida": "ida",
             "vuelta": "volta",
             "leyenda": "lenda",
@@ -208,7 +208,7 @@
             "About"
         ],
         "strings": {
-            "mensaje-js": "For this page to work, <a style=\"color: var(--accent)\" href=\"/static/scripts/simbolo-bus.js\" target=\"_blank\">this JavaScript</a> must be executed. Click the link if you want to see it before allowing its execution.",
+            "mensaje-js": "For this page to work, <a style=\"color: var(--accent)\" href=\"/static/scripts/linea.js\" target=\"_blank\">this JavaScript</a> must be executed. Click the link if you want to see it before allowing its execution.",
             "ida": "going",
             "vuelta": "return",
             "leyenda": "legend",
