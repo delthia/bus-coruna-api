@@ -1,5 +1,5 @@
 import json, requests, time
-from transport.utils import encontrar_linea, encontrar_parada
+from bus.utils import encontrar_linea, encontrar_parada
 # import osmnx as ox
 
 def actualizar(url, dirs):

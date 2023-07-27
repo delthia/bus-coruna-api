@@ -1,15 +1,14 @@
 from flask import render_template, url_for, request, redirect, send_file
-from transport import app
-from transport.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_linea, salidas #, geojson_buses
-# from transport.download import cargar_datos, actualizar_datos
-from transport.download import actualizar
+from bus import app
+from bus.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_linea, salidas #, geojson_buses
+from bus.download import actualizar
 import json
 
 # ¡IMPORTANTE!: Cambiar a falso para que funcione en el servidor de producción
 dev = True
 
 if dev == True:
-    b = 'transport/'
+    b = 'bus/'
 else:
     b = ''
 datos, static = b+'datos/', b+'static/'
