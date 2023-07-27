@@ -83,7 +83,7 @@
                 "titulo": "Fuente del proyecto",
                 "lin1": "Este es un proyecto libre que muestra información en tiempo real sobre el bus de Coruña. Los datos se descargan desde su servidor y se generan algunos archivos que continenen las paradas, las líneas, una relación de estas y un archivo con los datos para el mapa, que se actualizan periódicamente. El servidor también renderiza las páginas con la información dinámica, como los buses para una parada, y hospeda una API que los clientes utilizan para conseguir los últimos datos.",
                 "lin2": "Todo está hecho en python, utilizando la librería <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, una librería para el lenguaje de programación <a href=\"https://python.org\" target=\"blank\">Python</a>. El backend es sencillo, ya que solo tiene las funciones que se mencionan arriba. Lo más complicado son las plantillas utilizadas para renderizar la página, ya que está disponible en tres idiomas y las plantillas deben de funcionar para todos ellos, así como los scripts del frontend, ya que utilizar javascript no es algo a lo que esté acostumbrado.",
-                "lin3": "Después la aplicación se mete en un contenedor de <a href=\"https://docker.com\" target=\"_blank\">Docker</a> utilizando <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, ya que esto me permite instalar y actualizar fácilmente la aplicación en el servidor simplemente ejecutando un script que se incluye en el repositorio.",
+                "lin3": "Después, la aplicación se mete en un contenedor de <a href=\"https://docker.com\" target=\"_blank\">Docker</a> utilizando <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, ya que esto me permite instalar y actualizar fácilmente la aplicación en el servidor simplemente ejecutando un script que se incluye en el repositorio.",
                 "lin4": "El código está publicado en <a href=\"https://github.com/delthia/bus-coruna-api/\" target=\"_blank\">este repositorio de GitHub</a> bajo la licencia <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a>, que está hecha específicamente para software de servidor, de modo que cualquiera puede modificar y ejecutar el programa, siempre y cuando los usuarios sigan teniendo acceso al código fuente de la versión modificada que está utilizando."
             },
             "t-mapa": "mapa",
@@ -130,7 +130,7 @@
             "origen": "orixe",
             "destino": "destino",
             "mapa": "mapa das paradas",
-            "mapa-error": "Se non ves o mapa pode ser porque o teu navegador bloquea os scripts de JavaScript. Se queres saber qué JavaScript exectuta esta página, podes mirar o código fonte. A funcionalidade principal da páxina debería de manterse de todas formas.",
+            "mapa-error": "Se non ves o mapa pode ser porque o teu navegador bloquea os scripts de JavaScript. Se queres saber qué JavaScript executa esta páxina, podes mirar o código fonte. A funcionalidade principal da páxina debería de manterse de todas formas.",
             "paradas": "paradas",
             "buscar": "Busca unha parada...",
             "nombre": "nome",
@@ -247,7 +247,7 @@
                 "info-parada": "Stop information",
                 "desc-parada": "Look up information about which buses are about to arrive. This page also incudes a table that shows the characteristics of the stop with data from <a href=\"https://osm.org\" target=\"_blank\">OpenStreetMap</a>, and a map that shows where the stop is located.",
                 "mapa": "Stop map",
-                "desc-mapa": "A map with all the stops. Touch in an stop to see the lines that go through it or simply to check what stops are found around that area.",
+                "desc-mapa": "A map with all the stops. Touch an stop to see the lines that go through it or simply to check what stops are found around that area.",
                 "enlace-mapa": "See the map",
                 "linea": "Line information",
                 "desc-linea": "Diagram with all the stops for a line, the position of the bus on the itinerary and the schedules for the line. It also shows the connections with other lines in each stop.",
@@ -266,7 +266,7 @@
             "fuente": {
                 "titulo": "Source for the project",
                 "lin1": "This is a free project that shows realtime information on the bus of Coruña. The data is gathered from their server, and some files that contain the stops, the lines, a relation of both and a file with the data for the map is created and updated periodically. The server also renders the pages with the dynamic information such as the buses for an stop, and hosts an API that the client uses the fetch the latest data.",
-                "lin2": "It is all made in python, using <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, a library for the <a href=\"https://python.org\" target=\"_blank\">Python</a> programming language. The backend part is simple, as it just does the functions mentioned above. The more complex part are the templates used to render de page, as this page is available in three languages, and the templates should work for all of them, as well as the scripts for the frontend, as using javascript is not something I'm used to doing.",
+                "lin2": "It is all made using <a href=\"https://flask.palletsprojects.com/\" target=\"_blank\">Flask</a>, a library for the <a href=\"https://python.org\" target=\"_blank\">Python</a> programming language. The backend part is simple, as it just does the functions mentioned above. The more complex part are the templates used to render de page, as this page is available in three languages, and the templates should work for all of them, as well as the scripts for the frontend, as using javascript is not something I'm used to doing.",
                 "lin3": "The application is then put into a <a href=\"https://docker.com\" target=\"_blank\">Docker</a> container, using <a href=\"https://gunicorn.org\" target=\"_blank\">gunicorn</a>, as this allows me to easily install and update it in the server with just executing an script included on the repo.",
                 "lin4": "The code is published in <a href=\"https://github.com/delthia/bus-coruna-api\" target=\"_blank\">this GitHub repository</a> under the <a href=\"https://www.gnu.org/licenses/agpl-3.0.html\" target=\"_blank\">AGPL-v3</a> license, which is specifically made for server software, so that anyone can modify and run the program, as long as the users still have access to the source for the modified version they are using."
             },
