@@ -1,0 +1,4 @@
+venv/
+bus/datos
+bus/static/paradas.geojson.js
+bus/__pycache__
