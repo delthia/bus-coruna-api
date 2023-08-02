@@ -1,4 +1,19 @@
-venv/
-bus/datos
-bus/static/paradas.geojson.js
+.gitignore
+tests/client-recreacion
+venv
+api
 bus/__pycache__
+tests/__pycache__
+bus/cache
+tests/
+Screenshot 2022-09-28 at 20-39-14 429 Too Many Requests.png
+screenshot.png
+tests/
+cache/
+bus/static/scripts/buses.js
+bus/static/scripts/L.Realtime.js
+bus/datos/rutas.json
+bus/datos/paradas.json
+bus/static/paradas.geojson.js
+bus/datos/lineas.json
+test/
