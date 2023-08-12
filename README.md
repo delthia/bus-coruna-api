@@ -2,7 +2,7 @@
 ![licencia](https://img.shields.io/github/license/delthia/bus-coruna-api)
 ![tamaño](https://img.shields.io/github/repo-size/delthia/bus-coruna-api)
 
-![Captura de pantalla de la página de inicio](transport/static/img/homepage.webp)
+![Captura de pantalla de la página de inicio](bus/static/img/homepage.webp)
 
 Este proyecto consiste en una página que muestra datos en tiempo real del [Bus de Coruña](https://itranvias.com), combinados con información sobre las paradas y mapas con datos de [OpenStreetMap](https://osm.org).
 
@@ -11,12 +11,12 @@ Es una página hecha con [flask](https://flask.palletsprojects.com) que descarga
 Aunque incluye elementos con JavaScript, como los mapas o la habilidad de actualizar los datos en tiempo real, es posible consultar las paradas y sus datos sin javascript.
 
 ## PWA: Aplicación Web Progresiva
-![página de inicio en android](transport/static/img/readme-screenshots/inicio.webp)
-![página de inicio en android](transport/static/img/readme-screenshots/mapa.webp)
-![página de inicio en android](transport/static/img/readme-screenshots/paradas.webp)
-![página de inicio en android](transport/static/img/readme-screenshots/parada.webp)
-![página de inicio en android](transport/static/img/readme-screenshots/lineas.webp)
-![página de inicio en android](transport/static/img/readme-screenshots/linea.webp)
+![página de inicio en android](bus/static/img/readme-screenshots/inicio.webp)
+![página de inicio en android](bus/static/img/readme-screenshots/mapa.webp)
+![página de inicio en android](bus/static/img/readme-screenshots/paradas.webp)
+![página de inicio en android](bus/static/img/readme-screenshots/parada.webp)
+![página de inicio en android](bus/static/img/readme-screenshots/lineas.webp)
+![página de inicio en android](bus/static/img/readme-screenshots/linea.webp)
 
 La página se puede como una Aplicación Web Progresiva, por lo que se puede instalar en un télefono como una aplicación nativa, almacenando algunos recursos y creando un lanzador con atajos.
 
