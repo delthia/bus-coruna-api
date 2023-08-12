@@ -19,6 +19,7 @@ from bus import app
 from bus.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_linea, salidas #, geojson_buses
 from bus.download import actualizar
 import json
+from bus import cache
 
 # ¡IMPORTANTE!: Cambiar a falso para que funcione en el servidor de producción
 dev = True
@@ -93,9 +94,7 @@ def parada(id_parada):
         return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang, t=translations[lang]['strings'], lineas=parada['lineas'], leyenda=translations[lang]['sentences'][5]), 404
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
-    # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang)
     return render_template('parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang, t=translations[lang]['strings'])
-    # return render_template(lang+'/parada.html', title=parada['nombre'], buses=buses['lineas'], parada=parada, lang=lang)
 
 # Línea. Muestra las paradas para una línea en un diagrama y la posición de los buses en el recorrido
 @app.route("/linea/<int:id_linea>")
@@ -148,6 +147,7 @@ def changelog():
 # |_____|_|_| |_|\___|\__,_|___/
 # Devuelve información sobre la línea que se especifica en <id_linea>. (color, destino, id, nombre, origen)
 @app.route("/api/linea/<int:id_linea>")
+@cache.cached(timeout=900)
 def api_linea(id_linea):
     lin = encontrar_linea(id_linea,lins)
     if lin == None:
@@ -170,6 +170,7 @@ def coords_buses(id_linea):
 
 # Devuelve las posiciones en el recorrido de los buses de la línea que se especifica en <id_linea>
 @app.route("/api/linea/<int:id_linea>/buses")
+@cache.cached(timeout=20)
 def bus_linea(id_linea):
     line = encontrar_linea(id_linea, lins)
     if line == None:
@@ -182,11 +183,14 @@ def bus_linea(id_linea):
 
 # Igual que /api/linea, peor devuelve la lista de todas las líneas
 @app.route("/api/lineas/")
+@cache.cached(timeout=900)
 def api_lineas():
+    print('a')
     return lins
     
 # GeoJSON con las paradas de una línea
 @app.route("/api/linea/<int:id_linea>/paradas")
+@cache.cached(timeout=900)
 def paradas_linea(id_linea):
     line = encontrar_linea(id_linea, lins)
     if line == None:
@@ -198,6 +202,7 @@ def paradas_linea(id_linea):
 
 # Salidas de una línea
 @app.route("/api/linea/<int:id_linea>/salidas/<int:fecha>")
+@cache.cached(timeout=900)
 def salidas_linea(id_linea, fecha):
     line = encontrar_linea(id_linea, lins)
     if line == None:
@@ -211,6 +216,7 @@ def salidas_linea(id_linea, fecha):
 # |_|   \__,_|_|  \__,_|\__,_|\__,_|___/
 # Devuelve los próximos buses para la parada que se especifíca en <id_parada>, así como información de cada línea. (bus, distancia, estado, tiempo, última_parada); línea: [color, destino, id, nombre, origen]
 @app.route("/api/parada/<int:id_parada>/buses")
+@cache.cached(timeout=20)
 def api_parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
@@ -221,6 +227,7 @@ def api_parada(id_parada):
 # Devuelve información sobre la parada que se especifica en <id_parada>: [coordenadas, líneas: [color, id, nombre], coordenadas_openstreetmap, propiedades: [banco, papelera, iluminada, marquesina, pavimento]]
 @app.route("/api/parada/<int:id_parada>/detalles")
 @app.route("/api/parada/<int:id_parada>")
+@cache.cached(timeout=900)
 def api_detalles_parada(id_parada):
     parada = encontrar_parada(id_parada, pards)
     if parada == None:
@@ -229,6 +236,7 @@ def api_detalles_parada(id_parada):
 
 # Igual que /api/parada, pero devuelve la lista de todas las paradas
 @app.route("/api/paradas/")
+@cache.cached(timeout=900)
 def api_paradas():
     return pards
 #                      _                               _

@@ -16,8 +16,14 @@
 
 from flask_minify import Minify
 from flask import Flask
+from flask_caching import Cache
 
+cache = Cache(config = {
+    'CACHE_TYPE': 'SimpleCache',
+    'CACHE_DEFAULT_TIMEOUT': 20
+})
 app = Flask(__name__)
 Minify(app=app, html=True, js=True, cssless=True, bypass=['paradas'])
+cache.init_app(app)
 
 from bus import routes
