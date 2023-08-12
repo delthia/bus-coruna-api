@@ -14,7 +14,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import requests, json, math, datetime
+import requests
+import json
+import math
+import datetime
 
 cache_paradas = {}  # Diccionario que almacena los datos de las paradas; {'565': [<dato>, <fecha_dato>]}
 cache_lineas = {}   # Diccionario que almacena los datos de las líneas
@@ -34,16 +37,6 @@ def encontrar_parada(id, datos):
     for parada in datos['paradas']:
         if parada['id'] == id:
             return parada
-
-# Genera una lista de las líneas que pasan por una parada. Se utiliza para generar los diálogos del mapa, por lo que también incluye el HTML para los enlaces
-"""
-def lineas_parada(parada, datos):
-    lins = '<br>'
-    for linea in parada['enlaces']:
-        lin = encontrar_linea(linea, datos)
-        lins = lins+'<a href="./linea/'+str(linea)+'" class="simbolo_linea" style="background-color: #'+lin['color']+'">'+lin['lin_comer']+'</a>'
-    return lins
-"""
 
 # Recoge los datos actuales de los buses para una parada
 def buses_parada(parada, directorio):

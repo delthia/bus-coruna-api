@@ -115,7 +115,6 @@ def linea(id_linea):
     if buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
     elif buses['paradas'] == []:
-        # return render_template('404.html', i='clear_night', m=translations[lang]['sentences'][4], lang=lang, t=translations[lang]['strings']), 404
         return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), paradas=l, line=line, lang=lang, t=translations[lang]['strings'], asleep=True)
     # Traducción incompleta
     return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), paradas=l, line=line, lang=lang, t=translations[lang]['strings'])
@@ -184,8 +183,7 @@ def bus_linea(id_linea):
 # Igual que /api/linea, peor devuelve la lista de todas las líneas
 @app.route("/api/lineas/")
 def api_lineas():
-    with open(datos+rutas['lineas']) as l:
-        return json.load(l)
+    return lins
     
 # GeoJSON con las paradas de una línea
 @app.route("/api/linea/<int:id_linea>/paradas")
@@ -232,9 +230,7 @@ def api_detalles_parada(id_parada):
 # Igual que /api/parada, pero devuelve la lista de todas las paradas
 @app.route("/api/paradas/")
 def api_paradas():
-    with open(datos+rutas['paradas']) as p:
-        return json.load(p)
-
+    return pards
 #                      _                               _
 #  ___  ___ _ ____   _(_) ___ ___  __      _____  _ __| | _____ _ __
 # / __|/ _ \ '__\ \ / / |/ __/ _ \ \ \ /\ / / _ \| '__| |/ / _ \ '__|

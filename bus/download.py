@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import json, requests, time
+import json
+import requests
+import time
 from bus.utils import encontrar_linea, encontrar_parada
 # import osmnx as ox
 
