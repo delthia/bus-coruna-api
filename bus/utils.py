@@ -69,19 +69,24 @@ def geojson_linea(id, geojson):
     head = {'type': 'FeatureCollection', 'features': []}
     for linea in geojson['lineas']:
         if linea['id'] == id:
-            for parada in linea['paradas']['ida']:
-                if parada['osmcoords'] == []:
-                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['coords']}}
-                else:
-                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['osmcoords']}}
-                head['features'].append(feature)
-            for parada in linea['paradas']['vuelta']:
-                if parada['osmcoords'] == []:
-                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['coords']}}
-                else:
-                    feature = {'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': parada['nombre']}, 'geometry': {'type': 'Point', 'coordinates': parada['osmcoords']}}
-                head['features'].append(feature)
-    return 'var paradas = '+json.dumps(head)+';'
+            for sentido in linea['paradas'].keys():
+                for parada in linea['paradas'][sentido]:
+                    if parada['osmcoords'] == []:
+                        coordenadas = parada['coords']
+                    else:
+                        coordenadas = parada['osmcoords']
+                    head['features'].append({
+                        'type': 'Feature',
+                        'properties': {
+                            'name': parada['nombre'],
+                            'popupContent': parada['nombre']
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': coordenadas
+                        }
+                    })
+    return f'var paradas = {json.dumps(head)};'
 
 # Salidas de una línea
 def salidas(id, fecha):

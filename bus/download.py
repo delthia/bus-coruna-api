@@ -52,7 +52,13 @@ def json_lineas(datos, dir):
     with open(dir, 'w') as f:
         d = {'lineas': []}
         for l in datos['lineas']:
-            d['lineas'].append({'id': l['id'], 'nombre': l['lin_comer'], 'origen': l['nombre_orig'], 'destino': l['nombre_dest'], 'color': l['color']})
+            d['lineas'].append({
+                'id': l['id'],
+                'nombre': l['lin_comer'],
+                'origen': l['nombre_orig'],
+                'destino': l['nombre_dest'],
+                'color': l['color']
+            })
         f.write(json.dumps(d))
 
 # Genera un JSON con todas las paradas. (id, nombre, propiedades: [pavimento, banco, marquesina, papelera, iluminada], líneas: [id, nombre, color], coordenadas, coordenadas de OpenStreetMap)
@@ -85,8 +91,19 @@ def json_paradas(datos, dir, osm):
                 l = []
                 for e in p['enlaces']:  # Generar una lista con los detalles de las líneas que pasan por la parada. (id, nombre, color)
                     linea = encontrar_linea(e, datos)
-                    l.append({'id': linea['id'], 'nombre': linea['lin_comer'], 'color': linea['color']})
-                parada = {'id': p['id'], 'nombre': p['nombre'], 'propiedades': d, 'lineas': l, 'coords': [p['posx'], p['posy']], 'osmcoords': osmcoords}
+                    l.append({
+                        'id': linea['id'],
+                        'nombre': linea['lin_comer'],
+                        'color': linea['color']
+                    })
+                parada = {
+                    'id': p['id'],
+                    'nombre': p['nombre'],
+                    'propiedades': d,
+                    'lineas': l,
+                    'coords': [p['posx'], p['posy']],
+                    'osmcoords': osmcoords
+                }
                 o['paradas'].append(parada)
         a.write(json.dumps(o))  # Escribir la parada al archivo
 
