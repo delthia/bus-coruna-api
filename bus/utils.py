@@ -106,18 +106,18 @@ def salidas(id, fecha):
 
 
 def peticion(dato, tipo):
-        if tipo == 'parada':
-            func = 0
-            # Convertir la parada a una ip. ej: parada 1=192.168.0.1; parada 256=192.168.1.1; parada 300=192.168.1.5
-            # 192.168.1.0//192.168.255.255 -> dato/256, truncar (=x). dato-(256*x) (=y) => 192.168.x.y
-            x = math.trunc(dato/256)+1
-            y = dato-256*(x-1)
-            ip = '192.168.'+str(x)+'.'+str(y)
-        elif tipo == 'linea':
-            func = 2
-            # Convertir la línea en una ip. ej: línea 301=192.168.0.4
-            # 192.168.0.0//192.168.0.255 -> dato/100, aproximar hacia arriba
-            i = math.ceil(dato/100)
-            ip = '192.168.0.'+str(i)
-        base = 'https://itranvias.com/queryitr_v3.php?func='
-        return requests.get(base+str(func)+'&dato='+str(dato), headers={'X-Forwarded-For': ip}).json()
+    if tipo == 'parada':
+        func = 0
+        # Convertir la parada a una ip. ej: parada 1=192.168.0.1; parada 256=192.168.1.1; parada 300=192.168.1.5
+        # 192.168.1.0//192.168.255.255 -> dato/256, truncar (=x). dato-(256*x) (=y) => 192.168.x.y
+        x = math.trunc(dato/256)+1
+        y = dato-256*(x-1)
+        ip = '192.168.'+str(x)+'.'+str(y)
+    elif tipo == 'linea':
+        func = 2
+        # Convertir la línea en una ip. ej: línea 301=192.168.0.4
+        # 192.168.0.0//192.168.0.255 -> dato/100, aproximar hacia arriba
+        i = math.ceil(dato/100)
+        ip = '192.168.0.'+str(i)
+    base = 'https://itranvias.com/queryitr_v3.php?func='
+    return requests.get(base+str(func)+'&dato='+str(dato), headers={'X-Forwarded-For': ip}).json()
