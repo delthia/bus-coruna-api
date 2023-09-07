@@ -230,15 +230,15 @@
   }
 
 /* Contenedores para la página principal */
-.contenedor-pp {
+#escalonado > div {
     display: flex;
     overflow: hidden;
 }
-.contenedor-pp img {
+#escalonado div > img {
     width: 65%;
     object-fit: cover;
 }
-.contenedor-pp div {
+#escalonado div > div {
     flex-grow: 1;
     padding-left: 1.5em;
     width: 1%;
@@ -246,11 +246,11 @@
     line-height: 1.5em;
     margin-top: 50px;
 }
-.pp-r div {
-    padding-left: 0px;
+#escalonado div:nth-child(odd) > div {
+    padding-left: 0px!important;
     padding-right: 1.5em;
 }
-.contenedor-pp p {
+#escalonado div >  p {
     margin-left: 0.5em;
 }
 .enlace-pp {

@@ -62,7 +62,7 @@ body {
     background-color: var(--bd);
     font-family: 'Roboto';
 }
-.parrafo a, .contenedor-pp a, .source {
+.parrafo a, #escalonado a, .source {
     color: var(--accent);
 }
 .parrafo {

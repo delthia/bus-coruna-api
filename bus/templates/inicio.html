@@ -1,8 +1,8 @@
 {% extends "disposicion.html" %}{% block head %}<link rel="stylesheet" type="text/css" href="/static/css/other.css">{% endblock head %}
 {% block content %}
-<div>
+<div id="escalonado">
     <h1>bus.delthia.com <i style="font-size: 65%">- {{ t.descripcion }}</i></h1>
-    <div class="contenedor-pp">
+    <div>
         <img src="/static/img/parada.webp">
         <div>
             <h1>{{ t.inicio['info-parada'] }}</h1>
@@ -21,7 +21,7 @@
             </script>
         </div>
     </div>
-    <div class="contenedor-pp pp-r">
+    <div>
         <div>
             <h1>{{ t.inicio.mapa }}</h1>
             <p>{{ t.inicio['desc-mapa'] }}</p>
@@ -29,7 +29,7 @@
         </div>
         <img src="/static/img/mapa.webp">
     </div>
-    <div class="contenedor-pp">
+    <div>
         <img src="/static/img/linea-nuevo.webp">
         <div>
             <h1>{{ t.inicio.linea }}</h1>
@@ -37,7 +37,7 @@
             <a href="{{ url_for('lineas', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-linea'] }}</a>
         </div>
     </div>
-    <div class="contenedor-pp pp-r">
+    <div>
         <div>
             <h1>{{ t.inicio.fuente }}</h1>
             <p>{{ t.inicio['desc-fuente'] }}</p>
