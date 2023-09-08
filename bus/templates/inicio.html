@@ -9,7 +9,7 @@
             <p>{{ t.inicio['desc-parada']|safe }}</p>
             <!-- <div id="caja" style="visibility: hidden"> -->
                 <input type="text" class="buscar-pp" id="b" onkeyup="enlace()" placeholder="{{ t.buscar }}">
-                <a href="{{ url_for('paradas', lang=lang ) }}" class="enlace-pp b-pp"><span class="material-symbols-outlined" style="vertical-align: middle;">search</span></a>
+                <a href="{{ url_for('paradas', lang=lang ) }}" class="enlace-pp b-pp" id="lupa"><span class="material-symbols-outlined" style="vertical-align: middle;">search</span></a>
             <!-- </div> -->
             <script>
                 // document.getElementById('caja').style.visibility = "visible";
