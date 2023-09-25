@@ -12,7 +12,8 @@
     --grey: #4f4f4f;
     --table-even: #f5f5f5;
     --h-parada: #4caf50;    /* Material green 500 */
-    --h-status: #f44336;    /* Material reed 500 */
+    --h-status: #f44336;    /* Material red 500 */
+    --amarillo: #FDD835;    /* Material yellow 600 */
 }
 
 /* Modo oscuro */
@@ -26,6 +27,7 @@
         --haccent: #b39ddb; /* Material deep purple 200 */
         --grey: #eeeeee;
         --table-even: #202020;
+        --amarillo: #fff176;    /* Material yellow 300 */
     }
 
     td > a {
@@ -100,10 +102,15 @@ header .material-symbols-outlined {
     padding: 2px 8px;
     border-radius: 4px;
     color: white!important;
+
+    display: inline-block;
+    min-width: 3ch;
+    text-align: center;
 }
 .simbolo_linea, a {
     text-decoration: none;
 }
+.leaflet-popup-content { text-align: center; }
 
 h1 {
     font-size: 200%;
@@ -249,3 +256,36 @@ footer {
 .animar.bordeerror {
     animation-name: indicador;
 }
+
+/* Mensajes informativos */
+#mensaje  {
+    padding: 8px 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0px 0px 8px 8px;
+}
+#mensaje .material-symbols-outlined { vertical-align: middle; }
+
+.mensaje-verde {
+    background-color: #00C8532a;
+    border-color: #00C853;
+}
+.mensaje-verde .material-symbols-outlined {  color: #4CAF50; }
+
+.mensaje-rojo {
+    background-color: #D500002a;
+    border-color: #D50000;
+}
+.mensaje-rojo .material-symbols-outlined {  color: #D50000; }
+
+.mensaje-morado {
+    background-color: #6200EA2a;
+    border-color: #6200EA;
+}
+.mensaje-morado .material-symbols-outlined {  color: #6200EA; }
+
+.mensaje-naranja {
+    background-color: #FF6D002a;
+    border-color: #FF6D00;
+}
+.mensaje-naranja .material-symbols-outlined {  color: #FF6D00; }

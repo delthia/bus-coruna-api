@@ -54,7 +54,12 @@ def inicio():
         lang = translations['default']
     elif lang not in translations['langs']: # Si el valor indicado no existe, eliminar el parámetro
         return redirect(url_for('inicio'))
-    return render_template('inicio.html', lang=lang, t=translations[lang]['strings'])
+    mensaje = {
+        'color': "morado",
+        'icono': "info",
+        'texto': "Hola"
+    }
+    return render_template('inicio.html', lang=lang, t=translations[lang]['strings'], mensaje=mensaje)
 
 # Mapa con todas las paradas
 @app.route("/mapa")
@@ -133,6 +138,13 @@ def changelog():
     if lang not in translations['langs']:
         return redirect(url_for('fuente', lang=translations['default']))
     return render_template('changelog.html', title=translations[lang]['titles'][5], lang=lang, t=translations[lang]['strings'])
+
+@app.route("/tarifas")
+def tarifas():
+    lang = request.args.get('lang', type=str)
+    if lang not in translations['langs']:
+        return redirect(url_for('fuente', lang=translations['default']))
+    return render_template('tarifas.html', title='Tarifas', lang=lang, t=translations[lang]['strings'])
 
 #     _    ____ ___
 #    / \  |  _ \_ _|

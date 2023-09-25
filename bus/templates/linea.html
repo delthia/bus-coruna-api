@@ -3,7 +3,7 @@
 {% block content %}
 {% include 'includes/leaflet.html' %}   <!-- leafletjs -->
 
-<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#horas"><span class="material-symbols-outlined recargar" id="salidas" onclick="calendario()" style="display: none">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga" onclick="actualizar(last)" style="display: none">refresh</span>{% if asleep == True %}<span class="material-symbols-outlined" style="color: #fff176; user-select: none; border: 1px solid #fff176; border-radius: 4px; padding: 4px 12px;" id="estado">bedtime</span>{% endif %} <small style="font-size: 45%" id="t"></small></h1>
+<h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#horas"><span class="material-symbols-outlined recargar" id="salidas" onclick="calendario()" style="display: none">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga" onclick="actualizar(last)" style="display: none">refresh</span>{% if asleep == True %}<span class="material-symbols-outlined" style="color: var(--amarillo); user-select: none; border: 1px solid var(--amarillo); border-radius: 4px; padding: 4px 12px;" id="estado">bedtime</span>{% endif %} <small style="font-size: 45%" id="t"></small></h1>
 <span id="alerta" style="display: none"></span>
 <i id="msg-js">{{ t['mensaje-js']|safe }}</i>
 
