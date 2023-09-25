@@ -47,9 +47,12 @@
     border-radius: 10px 10px 0px 0px;
 }
 
-#map {
+.contenido {
     display: flex;
-    flex-direcion: column;
-    flex: 1;
+    flex-direction: column;
+}
+
+#map {
+    flex-grow: 1;
 }
 

@@ -63,7 +63,12 @@ body {
     box-shadow: 0 0 10px var(--sh);
     background-color: var(--bd);
     font-family: 'Roboto';
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+.contenido { flex-grow: 1; }    /* Llevar el pie al borde de la pantalla */
+
 .parrafo a, #escalonado a, .source {
     color: var(--accent);
 }
@@ -107,10 +112,14 @@ header .material-symbols-outlined {
     min-width: 3ch;
     text-align: center;
 }
-.simbolo_linea, a {
-    text-decoration: none;
-}
+.simbolo_linea, a, a.simbolo_linea:hover { text-decoration: none;}
 .leaflet-popup-content { text-align: center; }
+
+.simbolo_linea {
+    user-select: none;
+    margin-right: 4px;
+}
+td > .simbolo_linea { margin-right: auto; }
 
 h1 {
     font-size: 200%;
