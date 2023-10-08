@@ -24,6 +24,7 @@ import datetime
 import json
 import math
 import requests
+from bus import cache
 
 # Buscar una línea en la lista de líneas y devolverla
 def encontrar_linea(id, datos):
@@ -38,8 +39,12 @@ def encontrar_parada(id, datos):
             return parada
 
 # Datos actuales de los buses para una parada
+@cache.memoize(20)
 def buses_parada(id_parada, jlineas):
-    parada = peticion(id_parada, 'parada')
+    try:
+        parada = peticion(id_parada, 'parada')
+    except:
+        return 429
     if not 'lineas' in parada['buses']:
         return {'error': 'No hay buses para esta parada'}
     for linea in range(len(parada['buses']['lineas'])):
@@ -47,8 +52,12 @@ def buses_parada(id_parada, jlineas):
     return parada
 
 # Datos actuales de las posiciones de los buses en una línea
+@cache.memoize(20)
 def buses_linea(linea):
-    return peticion(linea, 'linea')
+    try:
+        return peticion(linea, 'linea')
+    except:
+        return 429
 
 # GeoJSON con las paradas de una línea
 def geojson_linea(id, rutas):
