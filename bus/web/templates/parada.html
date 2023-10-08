@@ -29,23 +29,23 @@
             </tr>
             <tr>
                 <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">blind</span> {{ t['pavimento']|capitalize }}</td>
-                <td>{% if parada.propiedades.tactile_paving == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.tactile_paving == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if parada.propiedades.tactile_paving == True %}{{ t['si']|capitalize }}{% elif parada.propiedades.tactile_paving == False %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
             <tr>
                 <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">airline_seat_recline_normal</span> {{ t['banco']|capitalize }}</td>
-                <td>{% if parada.propiedades.bench == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.bench == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if parada.propiedades.bench == True %}{{ t['si']|capitalize }}{% elif parada.propiedades.bench == False %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
             <tr>
                 <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">roofing</span> {{ t['cubierta']|capitalize }}</td>
-                <td>{% if parada.propiedades.shelter == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.shelter == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if parada.propiedades.shelter == True %}{{ t['si']|capitalize }}{% elif parada.propiedades.shelter == False %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
             <tr>
                 <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">delete</span> {{ t['papelera']|capitalize }}</td>
-                <td>{% if parada.propiedades.bin == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.bin == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if parada.propiedades.bin == True %}{{ t['si']|capitalize }}{% elif parada.propiedades.bin == False %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
             <tr>
                 <td><span class="material-symbols-outlined" style="vertical-align: middle; user-select: none;">light</span>{{ t['iluminada']|capitalize }}</td>
-                <td>{% if parada.propiedades.lit == 'y' %}{{ t['si']|capitalize }}{% elif parada.propiedades.lit == 'n' %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
+                <td>{% if parada.propiedades.lit == True %}{{ t['si']|capitalize }}{% elif parada.propiedades.lit == False %}{{ t['no']|capitalize }}{% else %}-{% endif %}</td>
             </tr>
         </table>
         <div id="mapa-parada">{{ t['mapa-parada'] }}</div>

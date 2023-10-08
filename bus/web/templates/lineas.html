@@ -9,9 +9,9 @@
     </tr>
     {% for linea in lineas['lineas'] %}
         <tr>
-            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
-            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="enlace-tabla a-p">{{ linea.origen }}</a></td>
-            <td><a href="{{ url_for('linea', id_linea=linea.id, lang=lang) }}" class="enlace-tabla a-p">{{ linea.destino }}</a></td>
+            <td><a href="{{ url_for('web.linea', id_linea=linea.id, lang=lang) }}" class="simbolo_linea" style="background-color: #{{linea.color}}">{{ linea.nombre }}</a></td>
+            <td><a href="{{ url_for('web.linea', id_linea=linea.id, lang=lang) }}" class="enlace-tabla a-p">{{ linea.origen }}</a></td>
+            <td><a href="{{ url_for('web.linea', id_linea=linea.id, lang=lang) }}" class="enlace-tabla a-p">{{ linea.destino }}</a></td>
         </tr>
     {% endfor %}
 </table>

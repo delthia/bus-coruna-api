@@ -4,9 +4,11 @@
     <h2 class="mensaje-error">{{ m }}</h2>
 
     {% if i == 'remove_road' %}
+    <div style="font-size: 125%">
         <p style="text-align: center">{{ leyenda }}
         {% for linea in lineas %}
-            <a href="{{ url_for('linea', id_linea=linea['id']) }}"><span class="simbolo_linea" style="background-color: #{{ linea['color'] }}">{{ linea['nombre'] }}</span></a>
+            <a href="{{ url_for('linea', id_linea=linea['id']) }}"><span class="simbolo_linea" style="background-color: #{{ linea['color'] }}; margin-left: 0.5ch; margin-bottom: 0.5ch;">{{ linea['nombre'] }}</span></a>
         {% endfor %}
+    </div>
     {% endif %}
 {% endblock content %}

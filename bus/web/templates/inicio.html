@@ -9,7 +9,7 @@
             <p>{{ t.inicio['desc-parada']|safe }}</p>
             <!-- <div id="caja" style="visibility: hidden"> -->
                 <input type="text" class="buscar-pp" id="b" onkeyup="enlace()" placeholder="{{ t.buscar }}">
-                <a href="{{ url_for('paradas', lang=lang ) }}" class="enlace-pp b-pp" id="lupa"><span class="material-symbols-outlined" style="vertical-align: middle;">search</span></a>
+                <a href="{{ url_for('web.paradas', lang=lang ) }}" class="enlace-pp b-pp" id="lupa"><span class="material-symbols-outlined" style="vertical-align: middle;">search</span></a>
             <!-- </div> -->
             <script>
                 // document.getElementById('caja').style.visibility = "visible";
@@ -25,7 +25,7 @@
         <div>
             <h1>{{ t.inicio.mapa }}</h1>
             <p>{{ t.inicio['desc-mapa'] }}</p>
-            <a href="{{ url_for('mapa', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-mapa'] }}</a>
+            <a href="{{ url_for('web.mapa', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-mapa'] }}</a>
         </div>
         <img src="/static/img/mapa.webp">
     </div>
@@ -34,7 +34,7 @@
         <div>
             <h1>{{ t.inicio.linea }}</h1>
             <p>{{ t.inicio['desc-linea'] }}</p>
-            <a href="{{ url_for('lineas', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-linea'] }}</a>
+            <a href="{{ url_for('web.lineas', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-linea'] }}</a>
         </div>
     </div>
     <div>
@@ -42,7 +42,7 @@
             <h1>{{ t.inicio.fuente }}</h1>
             <p>{{ t.inicio['desc-fuente'] }}</p>
             <p>{{ t.inicio['desc-fuente-2']|safe }}</p>
-            <a href="{{ url_for('fuente', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-fuente'] }}</a>
+            <a href="{{ url_for('web.fuente', lang=lang ) }}" class="enlace-pp">{{ t.inicio['enlace-fuente'] }}</a>
         </div>
         <img src="/static/img/github.webp" style="border-radius: 16px; margin-bottom: 25px;">
     </div>
