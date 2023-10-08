@@ -20,25 +20,47 @@
     líneas y una relación entre ambas. También genera otros archivos con datos
     adicionales como son las tarifas o los enlaces entre líneas.
 """
+from datetime import datetime, timedelta
 import json
+import os
 import requests
-import time
 from bus.utils import encontrar_linea, encontrar_parada
 
 # Actualizar los datos a partir de la URL del servidor y el directorio del resultado
 def actualizar(url, dirs):
-    with open(dirs['queryitr']) as f:
-        respuesta = json.load(f)['iTranvias']['actualizacion']
+    # Cargar los datos de los archivos
+    def cargar_archivos(dirs):
+        with open(dirs['lineas']) as lineas:
+            jlineas = json.load(lineas)
 
-    # Cargar los datos de openstreetmap
-    with open(dirs['osm']) as archivo:
-        osm = json.load(archivo)
+        with open(dirs['paradas']) as paradas:
+            jparadas = json.load(paradas)
 
-    # Generar los archivos y cargar los datos
-    jlineas = json_lineas(respuesta['lineas'], dirs['lineas'])
-    jparadas = json_paradas(respuesta['paradas'], dirs['paradas'], osm, jlineas)
-    jrutas = json_rutas(respuesta['lineas'], dirs['rutas'], jparadas)
-    geojson(jparadas, dirs['geojson'])
+        with open(dirs['rutas']) as rutas:
+            jrutas = json.load(rutas)
+
+        return jlineas, jparadas, jrutas
+
+    # Si los archivos existen y hace menos de 12horas que se actualizaron
+    if os.path.exists(dirs['lineas']) and datetime.fromtimestamp(os.path.getmtime(dirs['lineas'])) > datetime.now() - timedelta(hours=12):
+        # Solo cargar los archivos
+        jlineas, jparadas, jrutas = cargar_archivos(dirs)
+
+    else:   # En caso contrario
+        try:
+            respuesta = requests.get(url).json()['iTranvias']['actualizacion']
+
+            # Cargar los datos de openstreetmap
+            with open(dirs['osm']) as archivo:
+                osm = json.load(archivo)
+
+            # Generar los archivos y cargar los datos
+            jlineas = json_lineas(respuesta['lineas'], dirs['lineas'])
+            jparadas = json_paradas(respuesta['paradas'], dirs['paradas'], osm, jlineas)
+            jrutas = json_rutas(respuesta['lineas'], dirs['rutas'], jparadas)
+            geojson(jparadas, dirs['geojson'])
+        except:
+            jlineas, jparadas, jrutas = cargar_archivos(dirs)        
 
     return jlineas, jparadas, jrutas    # Devolver los datos actualizados
 
