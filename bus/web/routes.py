@@ -150,9 +150,9 @@ def tarifas():
 # Service Worker que permite instalar la aplicación como PWA
 @web.route("/sw.js")
 def sw():
-    pass
+    return send_file('static/scripts/sw.js')
 
 # robots.txt
 @web.route("/robots.txt")
 def robots():
-    pass
+    return send_file('static/robots.txt')
