@@ -43,7 +43,7 @@ def inicio():
     if not lang:    # Si no se especifica un idioma con el parámetro, tomar el valor por defecto
         lang = translations['default']
     elif lang not in translations['langs']: # Si el valor indicado no existe, eliminar el parámetro
-        return redirect(url_for('inicio'))
+        return redirect(url_for('web.inicio'))
     return render_template('inicio.html', lang=lang, t=translations[lang]['strings'])
 
 # Mapa con todas las paradas
@@ -51,7 +51,7 @@ def inicio():
 def mapa():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('mapa', lang=translations['default']))
+        return redirect(url_for('web.mapa', lang=translations['default']))
     return render_template('mapa.html', title=translations[lang]['titles'][0], lang=lang, t=translations[lang]['strings'])
 
 # Lista con todas las paradas
@@ -59,7 +59,7 @@ def mapa():
 def paradas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('paradas', lang=translations['default']))
+        return redirect(url_for('web.paradas', lang=translations['default']))
     return render_template('paradas.html', title=translations[lang]['titles'][1], paradas=jparadas, lang=lang, t=translations[lang]['strings'])
 
 # Lista con todas las líneas
@@ -67,7 +67,7 @@ def paradas():
 def lineas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('lineas', lang=translations['default']))
+        return redirect(url_for('web.lineas', lang=translations['default']))
     return render_template('lineas.html', title=translations[lang]['titles'][2], lineas=jlineas, lang=lang, t=translations[lang]['strings'])
 
 # Parada. Muestra los próximos buses, sus características y un mapa
@@ -75,7 +75,7 @@ def lineas():
 def parada(id_parada):
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('parada', id_parada=id_parada, lang=translations['default']))
+        return redirect(url_for('web.parada', id_parada=id_parada, lang=translations['default']))
     parada = encontrar_parada(id_parada, jparadas)
     if parada == None:
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang, t=translations[lang]['strings']), 404
@@ -92,7 +92,7 @@ def parada(id_parada):
 def linea(id_linea):
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('linea', id_linea=id_linea, lang=translations['default']))
+        return redirect(url_for('web.linea', id_linea=id_linea, lang=translations['default']))
     line = encontrar_linea(id_linea, jlineas)
     if line == None:
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang, t=translations[lang]['strings']), 404
@@ -112,7 +112,7 @@ def linea(id_linea):
 def fuente():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('fuente', lang=translations['default']))
+        return redirect(url_for('web.fuente', lang=translations['default']))
     return render_template('fuente.html', title=translations[lang]['titles'][4], lang=lang, t=translations[lang]['strings'])
 
 # Historial de cambios
@@ -120,7 +120,7 @@ def fuente():
 def cambios():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('fuente', lang=translations['default']))
+        return redirect(url_for('web.fuente', lang=translations['default']))
     return render_template('changelog.html', title=translations[lang]['titles'][5], lang=lang, t=translations[lang]['strings'])
 
 # Información sobre la página
@@ -128,7 +128,7 @@ def cambios():
 def acerca_de():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('about', lang=translations['default']))
+        return redirect(url_for('web.about', lang=translations['default']))
     return render_template('about.html', title=translations[lang]['titles'][6], lang=lang, t=translations[lang]['strings'])
 
 # Información de privacidad sobre la página
@@ -136,7 +136,7 @@ def acerca_de():
 def privacy():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('privacy', lang=translations['default']))
+        return redirect(url_for('web.privacy', lang=translations['default']))
     return render_template('privacy.html', title=translations[lang]['titles'][6], lang=lang, t=translations[lang]['strings'])
 
 # Información sobre los precios de los tickets
@@ -144,7 +144,7 @@ def privacy():
 def tarifas():
     lang = request.args.get('lang', type=str)
     if lang not in translations['langs']:
-        return redirect(url_for('fuente', lang=translations['default']))
+        return redirect(url_for('web.fuente', lang=translations['default']))
     return render_template('tarifas.html', title='Tarifas', lang=lang, t=translations[lang]['strings'])
 
 # Service Worker que permite instalar la aplicación como PWA
