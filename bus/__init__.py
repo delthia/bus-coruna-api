@@ -26,4 +26,10 @@ app = Flask(__name__)
 Minify(app=app, html=True, js=True, cssless=True, bypass=['paradas'])
 cache.init_app(app)
 
-from bus import routes
+from bus.web.routes import web
+from bus.api.routes import api
+
+app.register_blueprint(web)
+app.register_blueprint(api)
+
+# from bus import routes

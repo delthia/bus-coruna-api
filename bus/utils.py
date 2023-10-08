@@ -14,68 +14,51 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import requests
+"""
+    Utilidades utilizadas a lo largo de todo el programa. Incluye funciones
+    como buscar una parada o una línea y otras funciones relacionadas con la
+    información en tiempo real sobre los buses: buses para una parada, buses
+    para una línea, geojson con las paradas para una línea o salidas de una línea.
+"""
+import datetime
 import json
 import math
-import datetime
+import requests
 
-"""
-Funciones variadas. Se utilizan en el resto del código para buscar paradas, líneas, o para obtener los datos de buses y paradas
-"""
-
-# Busca una línea en la lista de líneas y la devuelve
+# Buscar una línea en la lista de líneas y devolverla
 def encontrar_linea(id, datos):
     for linea in datos['lineas']:
         if linea['id'] == id:
             return linea
 
-# Busca una parada en la lista de paradas y la devuelve
+# Buscar una parada en la lista de paradas y devolverla
 def encontrar_parada(id, datos):
     for parada in datos['paradas']:
         if parada['id'] == id:
             return parada
 
-# Recoge los datos actuales de los buses para una parada
-def buses_parada(parada, directorio):
-    dato = peticion(parada, 'parada')
-    with open(directorio) as a:
-        lista = json.load(a)
-    if not 'lineas' in dato['buses']:
-        return 1111
-    for linea in range(0, len(dato['buses']['lineas'])):
-        dato['buses']['lineas'][linea]['linea'] = encontrar_linea(dato['buses']['lineas'][linea]['linea'], lista)
-    return dato
+# Datos actuales de los buses para una parada
+def buses_parada(id_parada, jlineas):
+    parada = peticion(id_parada, 'parada')
+    if not 'lineas' in parada['buses']:
+        return {'error': 'No hay buses para esta parada'}
+    for linea in range(len(parada['buses']['lineas'])):
+        parada['buses']['lineas'][linea]['linea'] = encontrar_linea(parada['buses']['lineas'][linea]['linea'], jlineas)
+    return parada
 
-# Recoge los datos actuales de las posiciones de los buses en el recorrido de una línea
+# Datos actuales de las posiciones de los buses en una línea
 def buses_linea(linea):
     return peticion(linea, 'linea')
 
-# Recoge los datos de las posiciones de los buses de una línea y devuelve un GeoJSON con esa información
-"""def geojson_buses(linea):
-    try:
-        dato = requests.get('http://itranvias.com/queryitr_v3.php?&func=99&mostrar=B&dato='+str(linea)).json()['mapas'][0]['buses']
-    except:
-        return 429
-    b = []
-    for sentido in range(0, len(dato)):
-        for bus in range(0, len(dato[sentido]['buses'])):
-            b.append({'type': 'Feature', 'properties': {'name': dato[sentido]['buses'][bus]['bus']}, 'geometry': {'type': 'Point', 'coordinates': [dato[sentido]['buses'][bus]['posx'], dato[sentido]['buses'][bus]['posy']]}})
-
-    # return 'var buses = {"type": "FeatureCollection", "features":'+str(b)+'}'
-    return '{"type": "FeatureCollection", "features":'+str(b)+'}'"""
-
 # GeoJSON con las paradas de una línea
-def geojson_linea(id, geojson):
-    head = {'type': 'FeatureCollection', 'features': []}
-    for linea in geojson['lineas']:
+def geojson_linea(id, rutas):
+    features = []
+    for linea in rutas['lineas']:
         if linea['id'] == id:
             for sentido in linea['paradas'].keys():
                 for parada in linea['paradas'][sentido]:
-                    if parada['osmcoords'] == []:
-                        coordenadas = parada['coords']
-                    else:
-                        coordenadas = parada['osmcoords']
-                    head['features'].append({
+                    coordenadas = parada['coords'] if parada['osmcoords'] == [] else parada['osmcoords']
+                    features.append({
                         'type': 'Feature',
                         'properties': {
                             'name': parada['nombre'],
@@ -86,7 +69,9 @@ def geojson_linea(id, geojson):
                             'coordinates': coordenadas
                         }
                     })
-    return f'var paradas = {json.dumps(head)};'
+    geojson = {'type': 'FeatureCollection', 'features': features}
+    return f'var paradas = {json.dumps(geojson)};'
+                        
 
 # Salidas de una línea
 def salidas(id, fecha):
@@ -95,15 +80,13 @@ def salidas(id, fecha):
     dato = str(id)
     fecha = str(fecha)
     ip = '192.168.20.'+str(math.ceil(id/100))
-    print(ip)
-    horas = requests.get(base+func+'&dato='+dato+'&fecha='+fecha, headers={'X-Forwarded-For': ip}).json()
-    respuesta = {'ida': [], 'vuelta': [], 'tipo': horas['servicios'][0]['tipo']}
+    horas = requests.get(f'{base}{func}&dato={dato}&fecha={fecha}', headers={'X-Forwarded-For': ip}).json()
+    respuesta = {'ida': [], 'vuelta': []}
     for x in horas['servicios'][0]['ida']:
-        respuesta['ida'].append(str(x)[:-2]+':'+str(x)[-2:])
+        respuesta['ida'].append(f'{str(x)[:-2]}:{str(x)[-2:]}')
     for x in horas['servicios'][0]['vuelta']:
-        respuesta['vuelta'].append(str(x)[:-2]+':'+str(x)[-2:])
+        respuesta['vuelta'].append(f'{str(x)[:-2]}:{str(x)[-2:]}')
     return respuesta
-
 
 def peticion(dato, tipo):
     if tipo == 'parada':
