@@ -78,16 +78,16 @@ def json_paradas(datos, dir, osm, jlineas):
                         detalles[propiedad] = False
                     else:
                         detalles[propiedad] = None
-                return detalles, feature['geometry']['coordinates']
+                return detalles, feature['geometry']['coordinates'], feature['properties']['osmid']
         # Si se llega a este punto es porque no existe la parada en OSM
         # o no se pudo relacionar correctamente, devolver elementos vacíos
-        return None, None
+        return None, None, None
 
     # Generar los datos de las paradas
     paradas = []
     for parada in datos:    # Para cada parada
         if not parada['enlaces'] == []:  # Evitar las paradas que no tienen enlaces
-            detalles, osmcoords = find(parada['id'])    # Recopilar los datos de OSM
+            detalles, osmcoords, osmid = find(parada['id'])    # Recopilar los datos de OSM
             lineas = []
             # Crear la lista de líneas que pasan por una parada
             for enlace in parada['enlaces']:
@@ -104,7 +104,8 @@ def json_paradas(datos, dir, osm, jlineas):
                 'propiedades': detalles,
                 'lineas': lineas,
                 'coords': [parada['posx'], parada['posy']],
-                'osmcoords': osmcoords
+                'osmcoords': osmcoords,
+                'osmid': osmid
             })
     
     # Guardar el resultado en un archivo

@@ -51,7 +51,7 @@
         <div id="mapa-parada">{{ t['mapa-parada'] }}</div>
     </div>
 </div>
-<p>{{ t['fuentes']|capitalize }}: <a href="https://osm.org" target="_blank" class="source">OpenStreetMap</a> ({{ t['fuente-mapa-parada'] }}) <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['informacion-buses'] }})</p>
+<p>{{ t['fuentes']|capitalize }}: <a href="https://osm.org/node/{{ parada.osmid }}" target="_blank" class="source">OpenStreetMap</a> ({{ t['fuente-mapa-parada'] }}) <a href="https://itranvias.com" target="_blank" class="source">iTranvias</a> ({{ t['informacion-buses'] }})</p>
 
 <div id="mensaje-error" class="error"><span id="mensaje-error-mensaje">Error</span><div id="borde-abajo" class="bordeerror"></div></div>
 
