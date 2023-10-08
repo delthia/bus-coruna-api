@@ -6,3 +6,5 @@ bus/datos/rutas.json
 bus/datos/paradas.json
 bus/static/paradas.geojson.js
 bus/datos/lineas.json
+bus/web/__pycache__
+bus/api/__pycache__
