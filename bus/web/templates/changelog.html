@@ -1,6 +1,36 @@
 {% extends "disposicion.html" %}
 {% block content %}
     <h1>Historial de cambios</h1>
+    <h2 id="1.1.0"><span class="material-symbols-outlined" style="vertical-align: middle;">sell</span> 1.1.0 <small><i>(08/10/2023)</i></small> - Reescritura de la página</h2>
+    <p><ul>
+        <li>Mejoras en el código</li>
+        <ul>
+            <li>Ahora la página se estructura en blueprints, separando la API y la interfaz web</li>
+            <li>Simplificación del código</li>
+            <li>Ahora se minifica el código que devuelve el servidor para minimizar el ancho de banda utilizado</li>
+            <li>Reimplementación de la cache con <a href="https://flask-caching.readthedocs.io/en/latest/index.html">flask-caching</a></li>
+            <li>Los datos generales se actualizan al iniciar el servidor solo si han pasado más de 12 horas desde la última actualización</li>
+        </ul>
+        <li>Mejoras de los iconos de las lineas:</li>
+        <ul>
+            <li>Ahora todos los iconos tienen la misma anchura</li>
+            <li>Ahora los iconos no se subrayan al pasar el cursor por encima</li>
+            <li>Arreglos la alineación de los iconos</li>
+        </ul>
+        <li>Mejoras en la experiencia de usuario:</li>
+        <ul>
+            <li>Mejoras en el funcionamiento sin JS (no mostrar los elementos que no funcionarán sin los scripts)</li>
+            <li>Tabla con horarios de las salidas</li>
+            <li>Nuevo mensaje de error</li>
+        </ul>
+        <li>Arreglos de errores</li>
+        <ul>
+            <li>Arreglar la búsqueda de paradas de la página de inicio</li>
+            <li>Arreglos de la tabla de detalles de parada</li>
+            <li>Revisión de las traducciones</li>
+        </ul>
+        <li>Ahora se enlaza al nodo en OSM en la atribución de datos de la página de parada</li>
+    </ul></p>
     <h2 id="1.0.1"><span class="material-symbols-outlined" style="vertical-align: middle;">sell</span> 1.0.1 <small><i>(20/05/2023)</i></small> - Mejoras</h2>
     <p><ul>
         <li>Las traducciones se encuentran en un archivo separado, reduciendo la necesidad de crear archivos separados de las plantillas para los diferentes idiomas</li>
