@@ -36,11 +36,13 @@ function actualizar(last) {
                         ahora = new Date();
                         ahora.setMinutes(ahora.getMinutes()+parseInt(obj[i].buses[b].tiempo, 10));
                         hora = ahora.getHours()+':'+(ahora.getMinutes()<10?'0':'')+ahora.getMinutes();
-                        linea = '<p>Bus '+obj[i].buses[b].bus+', a '+obj[i].buses[b].distancia+'m, '+hora+'.</p>';
+                        if (obj[i].buses[b].distancia >= 1000) { distancia = Number(obj[i].buses[b].distancia/1000).toFixed(1); u='km'} else { distancia = obj[i].buses[b].distancia; u='m'}
+                        linea = '<p>Bus '+obj[i].buses[b].bus+', a '+distancia+u+', '+hora+'.</p>';
                     }
                     else if(obj[i].buses[b].tiempo != 0) {
                         hora = obj[i].buses[b].tiempo;
-                        linea = '<p>Bus '+obj[i].buses[b].bus+', a '+obj[i].buses[b].distancia+'m, '+hora+'\'.</p>';
+                        if (obj[i].buses[b].distancia >= 1000) { distancia = Number(obj[i].buses[b].distancia/1000).toFixed(1); u='km'} else { distancia = obj[i].buses[b].distancia; u='m'}
+                        linea = '<p>Bus '+obj[i].buses[b].bus+', a '+distancia+u+', '+hora+'\'.</p>';
                     }
                     else {
                         linea = '<p>Bus '+obj[i].buses[b].bus+', <b>'+cadenas[idioma][1]+'</b>.';
