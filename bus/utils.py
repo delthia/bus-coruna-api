@@ -89,7 +89,10 @@ def salidas(id, fecha):
     dato = str(id)
     fecha = str(fecha)
     ip = '192.168.20.'+str(math.ceil(id/100))
-    horas = requests.get(f'{base}{func}&dato={dato}&fecha={fecha}', headers={'X-Forwarded-For': ip}).json()
+    try:
+        horas = requests.get(f'{base}{func}&dato={dato}&fecha={fecha}', headers={'X-Forwarded-For': ip}).json()
+    except:
+        return 429
     respuesta = {'ida': [], 'vuelta': []}
     for x in horas['servicios'][0]['ida']:
         respuesta['ida'].append(f'{str(x)[:-2]}:{str(x)[-2:]}')

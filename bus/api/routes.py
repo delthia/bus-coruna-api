@@ -71,7 +71,9 @@ def bus_linea(id_linea):
     if l == None:
         return {'error': 'La línea no existe'}
     buses = buses_linea(id_linea)
-    if buses['paradas'] == []:
+    if buses == 429:
+        return {'error': 'Imposible conseguir los datos'}
+    elif buses['paradas'] == []:
         return {'estado': 'Línea inactiva'}
     return buses
 
@@ -90,7 +92,10 @@ def salidas_linea(id_linea, fecha):
     l = encontrar_linea(id_linea, jlineas)
     if l == None:
         return {'error': 'La línea no existe'}
-    return salidas(id_linea, fecha)
+    s = salidas(id_linea, fecha)
+    if s == 429:
+        return {'error': 'Imposible conseguir los datos'}
+    return s
 
 """
     Información sobre las paradas
@@ -120,4 +125,7 @@ def parada_buses(id_parada):
     if parada == None:
         return {'error': 'La parada no existe'}
     buses = buses_parada(id_parada, jlineas)
+    print(buses)
+    if buses == 429:
+        return {'error': 'Imposible conseguir los datos'}
     return buses
