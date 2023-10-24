@@ -27,6 +27,7 @@ from flask import Blueprint, redirect, render_template, request, send_file, url_
 import json
 from bus.api.routes import rutas, jlineas, jrutas, jparadas
 from bus.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_linea, salidas #, geojson_buses
+from bus import app
 
 web = Blueprint('web', __name__, template_folder='templates', static_folder='static')
 
@@ -80,7 +81,7 @@ def parada(id_parada):
     if parada == None:
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang, t=translations[lang]['strings']), 404
     buses = buses_parada(parada['id'], jlineas)
-    if buses == 1111:
+    if buses == {'error': 'No hay buses para esta parada'}:
         return render_template('404.html', i='remove_road', m=translations[lang]['sentences'][1], lang=lang, t=translations[lang]['strings'], lineas=parada['lineas'], leyenda=translations[lang]['sentences'][5]), 404
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
@@ -156,3 +157,8 @@ def sw():
 @web.route("/robots.txt")
 def robots():
     return send_file('static/robots.txt')
+
+@app.errorhandler(404)
+def _handle_404_error(e):
+    print(e)
+    return render_template('404.html', i='report', m='Página no encontrada', lang=translations['default'], t=translations[translations['default']]['strings']), 404
