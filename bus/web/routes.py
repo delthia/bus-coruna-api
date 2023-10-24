@@ -158,7 +158,12 @@ def sw():
 def robots():
     return send_file('static/robots.txt')
 
+# Páginas de error
 @app.errorhandler(404)
 def _handle_404_error(e):
-    print(e)
-    return render_template('404.html', i='report', m='Página no encontrada', lang=translations['default'], t=translations[translations['default']]['strings']), 404
+    if request.path.startswith('/api/'):
+        # Si es una ruta de la API devolver un json con un mensaje genérico
+        return {'error': 'La ruta solicitada no existe'}
+    else:
+        # Si no es de la API, renderizar la plantilla con un mensaje genérico
+        return render_template('404.html', i='report', m='Página no encontrada', lang=translations['default'], t=translations[translations['default']]['strings']), 404
