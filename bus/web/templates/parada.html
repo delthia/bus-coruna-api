@@ -9,12 +9,12 @@
         <div class="linea-parada" id="lineas">
             {% for linea in buses %}
             <div class="linea">
-                <h1 id="{{ linea.linea.id }}">{{ t['linea']|capitalize }} <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span></h1>
+                <h1 id="{{ linea.linea.id }}">{{ t['linea']|capitalize }} <span class="simbolo_linea" style="background-color: #{{ linea.linea.color }}">{{ linea.linea.nombre }}</span>{% if linea.linea.nombre == 'UDC' %} <small style="font-size: 60%">(origen: {{ linea.linea.origen }})</small>{% endif %}</h1>
                 {% for bus in linea.buses %}
                     {% if bus.distancia == '0' %}
                         <p>Bus {{ bus.bus }}, <b>{{ t['en-parada'] }}</b>.</p>
                     {% else %}
-                        <p>Bus {{ bus.bus }}, {{ t['a'] }}{{ bus.distancia }}m, {{ bus.tiempo }}.</p>
+                        <p>Bus {{ bus.bus }}, {{ t['a'] }} {{ bus.distancia }}m, {{ bus.tiempo }}'.</p>
                     {% endif %}
                 {% endfor %}
             </div>

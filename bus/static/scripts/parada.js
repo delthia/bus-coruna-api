@@ -29,7 +29,8 @@ function actualizar(last) {
 
             // Iterar sobre las líneas
             for(i=0; i<obj.length; i++) {
-                titulo = '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj[i].linea['color']+'">'+obj[i].linea['nombre']+'</span></h1>'
+                titulo = '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj[i].linea['color']+'">'+obj[i].linea['nombre']+'</span>'
+                if(obj[i].linea['nombre'] == 'UDC') { titulo += ' <small style="font-size: 60%">(origen: '+obj[i].linea['origen']+')</small></h1>'; } else { titulo += '</h1>' }
                 document.getElementById('lineas').innerHTML += titulo;
                 for(b=0; b<obj[i].buses.length; b++) {
                     if(obj[i].buses[b].tiempo >= 60) {
