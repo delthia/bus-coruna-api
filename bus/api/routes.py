@@ -125,7 +125,6 @@ def parada_buses(id_parada):
     if parada == None:
         return {'error': 'La parada no existe'}
     buses = buses_parada(id_parada, jlineas)
-    print(buses)
     if buses == 429:
         return {'error': 'Imposible conseguir los datos'}
     return buses
