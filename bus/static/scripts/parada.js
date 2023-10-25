@@ -18,7 +18,7 @@ function mostrar_lineas(obj) {
     for(i=0; i<obj.length; i++) {
         // Nombre de la línea y origen en caso de que su nombre sea UDC
         if( obj[i].linea['nombre'] == 'UDC') { cierre = ' <small style="font-size: 60%">(origen: '+obj[i].linea['origen']+')</small></h1>'; } else { cierre = '</h1>'; }
-        document.getElementById('lineas').innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj[i].linea['color']+'">'+obj[i].linea['nombre']+'<span>'+cierre;
+        document.getElementById('lineas').innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj[i].linea['color']+'">'+obj[i].linea['nombre']+'</span>'+cierre;
 
         // Mostrar los buses para la línea
         buses = obj[i].buses
