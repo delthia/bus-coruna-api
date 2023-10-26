@@ -23,6 +23,7 @@
 from flask import Blueprint
 from bus.download import actualizar
 from bus.utils import encontrar_linea, buses_linea, geojson_linea, salidas, encontrar_parada, buses_parada
+import json, requests
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
@@ -128,3 +129,27 @@ def parada_buses(id_parada):
     if buses == 429:
         return {'error': 'Imposible conseguir los datos'}
     return buses
+
+@api.route("/linea/<int:id_linea>/buses/geo")
+def geojson_buses(id_linea):
+    dato = requests.get(f"https://itranvias.com/queryitr_v3.php?func=99&mostrar=B&dato={id_linea}").json()['mapas'][0]['buses']
+
+    buses = []
+    for sentido in range(0, len(dato)):
+        for bus in range(0, len(dato[sentido]['buses'])):
+            buses.append({
+                'type': 'Feature',
+                'properties': {
+                    'name': dato[sentido]['buses'][bus]['bus']
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [
+                        dato[sentido]['buses'][bus]['posx'],
+                        dato[sentido]['buses'][bus]['posy']
+                    ]
+                }
+            })
+
+    salida = {"type": "FeatureCollection", "features": buses}
+    return json.dumps(salida)

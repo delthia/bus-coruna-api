@@ -15,7 +15,8 @@ else { style = [bright] }
 var mapa = L.map('map', {
     center: [43.3445, -8.425],
     zoom: 13,
-    layers: style
+    layers: style,
+    // watch: true
 });
 
 // Lista de estilos

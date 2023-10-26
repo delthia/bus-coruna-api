@@ -15,55 +15,6 @@ else {
     document.getElementById('boton-recarga').style.display = 'none';
 }
 
-// Diagrama
-var last = new Date();  // Momento en el que se actualizaron los datos por última vez
-
-function actualizar(last) {
-    var now = new Date();
-
-    if(now-last >= 15000) {
-        window.last = now;
-
-        // Descargar los datos y actualizar la información
-        url = '/api/linea/'+window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1)+'/buses';
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(function(response) { return response.json(); })
-        .then(function(json) {
-            const obj = json['paradas'];    // Almacenar los datos en una variable
-
-            // Actualizar los iconos
-            buses(obj[0], 'ida');
-            buses(obj[1], 'vuelta');
-
-            function buses(datos, c) {
-                datos = datos['paradas'];
-                document.getElementById('buses-'+c).innerHTML = '';
-
-                if(datos != undefined) { // Si existen los datos
-                    for(i=0; i<datos.length; i++) {
-                        const x = datos[i]['buses'][0]['distancia']*(document.getElementById(c).offsetHeight-70)+8; // Posición del icono
-                        // Clases para los estilos del icono
-                        if(datos[i]['buses'][0]['estado'] == 0) {
-                            clase = ' simbolo_bus_parada ';
-                        }
-                        else if(datos[i]['buses'][0]['estado'] == 1) {
-                            clase = ' ';
-                        }
-                        else {
-                            clase = ' simbolo_bus-otro ';
-                        }
-                        document.getElementById('buses-'+c).innerHTML += '<div style="margin-top: '+x+'px; position: absolute"><span class="material-symbols-outlined simbolo_bus'+clase+'">directions_bus</span></div>';
-                    }
-                }
-                document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+now.toLocaleString(cadenas[idioma][4]);
-            }
-        })
-    }
-    else { flash_error(cadenas[idioma][2]); }
-}
-
 // Mapa
 // Establecer el estilo del mapa en función del de la página o del parámetro
 if(estilo == 'osm') { style = [osm] }
@@ -103,6 +54,80 @@ var estiloLinea = {
 mapa.addLayer(L.geoJson(paradas, { onEachFeature: onEachFeature })); // Paradas
 mapa.addLayer(L.geoJson(linea, {onEachFeature: onEachFeature, style: estiloLinea }));   // Línea
 mapa.fitBounds(L.geoJSON(paradas).getBounds());
+
+var busIcon = L.icon({
+    iconUrl: '/static/icons/icono-bus-32.png',
+    iconSize: [16, 16],
+    iconAnchor: [8, 8]
+});
+L.Marker.prototype.options.icon = busIcon; // Hacer que el icono sea el que se utiliza por defecto
+// mapa.addLayer(L.geoJSON(geo));
+
+function buses_mapa() {
+    fetch('/api/linea/'+window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1)+'/buses/geo', {
+        method: 'GET'
+    })
+    .then(function(response) { return response.json() })
+    .then(function(json) {
+        try {
+            mapa.removeLayer(geobuses)
+        }
+        catch {
+            console.log('No eliminar la capa cuando aún no existe');
+        }
+        geobuses = L.geoJSON(json)
+        geobuses.addTo(mapa)
+    })
+}
+// Diagrama
+var last = new Date();  // Momento en el que se actualizaron los datos por última vez
+
+function actualizar(last) {
+    var now = new Date();
+
+    if(now-last >= 1) {
+        window.last = now;
+
+        // Descargar los datos y actualizar la información
+        url = '/api/linea/'+window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1)+'/buses';
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(json) {
+            const obj = json['paradas'];    // Almacenar los datos en una variable
+
+            // Actualizar los iconos
+            buses(obj[0], 'ida');
+            buses(obj[1], 'vuelta');
+
+            function buses(datos, c) {
+                datos = datos['paradas'];
+                document.getElementById('buses-'+c).innerHTML = '';
+
+                if(datos != undefined) { // Si existen los datos
+                    for(i=0; i<datos.length; i++) {
+                        const x = datos[i]['buses'][0]['distancia']*(document.getElementById(c).offsetHeight-70)+8; // Posición del icono
+                        // Clases para los estilos del icono
+                        if(datos[i]['buses'][0]['estado'] == 0) {
+                            clase = ' simbolo_bus_parada ';
+                        }
+                        else if(datos[i]['buses'][0]['estado'] == 1) {
+                            clase = ' ';
+                        }
+                        else {
+                            clase = ' simbolo_bus-otro ';
+                        }
+                        document.getElementById('buses-'+c).innerHTML += '<div style="margin-top: '+x+'px; position: absolute"><span class="material-symbols-outlined simbolo_bus'+clase+'">directions_bus</span></div>';
+                    }
+                }
+                buses_mapa();
+                document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+now.toLocaleString(cadenas[idioma][4]);
+            }
+        })
+    }
+    else { flash_error(cadenas[idioma][2]); }
+}
 
 // Calendarios
 var date = new Date();  // Fecha para consultar los datos. Empieza siendo la actual
