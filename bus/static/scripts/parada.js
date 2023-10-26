@@ -11,7 +11,7 @@ setInterval(function() { actualizar(last) }, 30000);    // Actualizar los datos 
 var last = new Date();
 document.getElementById('boton-recarga').style.display = "";    // Mostrar el botón de actualización
 
-function mostrar_lineas(obj) {
+function mostrar_lineas(obj, now) {
     document.getElementById('lineas').innerHTML = '';   // Vaciar el contenedor
 
     // Iterar sobre las líneas
@@ -65,7 +65,7 @@ function actualizar(last) {
         .then(function(response) { return response.json(); })
         .then(function(json) {
             const obj = json['buses']['lineas'];   // Almacenar los datos en una variable
-            mostrar_lineas(obj);
+            mostrar_lineas(obj, now);
         });
     }
     else { flash_error(cadenas[idioma][2]); }
