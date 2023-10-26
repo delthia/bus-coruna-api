@@ -12,28 +12,30 @@ function flash_error(mensaje) {
 }
 
 // Estilos para los mapas
-var bright = ['https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+var bright = ['https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     minZoom: 13
 }];
 
-var dark = ['https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+var dark = ['https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    minZoom: 13
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    minZoom: 13,
 }];
 
 var osm = ['https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://osm.ogr/copyright">OpenStreetMap</a>',
-    minZoom: 13
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
+    minZoom: 13,
+    detectRetina: true
 }];
 
 var pnoa = ['https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://pnoa.ign.es">PNOA</a>, <a href="https://idee.es">IDEE</a>',
-    minZoom: 13
+    minZoom: 13,
+    detectRetina: true
 }];
 
 // Definir los estilos
