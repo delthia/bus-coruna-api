@@ -325,12 +325,12 @@
 
 /* Leyenda de la página de línea */
 #leyenda {
-    border: 1px dashed var(--fg);
+    border: 2px dashed var(--fg);
     padding-left: 16px;
     width: 100%-16px;
     border-radius: 0px 0px 10px 10px;
 }
-
+@media(prefers-color-scheme: light) { #leyenda { border: 2px dashed black; } }
 /* Tarjetas de resultado de la búsqueda */
 .resultados-busqueda {
     display: flex;
