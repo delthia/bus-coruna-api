@@ -66,7 +66,7 @@ def geojson_linea(id, rutas):
         if linea['id'] == id:
             for sentido in linea['paradas'].keys():
                 for parada in linea['paradas'][sentido]:
-                    coordenadas = parada['coords'] if parada['osmcoords'] == [] else parada['osmcoords']
+                    coordenadas = parada['coords'] if parada['osmcoords'] == None else parada['osmcoords']
                     features.append({
                         'type': 'Feature',
                         'properties': {
