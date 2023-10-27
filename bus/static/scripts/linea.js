@@ -1,17 +1,20 @@
 // Actualiza el diagrama de líneas, el calendario, y genera el mapa
 
+// Preparar la página para el funcionamiento del script
 idioma = new URLSearchParams(window.location.search).get('lang');   // Guardar el idioma
 estilo = new URLSearchParams(window.location.search).get('mapa');   // Guardar el estilo de mapa
 document.getElementById('msg-js').style.display = "none";   // Ocultar el error
-document.getElementById('salidas').style.display = "";
-document.getElementById('boton-recarga').style.display = "";
-document.getElementById('mapa-linea').innerHTML = "";
-document.getElementById('leyenda').style.display = "";
+document.getElementById('salidas').style.display = "";  // Enseñar el botón de salidas
+document.getElementById('boton-recarga').style.display = "";    // Enseñar el botón de recarga
+document.getElementById('mapa-linea').innerHTML = "";   // Enseñar el mapa de línea
+document.getElementById('leyenda').style.display = "";  // Mostrar la leyenda de la página
+// Programar la ejecución de la función de actualización de la página
 if(document.getElementById('estado') == null) {
     actualizar(0);  // Actualizar al cargar la página
     setInterval(function() { actualizar(last) }, 30000);   // Actualizar los datos cada 30s
 }
 else {
+    // Ocultar el botón de actualización cuando la línea está inactiva
     document.getElementById('boton-recarga').style.display = 'none';
 }
 
@@ -61,7 +64,6 @@ var busIcon = L.icon({
     iconAnchor: [8, 8]
 });
 L.Marker.prototype.options.icon = busIcon; // Hacer que el icono sea el que se utiliza por defecto
-// mapa.addLayer(L.geoJSON(geo));
 
 function buses_mapa() {
     fetch('/api/linea/'+window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1)+'/buses/geo', {
