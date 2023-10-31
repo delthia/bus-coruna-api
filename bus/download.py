@@ -65,7 +65,7 @@ def actualizar(url, dirs):
     return jlineas, jparadas, jrutas    # Devolver los datos actualizados
 
 # Generar un JSON con todas las líneas. (id, nombre, origen, destino, color)
-def json_lineas(datos, dir):
+def json_lineas(datos, directorio):
     lineas = []
     for linea in datos:
         lineas.append({
@@ -77,7 +77,7 @@ def json_lineas(datos, dir):
         })
 
     # Guardar el resultado en un archivo
-    with open(dir, 'w') as archivo:
+    with open(directorio, 'w') as archivo:
         archivo.write(json.dumps({'lineas': lineas}))
 
     return {'lineas': lineas}   # Devolver el resultado
@@ -86,7 +86,7 @@ def json_lineas(datos, dir):
 # Generar un JSON con todas las paradas. (id, nombre, propiedades: [
 # pavimento, banco, marquesina, papelera, iluminada], líneas: [id, nombre,
 # color], coordenadas, coordenadas de OSM)
-def json_paradas(datos, dir, osm, jlineas):
+def json_paradas(datos, directorio, osm, jlineas):
     # Buscar un elemento en los datos de OSM
     def find(ref):
         for feature in osm['features']: # Iterar por todos los elementos
@@ -131,13 +131,13 @@ def json_paradas(datos, dir, osm, jlineas):
             })
     
     # Guardar el resultado en un archivo
-    with open(dir, 'w') as archivo:
+    with open(directorio, 'w') as archivo:
         archivo.write(json.dumps({'paradas': paradas}))
 
     return {'paradas': paradas} # Devolver el resultado
 
 # Generar un JSON con las paradas por las que pasa cada línea
-def json_rutas(datos, dir, paradas):
+def json_rutas(datos, directorio, paradas):
     rutas = []
     for linea in datos:
         l = {'id': linea['id'], 'paradas': {'ida': [], 'vuelta': []}}
@@ -148,14 +148,14 @@ def json_rutas(datos, dir, paradas):
         rutas.append(l)
 
     # Guardar el resultado en un archivo
-    with open(dir, 'w') as archivo:
+    with open(directorio, 'w') as archivo:
         archivo.write(json.dumps({'lineas': rutas}))
 
     return {'lineas': rutas}    # Devolver el resultado
 
 # Generar un GeoJSON con todas las paradas y un diálogo que enlaza a la
 # parada y a las líneas que pasan por la parada
-def geojson(datos, dir):
+def geojson(datos, directorio):
     paradas = []
     for parada in datos['paradas']:
         lineas = '<br>'
@@ -167,11 +167,11 @@ def geojson(datos, dir):
         paradas.append({'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': f'<a href="./parada/{parada["id"]}">{parada["nombre"]}</a>{lineas}'}, 'geometry': {'type': 'Point', 'coordinates': coordenadas}})
     
     # Guardar el resultado en un archivo
-    with open(dir, 'w') as archivo:
+    with open(directorio, 'w') as archivo:
         archivo.write('var paradas = '+json.dumps({'type': 'FeatureCollection', 'features': paradas})+';')
 
 # Descarga los datos de OSM a través de overpass y los guarda en un archivo GeoJSON
-def datos_osm(dir):
+def datos_osm(directorio):
     stops = ox.geometries_from_place('A Coruña, Galicia, España', {'public_transport': 'platform', 'bus': 'yes'})
     stops = stops.loc[stops.geometry.type=='Point']
-    stops.to_file(dir, driver='GeoJSON')
+    stops.to_file(directorio, driver='GeoJSON')
