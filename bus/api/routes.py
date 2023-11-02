@@ -29,7 +29,7 @@ api = Blueprint('api', __name__, url_prefix='/api')
 # Configuración
 dev = True
 
-if dev == True:
+if dev is True:
     b = 'bus/'
 else:
     b = ''
@@ -50,25 +50,29 @@ jlineas, jparadas, jrutas = actualizar(url, rutas)
 """
     Información sobre las líneas
 """
+
+
 # Igual que /api/linea, pero devuelve la lista de todas las líneas
 @api.route("/lineas")
 def lineas():
     return jlineas
+
 
 # Información sobre la línea que se especifica en <id_linea>:
 #    color, destino, id, nombre, origen
 @api.route("/linea/<int:id_linea>")
 def linea(id_linea):
     l = encontrar_linea(id_linea, jlineas)
-    if l == None:
+    if l is None:
         return {'error': 'La línea no existe'}
     return l
+
 
 # Posiciones en el recorrido de la línea que se especifica en <id_linea>
 @api.route("/linea/<int:id_linea>/buses")
 def bus_linea(id_linea):
     l = encontrar_linea(id_linea, jlineas)
-    if l == None:
+    if l is None:
         return {'error': 'La línea no existe'}
     buses = buses_linea(id_linea)
     if buses == 429:
@@ -77,33 +81,39 @@ def bus_linea(id_linea):
         return {'estado': 'Línea inactiva'}
     return buses
 
+
 # GeoJSON con las paradas de una línea
 @api.route("/linea/<int:id_linea>/paradas")
 def paradas_linea(id_linea):
     l = encontrar_linea(id_linea, jlineas)
-    if l == None:
+    if l is None:
         return {'error': 'La línea no existe'}
     geojson = geojson_linea(id_linea, jrutas)
     return geojson
+
 
 # Salidas de una línea
 @api.route("/linea/<int:id_linea>/salidas/<int:fecha>")
 def salidas_linea(id_linea, fecha):
     l = encontrar_linea(id_linea, jlineas)
-    if l == None:
+    if l is None:
         return {'error': 'La línea no existe'}
     s = salidas(id_linea, fecha)
     if s == 429:
         return {'error': 'Imposible conseguir los datos'}
     return s
 
+
 """
     Información sobre las paradas
 """
+
+
 # Igual que /api/parada, pero devuelve una lista con todas las paradas
 @api.route("/paradas")
 def paradas():
     return jparadas
+
 
 # Información sobre la parada que se especifica en <id_parada>:
 # [coordenadas, lineas: [color, id, nombre], coordenadas_openstreetmap,
@@ -111,9 +121,10 @@ def paradas():
 @api.route("/parada/<int:id_parada>")
 def detalles_parada(id_parada):
     parada = encontrar_parada(id_parada, jparadas)
-    if parada == None:
+    if parada is None:
         return {'error': 'La parada no existe'}
     return parada
+
 
 # Próximos buses para la parada que se especifica en <id_parada>
 # También incluye información sobre cada línea:
@@ -122,7 +133,7 @@ def detalles_parada(id_parada):
 @api.route("/parada/<int:id_parada>/buses")
 def parada_buses(id_parada):
     parada = encontrar_parada(id_parada, jparadas)
-    if parada == None:
+    if parada is None:
         return {'error': 'La parada no existe'}
     buses = buses_parada(id_parada, jlineas)
     if buses == 429:

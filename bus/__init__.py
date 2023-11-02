@@ -18,7 +18,7 @@ from flask_minify import Minify
 from flask import Flask
 from flask_caching import Cache
 
-cache = Cache(config = {
+cache = Cache(config={
     'CACHE_TYPE': 'SimpleCache',
     'CACHE_DEFAULT_TIMEOUT': 20
 })
@@ -31,5 +31,3 @@ from bus.api.routes import api
 
 app.register_blueprint(web)
 app.register_blueprint(api)
-
-# from bus import routes

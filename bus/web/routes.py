@@ -26,7 +26,7 @@
 from flask import Blueprint, redirect, render_template, request, send_file, url_for
 import json
 from bus.api.routes import rutas, jlineas, jrutas, jparadas
-from bus.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada, geojson_linea, salidas #, geojson_buses
+from bus.utils import buses_parada, buses_linea, encontrar_linea, encontrar_parada  # , geojson_linea, salidas , geojson_buses
 from bus import app
 
 web = Blueprint('web', __name__, template_folder='templates', static_folder='static')
@@ -36,6 +36,7 @@ web = Blueprint('web', __name__, template_folder='templates', static_folder='sta
 with open(rutas['translate']) as t:
     translations = json.load(t)
 
+
 # Página de inicio. Información sobre la página
 @web.route("/")
 @web.route("/inicio")
@@ -43,9 +44,10 @@ def inicio():
     lang = request.args.get('lang', type=str)    # Idioma de la página
     if not lang:    # Si no se especifica un idioma con el parámetro, tomar el valor por defecto
         lang = translations['default']
-    elif lang not in translations['langs']: # Si el valor indicado no existe, eliminar el parámetro
+    elif lang not in translations['langs']:  # Si el valor indicado no existe, eliminar el parámetro
         return redirect(url_for('web.inicio'))
     return render_template('inicio.html', lang=lang, t=translations[lang]['strings'])
+
 
 # Mapa con todas las paradas
 @web.route("/mapa")
@@ -55,6 +57,7 @@ def mapa():
         return redirect(url_for('web.mapa', lang=translations['default']))
     return render_template('mapa.html', title=translations[lang]['titles'][0], lang=lang, t=translations[lang]['strings'])
 
+
 # Lista con todas las paradas
 @web.route("/paradas")
 def paradas():
@@ -62,6 +65,7 @@ def paradas():
     if lang not in translations['langs']:
         return redirect(url_for('web.paradas', lang=translations['default']))
     return render_template('paradas.html', title=translations[lang]['titles'][1], paradas=jparadas, lang=lang, t=translations[lang]['strings'])
+
 
 # Lista con todas las líneas
 @web.route("/lineas")
@@ -71,6 +75,7 @@ def lineas():
         return redirect(url_for('web.lineas', lang=translations['default']))
     return render_template('lineas.html', title=translations[lang]['titles'][2], lineas=jlineas, lang=lang, t=translations[lang]['strings'])
 
+
 # Parada. Muestra los próximos buses, sus características y un mapa
 @web.route("/parada/<int:id_parada>")
 def parada(id_parada):
@@ -78,7 +83,7 @@ def parada(id_parada):
     if lang not in translations['langs']:
         return redirect(url_for('web.parada', id_parada=id_parada, lang=translations['default']))
     parada = encontrar_parada(id_parada, jparadas)
-    if parada == None:
+    if parada is None:
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][0], lang=lang, t=translations[lang]['strings']), 404
     buses = buses_parada(parada['id'], jlineas)
     if buses == {'error': 'No hay buses para esta parada'}:
@@ -86,6 +91,7 @@ def parada(id_parada):
     elif buses == 429:
         return render_template('404.html', i='link_off', m=translations[lang]['sentences'][2], lang=lang, t=translations[lang]['strings']), 404
     return render_template('parada.html', title=parada['nombre'], buses=buses['buses']['lineas'], parada=parada, lang=lang, t=translations[lang]['strings'])
+
 
 # Línea. Muestra las paradas y la posición de los buses en un diagrama. También
 # muestra un mapa con el recorrido y las paradas, y una tabla con las horas de salida
@@ -95,7 +101,7 @@ def linea(id_linea):
     if lang not in translations['langs']:
         return redirect(url_for('web.linea', id_linea=id_linea, lang=translations['default']))
     line = encontrar_linea(id_linea, jlineas)
-    if line == None:
+    if line is None:
         return render_template('404.html', i='priority_high', m=translations[lang]['sentences'][3], lang=lang, t=translations[lang]['strings']), 404
     buses = buses_linea(line['id'])
     for linea in jrutas['lineas']:
@@ -108,6 +114,7 @@ def linea(id_linea):
     # Traducción incompleta
     return render_template('linea.html', title=translations[lang]['titles'][3]+str(line['nombre']), paradas=linea, line=line, lang=lang, t=translations[lang]['strings'])
 
+
 # Información sobre el funcionamiento de la página
 @web.route("/codigo-fuente")
 def fuente():
@@ -115,6 +122,7 @@ def fuente():
     if lang not in translations['langs']:
         return redirect(url_for('web.fuente', lang=translations['default']))
     return render_template('fuente.html', title=translations[lang]['titles'][4], lang=lang, t=translations[lang]['strings'])
+
 
 # Historial de cambios
 @web.route("/cambios")
@@ -124,6 +132,7 @@ def cambios():
         return redirect(url_for('web.fuente', lang=translations['default']))
     return render_template('changelog.html', title=translations[lang]['titles'][5], lang=lang, t=translations[lang]['strings'])
 
+
 # Información sobre la página
 @web.route("/acerca-de")
 def acerca_de():
@@ -131,6 +140,7 @@ def acerca_de():
     if lang not in translations['langs']:
         return redirect(url_for('web.about', lang=translations['default']))
     return render_template('about.html', title=translations[lang]['titles'][6], lang=lang, t=translations[lang]['strings'])
+
 
 # Información de privacidad sobre la página
 @web.route("/privacidad")
@@ -140,6 +150,7 @@ def privacy():
         return redirect(url_for('web.privacy', lang=translations['default']))
     return render_template('privacy.html', title=translations[lang]['titles'][6], lang=lang, t=translations[lang]['strings'])
 
+
 # Información sobre los precios de los tickets
 @web.route("/tarifas")
 def tarifas():
@@ -148,15 +159,18 @@ def tarifas():
         return redirect(url_for('web.fuente', lang=translations['default']))
     return render_template('tarifas.html', title='Tarifas', lang=lang, t=translations[lang]['strings'])
 
+
 # Service Worker que permite instalar la aplicación como PWA
 @web.route("/sw.js")
 def sw():
     return send_file('static/scripts/sw.js')
 
+
 # robots.txt
 @web.route("/robots.txt")
 def robots():
     return send_file('static/robots.txt')
+
 
 # Páginas de error
 @app.errorhandler(404)

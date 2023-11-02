@@ -26,7 +26,9 @@ import os
 import requests
 from bus.utils import encontrar_linea, encontrar_parada
 
-# Actualizar los datos a partir de la URL del servidor y el directorio del resultado
+
+# Actualizar los datos a partir de la URL del
+# servidor y el directorio del resultado
 def actualizar(url, dirs):
     # Cargar los datos de los archivos
     def cargar_archivos(dirs):
@@ -42,7 +44,9 @@ def actualizar(url, dirs):
         return jlineas, jparadas, jrutas
 
     # Si los archivos existen y hace menos de 12horas que se actualizaron
-    if os.path.exists(dirs['lineas']) and datetime.fromtimestamp(os.path.getmtime(dirs['lineas'])) > datetime.now() - timedelta(hours=12):
+    if os.path.exists(dirs['lineas']) and \
+        datetime.fromtimestamp(os.path.getmtime(dirs['lineas'])) > \
+            datetime.now() - timedelta(hours=12):
         # Solo cargar los archivos
         jlineas, jparadas, jrutas = cargar_archivos(dirs)
 
@@ -60,9 +64,10 @@ def actualizar(url, dirs):
             jrutas = json_rutas(respuesta['lineas'], dirs['rutas'], jparadas)
             geojson(jparadas, dirs['geojson'])
         except:
-            jlineas, jparadas, jrutas = cargar_archivos(dirs)        
+            jlineas, jparadas, jrutas = cargar_archivos(dirs)
 
     return jlineas, jparadas, jrutas    # Devolver los datos actualizados
+
 
 # Generar un JSON con todas las líneas. (id, nombre, origen, destino, color)
 def json_lineas(datos, directorio):
@@ -89,8 +94,9 @@ def json_lineas(datos, directorio):
 def json_paradas(datos, directorio, osm, jlineas):
     # Buscar un elemento en los datos de OSM
     def find(ref):
-        for feature in osm['features']: # Iterar por todos los elementos
-            if 'ref' in feature['properties'] and feature['properties']['ref'] == str(ref):
+        for feature in osm['features']:  # Iterar por todos los elementos
+            if 'ref' in feature['properties'] and \
+                feature['properties']['ref'] == str(ref):
                 detalles = {}
                 propiedades = ['tactile_paving', 'bench', 'shelter', 'bin', 'lit']  # Propiedades que se guardarán
                 for propiedad in propiedades:
@@ -129,12 +135,13 @@ def json_paradas(datos, directorio, osm, jlineas):
                 'osmcoords': osmcoords,
                 'osmid': osmid
             })
-    
+
     # Guardar el resultado en un archivo
     with open(directorio, 'w') as archivo:
         archivo.write(json.dumps({'paradas': paradas}))
 
-    return {'paradas': paradas} # Devolver el resultado
+    return {'paradas': paradas}  # Devolver el resultado
+
 
 # Generar un JSON con las paradas por las que pasa cada línea
 def json_rutas(datos, directorio, paradas):
@@ -153,6 +160,7 @@ def json_rutas(datos, directorio, paradas):
 
     return {'lineas': rutas}    # Devolver el resultado
 
+
 # Generar un GeoJSON con todas las paradas y un diálogo que enlaza a la
 # parada y a las líneas que pasan por la parada
 def geojson(datos, directorio):
@@ -163,15 +171,16 @@ def geojson(datos, directorio):
             # Contenido del popup del mapa
             lineas += f'<a href="./linea/{linea["id"]}" class="simbolo_linea" style="background-color: #{linea["color"]}">{linea["nombre"]}</a>'
         # Solo utilizar las coordenadas de OSM si no están vacías
-        coordenadas = parada['coords'] if parada['osmcoords'] == None else parada['osmcoords']
+        coordenadas = parada['coords'] if parada['osmcoords'] is None else parada['osmcoords']
         paradas.append({'type': 'Feature', 'properties': {'name': parada['nombre'], 'popupContent': f'<a href="./parada/{parada["id"]}">{parada["nombre"]}</a>{lineas}'}, 'geometry': {'type': 'Point', 'coordinates': coordenadas}})
-    
+
     # Guardar el resultado en un archivo
     with open(directorio, 'w') as archivo:
         archivo.write('var paradas = '+json.dumps({'type': 'FeatureCollection', 'features': paradas})+';')
 
+
 # Descarga los datos de OSM a través de overpass y los guarda en un archivo GeoJSON
 def datos_osm(directorio):
     stops = ox.geometries_from_place('A Coruña, Galicia, España', {'public_transport': 'platform', 'bus': 'yes'})
-    stops = stops.loc[stops.geometry.type=='Point']
+    stops = stops.loc[stops.geometry.type == 'Point']
     stops.to_file(directorio, driver='GeoJSON')
