@@ -1,6 +1,6 @@
 <p align="center">
     <picture>
-        <img src="https://raw.githubusercontent.com/delthia/bus-coruna-api/main/bus/static/commute-w.svg" width="150">
+        <img src="bus/static/commute-w.svg" width="150">
     </picture>
     <br>
     <strong>bus.delthia.com - información en tiempo real del bus de Coruña</strong>
