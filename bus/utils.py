@@ -24,6 +24,7 @@ import json
 import math
 import requests
 from bus import cache
+from bus import app
 
 
 # Buscar una línea en la lista de líneas y devolverla
@@ -50,6 +51,7 @@ def buses_parada(id_parada, jlineas):
     if 'lineas' not in parada['buses']:
         return {'error': 'No hay buses para esta parada'}
     for linea in range(len(parada['buses']['lineas'])):
+        print(parada['buses']['lineas'][linea])
         parada['buses']['lineas'][linea]['linea'] = encontrar_linea(parada['buses']['lineas'][linea]['linea'], jlineas)
     return parada
 
@@ -102,6 +104,7 @@ def salidas(id, fecha):
         respuesta['ida'].append(f'{str(x)[:-2]}:{str(x)[-2:]}')
     for x in horas['servicios'][0]['vuelta']:
         respuesta['vuelta'].append(f'{str(x)[:-2]}:{str(x)[-2:]}')
+    app.logger.debug(f'query to itranvias.com for salidas with values {id} & {fecha} and ip header of {ip}')
     return respuesta
 
 
@@ -120,4 +123,5 @@ def peticion(dato, tipo):
         i = math.ceil(dato/100)
         ip = '192.168.0.'+str(i)
     base = 'https://itranvias.com/queryitr_v3.php?func='
+    app.logger.debug(f'query to itranvias.com for {tipo} with value {dato} and ip header of {ip}')
     return requests.get(base+str(func)+'&dato='+str(dato), headers={'X-Forwarded-For': ip}).json()

@@ -1,0 +1,145 @@
+[2023-11-02 12:23:53 +0100] [19283] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['localhost:8000']
+  backlog: 2048
+  workers: 2
+  worker_class: sync
+  threads: 2
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/iago/Documentos/repos/bus-coruna-api/bus
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: logs/error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: bus:app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7ffb0b960040>
+  on_reload: <function OnReload.on_reload at 0x7ffb0b960180>
+  when_ready: <function WhenReady.when_ready at 0x7ffb0b9602c0>
+  pre_fork: <function Prefork.pre_fork at 0x7ffb0b960400>
+  post_fork: <function Postfork.post_fork at 0x7ffb0b960540>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7ffb0b960680>
+  worker_int: <function WorkerInt.worker_int at 0x7ffb0b9607c0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7ffb0b960900>
+  pre_exec: <function PreExec.pre_exec at 0x7ffb0b960a40>
+  pre_request: <function PreRequest.pre_request at 0x7ffb0b960b80>
+  post_request: <function PostRequest.post_request at 0x7ffb0b960c20>
+  child_exit: <function ChildExit.child_exit at 0x7ffb0b960d60>
+  worker_exit: <function WorkerExit.worker_exit at 0x7ffb0b960ea0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7ffb0b960fe0>
+  on_exit: <function OnExit.on_exit at 0x7ffb0b961120>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7ffb0b961300>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-02 12:23:53 +0100] [19283] [INFO] Starting gunicorn 21.2.0
+[2023-11-02 12:23:53 +0100] [19283] [DEBUG] Arbiter booted
+[2023-11-02 12:23:53 +0100] [19283] [INFO] Listening at: http://127.0.0.1:8000 (19283)
+[2023-11-02 12:23:53 +0100] [19283] [INFO] Using worker: gthread
+[2023-11-02 12:23:53 +0100] [19284] [INFO] Booting worker with pid: 19284
+[2023-11-02 12:23:53 +0100] [19285] [INFO] Booting worker with pid: 19285
+[2023-11-02 12:23:53 +0100] [19283] [DEBUG] 2 workers
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /static/css/main.css
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/css/other.css
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /static/img/parada.webp
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/img/github.webp
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/img/mapa.webp
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/img/linea-nuevo.webp
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /sw.js
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/icons/icono-bus-256.png
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/commute-w.svg
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /static/scripts/linea.js
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/scripts/buscar.js
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /inicio
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /static/scripts/mapa.js
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/scripts/buses.js
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /static/css/map.css
+[2023-11-02 12:24:00 +0100] [19284] [DEBUG] GET /static/css/other.css
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/scripts/parada.js
+[2023-11-02 12:24:00 +0100] [19285] [DEBUG] GET /static/css/main.css
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /mapa
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/scripts/buses.js
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /static/scripts/buscar.js
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/scripts/linea.js
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /static/scripts/parada.js
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/scripts/mapa.js
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/css/map.css
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /static/css/main.css
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /inicio
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /static/css/other.css
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /static/css/map.css
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/css/main.css
+[2023-11-02 12:34:23 +0100] [19285] [DEBUG] GET /static/scripts/mapa.js
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/geojson/paradas.geojson.js
+[2023-11-02 12:34:23 +0100] [19284] [DEBUG] GET /static/scripts/utils.js
+[2023-11-02 12:34:24 +0100] [19284] [DEBUG] GET /sw.js
+[2023-11-02 12:34:25 +0100] [19284] [DEBUG] GET /static/icons/marcador-3.png
+[2023-11-02 12:34:36 +0100] [19284] [DEBUG] GET /parada/349
+[2023-11-02 12:34:36 +0100] [19284] [DEBUG] GET /parada/349
+[2023-11-02 12:34:36 +0100] [19284] [DEBUG] GET /static/css/main.css
+[2023-11-02 12:34:36 +0100] [19285] [DEBUG] GET /static/css/map.css
+[2023-11-02 12:34:36 +0100] [19284] [DEBUG] GET /static/css/other.css
+[2023-11-02 12:34:36 +0100] [19285] [DEBUG] GET /static/scripts/utils.js
+[2023-11-02 12:34:36 +0100] [19285] [DEBUG] GET /static/scripts/parada.js
+[2023-11-02 12:34:36 +0100] [19284] [DEBUG] GET /api/parada/349/buses
+[2023-11-02 12:34:37 +0100] [19284] [DEBUG] GET /sw.js
+[2023-11-02 12:34:45 +0100] [19284] [DEBUG] GET /parada/349
+[2023-11-02 12:34:53 +0100] [19283] [INFO] Handling signal: int
+[2023-11-02 12:34:53 +0100] [19284] [INFO] Worker exiting (pid: 19284)
+[2023-11-02 12:34:53 +0100] [19285] [INFO] Worker exiting (pid: 19285)
+[2023-11-02 12:34:53 +0100] [19283] [INFO] Shutting down: Master
