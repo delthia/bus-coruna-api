@@ -56,34 +56,28 @@ var marcador = L.icon({
 // mapa.locate({setView: true, maxZoom: 16, watch: true});
 
 // Centrar la vista en la posición del usuario
-// function onLocationFound(e) { L.marker(e.latlng, {icon: marcador}).addTo(mapa) };
-// var usuario = L.marker(e.latlng, {icon: marcador}).addTo(mapa)
-// function onLocationFound(e) { usuario.setLatLng = e.latlng }
-// mapa.on('locationfound', onLocationFound);
-inicio = false;
-var usuario = L.circle()
-var precision = L.circle()
+var usuario = L.circleMarker([0, 0], {radius: 8, color: '#b39ddb', fillColor: '#673ab7', fillOpacity: 1, weight: 2}).addTo(mapa);
+var precision = L.circle([0, 0], 0, {color: '#673ab7', fillColor: '#673ab7', fillOpacity: 0.15, weight: 2, interactive: false}).addTo(mapa);
+var centro;
+
 function onLocationFound(e) {
-    if(inicio == false) {
-        usuario = L.circle(e.latlng, 4, {color: '#b39ddb', fillColor: '#673ab7', fillOpacity: 1, weight: 1});
-        usuario.addTo(mapa);
-        precision = L.circle(e.latlng, e.accuracy/2, {color: '#673ab7', fillColor: '#673ab7', fillOpacity: 0.25, weight: 1}).addTo(mapa)
-        inicio = true;
-        console.log('primera vez')
+    console.log('actualizar');
+    usuario.setLatLng(e.latlng);
+    precision.setLatLng(e.latlng);
+    precision.setRadius(e.accuracy/2);
+    if(centro == undefined || centro == e.latlng) {
+        mapa.setView(e.latlng, 16);
     }
-    else {
-    // L.marker(e.latlng).addTo(mapa);
-    // L.circle(e.latlng, e.accuracy/2).addTo(mapa);
-        console.log('actualizar')
-        usuario.setLatLng(e.latlng);
-        precision.setLatLng(e.latlng);
-    }
+    centro = e.latlng;
+    console.log('fin de actualizar');
 }
-mapa.on('locationfound', onLocationFound);
-mapa.locate({setView:true, watch: true, maxZoom: 16});
+
+mapa.on('locationfound ', onLocationFound);
+mapa.locate({setView: false, watch: true});
 
 var topleft = L.latLng(43.3925, -8.4585),
     bottomright = L.latLng(43.2945, -8.3755);
+// L.rectangle(L.latLngBounds(topleft, bottomright), {color: '#FF9800', fillColor: '#FF9800', weight: 2, fillOpacity: 0.25}).addTo(mapa);  // Límites del mapa
 mapa.setMaxBounds(L.latLngBounds(topleft, bottomright));
 
 /* mapa.on('locationerror', flash_error('Error al buscar tu ubicación'));   */
