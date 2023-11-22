@@ -253,7 +253,7 @@
 #escalonado div >  p {
     margin-left: 0.5em;
 }
-@media(max-width: 1250px) {
+@media(max-width: 950px) {
     #escalonado div { flex-direction: column; }
     #escalonado div > img { width: 100%; }
     #escalonado div > div { width: 75%; margin: 0 auto 20px auto; }
