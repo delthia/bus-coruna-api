@@ -11,14 +11,18 @@ setInterval(function() { actualizar(last) }, 30000);    // Actualizar los datos 
 var last = new Date();
 document.getElementById('boton-recarga').style.display = "";    // Mostrar el botón de actualización
 
+function fijar(id_linea) {
+    console.log(id_linea);
+}
+
 function mostrar_lineas(obj, now) {
     document.getElementById('lineas').innerHTML = '';   // Vaciar el contenedor
 
     // Iterar sobre las líneas
     for(i=0; i<obj.length; i++) {
         // Nombre de la línea y origen en caso de que su nombre sea UDC
-        if( obj[i].linea['nombre'] == 'UDC') { cierre = ' <small style="font-size: 60%">(origen: '+obj[i].linea['origen']+')</small></h1>'; } else { cierre = '</h1>'; }
-        document.getElementById('lineas').innerHTML += '<h1>'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj[i].linea['color']+'">'+obj[i].linea['nombre']+'</span>'+cierre;
+        if( obj[i].linea['nombre'] == 'UDC') { cierre = ' <small style="font-size: 60%">(origen: '+obj[i].linea['origen']+')</small>'; } else { cierre = ''; }
+        document.getElementById('lineas').innerHTML += '<h1 onclick="fijar('+obj[i].linea['id']+')">'+cadenas[idioma][0]+' <span class="simbolo_linea" style="background-color: #'+obj[i].linea['color']+'">'+obj[i].linea['nombre']+'</span>'+cierre+'<span class="material-symbols-outlined stop_pin">push_pin</span></h1>';
 
         // Mostrar los buses para la línea
         buses = obj[i].buses

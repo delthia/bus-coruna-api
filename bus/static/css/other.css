@@ -347,3 +347,16 @@
     margin-bottom: 16px;
     background-color: var(--table-even);
 }
+
+/* Pruebas */
+#lineas > h1 {
+    cursor: pointer;
+}
+
+.stop_pin {
+    rotate: -35deg;
+}
+
+#lineas > h1:hover ~ .stop_pin {
+    color: green!important;
+}
