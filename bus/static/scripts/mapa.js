@@ -56,7 +56,7 @@ var marcador = L.icon({
 // mapa.locate({setView: true, maxZoom: 16, watch: true});
 
 // Centrar la vista en la posición del usuario
-var usuario = L.circleMarker([0, 0], {radius: 8, color: '#b39ddb', fillColor: '#673ab7', fillOpacity: 1, weight: 2}).addTo(mapa);
+var usuario = L.circleMarker([0, 0], {radius: 8, color: '#b39ddb', fillColor: '#673ab7', fillOpacity: 1, weight: 2, interactive: false}).addTo(mapa);
 var precision = L.circle([0, 0], 0, {color: '#673ab7', fillColor: '#673ab7', fillOpacity: 0.15, weight: 2, interactive: false}).addTo(mapa);
 var centro;
 
