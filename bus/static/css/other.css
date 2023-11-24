@@ -354,9 +354,12 @@
 }
 
 .stop_pin {
-    rotate: -35deg;
+    rotate: 35deg;
+    display: none;
+    color: #FFFFFF44;
+    user-select: none;
 }
 
-#lineas > h1:hover ~ .stop_pin {
-    color: green!important;
+#lineas > h1:hover .stop_pin   {
+    display: inline-block;
 }
