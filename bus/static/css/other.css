@@ -359,6 +359,11 @@
     color: #FFFFFF44;
     user-select: none;
 }
+@media(prefers-color-scheme: light) {
+    .stop_pin {
+        color: #CCCCCC;
+    }
+}
 
 #lineas > h1:hover .stop_pin   {
     display: inline-block;
