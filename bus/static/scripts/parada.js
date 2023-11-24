@@ -25,11 +25,9 @@ function fijar(id_linea) {
 }
 
 function mostrar_chincheta(id_linea) {
-    document.getElementById('linea-'+id_linea).style.color = "var(--amarillo)";
     document.getElementById('linea-'+id_linea).style.display = "inline-block";
 }
 function ocultar_chincheta(id_linea) {
-    document.getElementById('linea-'+id_linea).style.color = "";
     document.getElementById('linea-'+id_linea).style.display = "";
 }
 
