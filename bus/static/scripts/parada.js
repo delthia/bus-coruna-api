@@ -14,7 +14,7 @@ document.getElementById('boton-recarga').style.display = "";    // Mostrar el bo
 var pin = 0;
 function fijar(id_linea) {
     mostrar_chincheta(id_linea);
-    if(pin != 0 || pin == id_linea) {
+    if(pin == id_linea) {
         ocultar_chincheta(id_linea);
         pin = 0;
     }
@@ -103,7 +103,7 @@ function actualizar(last) {
         });
     }
     else { flash_error(cadenas[idioma][2]); }
-    document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+now.toLocaleString(cadenas[idioma][4]);
+    document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+now.toLocaleString(cadenas[idioma][4]);    
 }
 
 // Mapa
