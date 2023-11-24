@@ -21,6 +21,7 @@ function fijar(id_linea) {
     else {
         pin = id_linea;
     }
+    mostrar_lineas(datos);
 }
 
 function mostrar_chincheta(id_linea) {
@@ -32,6 +33,7 @@ function ocultar_chincheta(id_linea) {
     document.getElementById('linea-'+id_linea).style.display = "";
 }
 
+var datos;
 function mostrar_lineas(obj, now) {
     document.getElementById('lineas').innerHTML = '';   // Vaciar el contenedor
 
@@ -79,14 +81,13 @@ function mostrar_lineas(obj, now) {
             document.getElementById('lineas').innerHTML += bus;
         }
     }
-    mostrar_chincheta(pin);
-    document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+now.toLocaleString(cadenas[idioma][4]);
+    if(pin != 0) {mostrar_chincheta(pin); }
 }
 
 function actualizar(last) {
     var now = new Date();
 
-    if(now-last >= 0) {
+    if(now-last >= 15000) {
         window.last = now;
 
         // Descargar los datos y actualizar la información
@@ -97,10 +98,12 @@ function actualizar(last) {
         .then(function(response) { return response.json(); })
         .then(function(json) {
             const obj = json['buses']['lineas'];   // Almacenar los datos en una variable
+            datos = obj;
             mostrar_lineas(obj, now);
         });
     }
     else { flash_error(cadenas[idioma][2]); }
+    document.getElementById('t').innerHTML = cadenas[idioma][3]+': '+now.toLocaleString(cadenas[idioma][4]);
 }
 
 // Mapa
