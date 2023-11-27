@@ -134,6 +134,7 @@ function calendario(accion) {
         ancho = 5;  // Número de columnas que tendrá la tabla
 
         // Generar las tablas
+        if(obj.ida.length > 75) { ancho = 10; }
         document.getElementById('horario-linea-ida').innerHTML = tabla(obj.ida, ancho);
         document.getElementById('horario-linea-vuelta').innerHTML = tabla(obj.vuelta, ancho);
 
@@ -148,7 +149,7 @@ function calendario(accion) {
 
             while(a < datos.length/ancho) {
                 f = ''
-                for(i=0; i<5; i++) {
+                for(i=0; i<ancho; i++) {
                     var pos = i+a*ancho;
                     if(datos[pos] != undefined) { f += '<td>'+datos[pos]+'</td>'} else { break; }
                 }

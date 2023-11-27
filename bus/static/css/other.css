@@ -181,6 +181,9 @@
 .horario-linea td {
     padding: 8px 16px;
 }
+.popup .contenido-pestanas {
+    overflow: scroll;
+}
 
 /* Mapa de buses */
 /* style="width: 1000px; height: 750px" */
