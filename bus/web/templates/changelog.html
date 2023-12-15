@@ -1,6 +1,36 @@
 {% extends "disposicion.html" %}
 {% block content %}
     <h1>Historial de cambios</h1>
+    <h2 id="1.1.1"><span class="material-symbols-outlined" style="vertical-align: middle;">sell</span> 1.1.1 <small><i>(15/12/2023)</i></small> - Mejoras y funcionalidades nuevas</h2>
+    <p><ul>
+        <li>Mejoras en la Interfaz de Usuario</li>
+        <ul>
+            <li>Ahora la distancia de un bus se muestra en km cuando es mayor a 1000m</li>
+            <li>Mostrar el origen de la línea para diferenciar entre las dos líneas <span class="simbolo_linea" style="background-color: #d61d3f">UDC</span></li>
+            <li>Mejoras en los mapas:</li>
+            <ul>
+                <li>Doblar la resolución en pantallas pequeñas</li>
+                <li>Arreglar enlace a <a href="https://osm.org">OpenStreetMap</a> en la atribución de leaflet</li>
+                <li>Mejoras en el indicador de ubicación del usuario en el mapa. Ahora se actualiza en tiempo real</li>
+            </ul>
+            <li>Mejorar en contraste de los mensajes de error en modo claro</li>
+            <li>Permitir fijar una línea arriba en la página de parada</li>
+            <li>Arreglar la tabla de salidas en pantallas pequeñas para líneas con muchas salidas</li>
+        </ul>
+        <li>Arreglos en la Interfaz de Usuario</li>
+        <ul>
+            <li>Arreglos de la disposición de la página principal en pantallas pequeñas</li>
+        </ul>
+        <li>Otras mejoras y arreglos</li>
+        <ul>
+            <li>Mejoras en las páginas de error y arreglar enlace</li>
+            <li>Limpiar el código de parada.js y arreglar errores</li>
+            <li>Incluir mensajes de error en la API</li>
+            <li>Gestionar páginas de error con <i>app.errorhandler()</i></li>
+            <li>Arreglar error en parada cuando no existe en OpenStreetMap</li>
+
+        </ul>
+    </ul></p>
     <h2 id="1.1.0"><span class="material-symbols-outlined" style="vertical-align: middle;">sell</span> 1.1.0 <small><i>(08/10/2023)</i></small> - Reescritura de la página</h2>
     <p><ul>
         <li>Mejoras en el código</li>
