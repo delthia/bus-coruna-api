@@ -8,7 +8,7 @@
             <h1>{{ t.inicio['info-parada'] }}</h1>
             <p>{{ t.inicio['desc-parada']|safe }}</p>
             <!-- <div id="caja" style="visibility: hidden"> -->
-                <input type="text" class="buscar-pp" id="b" onkeyup="enlace()" placeholder="{{ t.buscar }}">
+                <input type="text" class="buscar-pp" id="b" onkeyup="enlace()" placeholder="{{ t.buscar }}" style="margin-right: 0.5vh" accesskey="b">
                 <a href="{{ url_for('web.paradas', lang=lang ) }}" class="enlace-pp b-pp" id="lupa"><span class="material-symbols-outlined" style="vertical-align: middle;">search</span></a>
             <!-- </div> -->
             <script>

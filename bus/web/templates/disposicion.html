@@ -36,10 +36,10 @@
 </head>
 <body>
     <header>
-        <a href="{{ url_for('web.inicio', lang=lang) }}"><span class="material-symbols-outlined">commute</span>{{ t['t-inicio'] | capitalize }}</a>
-        <a href="{{ url_for('web.mapa', lang=lang) }}"><span class="material-symbols-outlined">map</span>{{ t['t-mapa'] | capitalize }}</a>
-        <a href="{{ url_for('web.paradas', lang=lang) }}"><span class="material-symbols-outlined">pergola</span>{{ t['paradas'] | capitalize }}</a>
-        <a href="{{ url_for('web.lineas', lang=lang) }}"><span class="material-symbols-outlined">route</span>{{ t['lineas'] | capitalize }}</a>
+        <a href="{{ url_for('web.inicio', lang=lang) }}" accesskey="i"><span class="material-symbols-outlined">commute</span>{{ t['t-inicio'] | capitalize }}</a>
+        <a href="{{ url_for('web.mapa', lang=lang) }}" accesskey="m"><span class="material-symbols-outlined">map</span>{{ t['t-mapa'] | capitalize }}</a>
+        <a href="{{ url_for('web.paradas', lang=lang) }}" accesskey="p"><span class="material-symbols-outlined">pergola</span>{{ t['paradas'] | capitalize }}</a>
+        <a href="{{ url_for('web.lineas', lang=lang) }}" accesskey="l"><span class="material-symbols-outlined">route</span>{{ t['lineas'] | capitalize }}</a>
     </header>
     {% if mensaje %}
         <div id="mensaje" class="mensaje-{{ mensaje.color }}">
