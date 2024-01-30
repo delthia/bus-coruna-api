@@ -258,8 +258,9 @@
 }
 @media(max-width: 950px) {
     #escalonado div { flex-direction: column; }
+    #escalonado div:nth-child(even) { flex-direction: column-reverse; }
     #escalonado div > img { width: 100%; }
-    #escalonado div > div { width: 75%; margin: 0 auto 20px auto; }
+    #escalonado div > div { width: 75%; margin: 0 auto 20px auto; padding-left: 0px!important; }
 }
 .enlace-pp {
     background-color: var(--accent);
