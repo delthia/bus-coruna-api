@@ -82,16 +82,22 @@ var mapa = L.map('mapa-linea', {
     layers: style,
 })
 
-function onEachFeature(feature, layer) { if(feature.properties && feature.properties.popupContent) { layer.bindPopup(feature.properties.popupContent); } }
+function onEachFeature(feature, layer) {
+  if(feature.properties && feature.properties.popupContent) {
+    layer.bindPopup(feature.properties.popupContent);
+  }
+}
 
 // Icono para las paradas
-var stopIcon = L.icon({
-    iconUrl: '/static/icons/maps/punto.png',
-
-    iconSize: [8, 8],
-    iconAnchor: [4, 4]
-});
-L.Marker.prototype.options.icon = stopIcon; // Hacer que el icono sea el que se utiliza por defecto
+function stopIcon(coordenadas) {
+  return L.circleMarker(coordenadas, {
+    radius: 4,
+    fill: true,
+    fillColor: "#5e31b1",
+    fillOpacity: 1,
+    stroke: false,
+  })
+}
 // Estilo de las líneas
 var estiloLinea = {
     "color": "#5e31b1",
@@ -100,7 +106,12 @@ var estiloLinea = {
 }
 
 // Añadir los datos al mapa
-mapa.addLayer(L.geoJson(paradas, { onEachFeature: onEachFeature })); // Paradas
+mapa.addLayer(
+  L.geoJSON(paradas, {
+    pointToLayer: function(feature, latlng) {
+      return stopIcon(latlng);
+    },
+  onEachFeature: onEachFeature}));
 mapa.addLayer(L.geoJson(linea, {onEachFeature: onEachFeature, style: estiloLinea }));   // Línea
 mapa.fitBounds(L.geoJSON(paradas).getBounds());
 
