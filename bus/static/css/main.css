@@ -274,7 +274,9 @@ footer {
     padding: 8px 32px;
     border-width: 1px;
     border-style: solid;
-    border-radius: 0px 0px 8px 8px;
+    border-radius: 0px 0px 6px 6px;
+    margin-left: -1em;
+    margin-right: -1em;
 }
 #mensaje .material-symbols-outlined { vertical-align: middle; }
 
