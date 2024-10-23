@@ -135,6 +135,8 @@ p, a, footer {
 a:hover {
     text-decoration: underline;
 }
+.a-escondido { cursor: default; }
+.a-escondido:hover { text-decoration: none; }
 .contenido {
     margin: 0em 1em;
 }
