@@ -28,6 +28,16 @@ from bus import cache
 
 # Buscar una línea en la lista de líneas y devolverla
 def encontrar_linea(id, datos):
+    # <apaño>Línea udc de refuerzo
+    if id == 2452:
+        return {
+            'id': 2452,
+            'nombre': 'UDC',
+            'origen': 'campus de Elviña',
+            'destino': 'UDC',
+            'color': '666'}
+    # </apaño>
+
     for linea in datos['lineas']:
         if linea['id'] == id:
             return linea
