@@ -3,14 +3,14 @@
 {% block content %}
 {% include "includes/leaflet.html" %}   <!-- leafletjs -->
 
-{% if parada.id in [186, 159, 185, 398, 161, 385] %}
+{# {% if parada.id in [186, 159, 185, 398, 161, 385] %}
 <div id="mensaje" class="mensaje-morado">
     ℹ️ Esta parada está afectada por <a href="https://www.coruna.gal/descarga/1453863375106/PDF-Traslado-das-paradas-de-transporte-publico-polas-obras-de-reurbanizacion-da-rua-San-Andres.pdf" style="color: var(--fg); text-decoration: underline;">las obras de San Andrés</a>.
     {% if parada.id not in [186, 159, 398, 161, 385] %}
         La tabla informativa y el mapa no son correctos</a>
     {% endif %}
 </div>
-{% endif %}
+{% endif %} #}
 
 <h1><span id="id-parada">{{ parada.id }}</span> - {{ parada.nombre }} <span class="material-symbols-outlined recargar" id="boton-recarga" style="display: none" onclick="actualizar(last)">refresh</span><small style="font-size: 45%; padding-left: 1em;" id="t"></small></h1>
 <div class="flex-parada">

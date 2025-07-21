@@ -3,9 +3,9 @@
 {% block content %}
 {% include 'includes/leaflet.html' %}   <!-- leafletjs -->
 
-{% if line.id in [400, 500, 600, 601, 700, 1100] %}
+{# {% if line.id in [400, 500, 600, 601, 700, 1100] %}
 <div id="mensaje" class="mensaje-verde">ℹ️ Esta línea esta afectada por <a href="https://www.coruna.gal/descarga/1453863375106/PDF-Traslado-das-paradas-de-transporte-publico-polas-obras-de-reurbanizacion-da-rua-San-Andres.pdf" style="color: var(--fg); text-decoration: underline;">las obras de San Andrés</a>.</div>
-{% endif %}
+{% endif %} #}
 
 <h1><span class="simbolo_linea" style="background-color: #{{ line.color }}">{{ line.nombre }}</span> {{ line.origen }} - {{ line.destino }} <a href="#horas"><span class="material-symbols-outlined recargar" id="salidas" onclick="calendario()" style="display: none">schedule</span></a><span class="material-symbols-outlined recargar" id="boton-recarga" onclick="actualizar(last)" style="display: none">refresh</span>{% if asleep == True %}<span class="material-symbols-outlined" style="color: var(--amarillo); user-select: none; border: 1px solid var(--amarillo); border-radius: 4px; padding: 4px 12px;" id="estado">bedtime</span>{% endif %} <small style="font-size: 45%" id="t"></small></h1>
 <span id="alerta" style="display: none"></span>
@@ -38,7 +38,7 @@
                             <div id="buses-ida"></div>
                             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em">
                                 {% for parada in paradas.paradas.ida %}
-                                <li class="parada"><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}" class="a-escondido"><span class="nombre_parada">{% include 'includes/afectada.html' %}{{ parada.nombre }}</span></a><p><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                                    <li class="parada"><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}" class="a-escondido"><span class="nombre_parada">{# {% include 'includes/afectada.html' %} #}{{ parada.nombre }}</span></a><p><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                                 {% endfor %}
                             </ol></div>
                         </div>
@@ -55,7 +55,7 @@
                             <div id="buses-vuelta"></div>
                             <div><ol class="paradas-linea" style="--color-linea: #{{ line.color }}; margin-left: 3em;">
                                 {% for parada in paradas.paradas.vuelta %}
-                                <li class="parada"><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}" class="a-escondido"><span class="nombre_parada">{% include 'includes/afectada.html' %}{{ parada.nombre }}</span></a><p><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
+                                    <li class="parada"><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}" class="a-escondido"><span class="nombre_parada">{# {% include 'includes/afectada.html' %} #}{{ parada.nombre }}</span></a><p><a href="{{ url_for('web.parada', id_parada=parada.id, lang=lang) }}">{{ t['enlaces']|capitalize }}:</a> {% for enlace in parada.lineas %}<span class="simbolo_linea" style="background-color: #{{ enlace.color }}">{{ enlace.nombre }}</span>{% endfor %}</p></li>
                                 {% endfor %}
                             </ol></div>
                         </div>
@@ -73,7 +73,7 @@
             <ul>
                 <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_parada" style="vertical-align: middle;">directions_bus</span> → {{ t['en-parada']|capitalize }}</li>
                 <li><span class="material-symbols-outlined simbolo_bus simbolo_bus_otro" style="vertical-align: middle">directions_bus</span> → {{ t['otro-estado']|capitalize }}</li>
-                <li style="margin-top: 4px;"><span style="font-size: 150%;">⚠️</span> → parada fuera del itinerario habitual</li>
+                <!--<li style="margin-top: 4px;"><span style="font-size: 150%;">⚠️</span> → parada fuera del itinerario habitual</li>-->
             </ul>
         </div>
     </div>
