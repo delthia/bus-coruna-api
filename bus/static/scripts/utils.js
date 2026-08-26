@@ -12,13 +12,13 @@ function flash_error(mensaje) {
 }
 
 // Estilos para los mapas
-var bright = ['https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png', {
+var bright = ['https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png?key=cb1_28su_1_b1328e92fcf392d0e3a9b814', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     minZoom: 13
 }];
 
-var dark = ['https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
+var dark = ['https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png?key=cb1_28su_1_b1328e92fcf392d0e3a9b814', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     minZoom: 13,
